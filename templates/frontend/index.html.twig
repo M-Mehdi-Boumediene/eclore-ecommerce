@@ -12318,14 +12318,22 @@ document.addEventListener('click', function (e) {
       mainVideo.style.display = 'none';
       media.appendChild(mainVideo);
     }
-    mainVideo.src = variantVideo;
+    
+    // ⚡ Toujours mettre à jour la source
+    if (mainVideo.src !== variantVideo) {
+      mainVideo.src = variantVideo;
+      mainVideo.load(); // Important pour recharger la vidéo
+    }
 
-    // Détecter mobile
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
+    // ⚡ Nettoyer les anciens écouteurs pour éviter les doublons
+    mainVideo.replaceWith(mainVideo.cloneNode(true));
+    mainVideo = media.querySelector('video');
+
     if (isMobile) {
-      // Jouer / pause au tap
-      media.addEventListener('click', () => {
+      // Tap pour mobile
+      media.addEventListener('click', function tapHandler() {
         if (mainVideo.paused) {
           mainVideo.style.display = 'block';
           mainVideo.play();
@@ -12337,10 +12345,10 @@ document.addEventListener('click', function (e) {
         }
       });
     } else {
-      // Hover desktop
+      // Hover pour desktop
       media.addEventListener('mouseenter', () => {
         mainVideo.style.display = 'block';
-        mainVideo.play();
+        mainVideo.play().catch(err => console.log(err));
         mainImg.style.display = 'none';
       });
       media.addEventListener('mouseleave', () => {
@@ -12379,6 +12387,7 @@ document.addEventListener('click', function (e) {
   }
 });
 </script>
+
 
 
 
