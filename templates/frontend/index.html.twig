@@ -12309,7 +12309,7 @@ document.addEventListener('click', function (e) {
       mainVideo = document.createElement('video');
       mainVideo.muted = true;
       mainVideo.loop = true;
-      mainVideo.autoplay = false; // autoplay seulement au hover
+      mainVideo.autoplay = false; 
       mainVideo.playsInline = true;
       mainVideo.style.width = '100%';
       mainVideo.style.position = 'absolute';
@@ -12317,18 +12317,38 @@ document.addEventListener('click', function (e) {
       mainVideo.style.left = '0';
       mainVideo.style.display = 'none';
       media.appendChild(mainVideo);
+    }
+    mainVideo.src = variantVideo;
 
-      // Hover pour lancer la vidéo
+    // Détecter mobile
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      // Jouer / pause au tap
+      media.addEventListener('click', () => {
+        if (mainVideo.paused) {
+          mainVideo.style.display = 'block';
+          mainVideo.play();
+          mainImg.style.display = 'none';
+        } else {
+          mainVideo.pause();
+          mainVideo.style.display = 'none';
+          mainImg.style.display = 'block';
+        }
+      });
+    } else {
+      // Hover desktop
       media.addEventListener('mouseenter', () => {
         mainVideo.style.display = 'block';
         mainVideo.play();
+        mainImg.style.display = 'none';
       });
       media.addEventListener('mouseleave', () => {
         mainVideo.pause();
         mainVideo.style.display = 'none';
+        mainImg.style.display = 'block';
       });
     }
-    mainVideo.src = variantVideo;
   }
 
   // ⚡ Toujours mettre à jour l'image
@@ -12336,7 +12356,7 @@ document.addEventListener('click', function (e) {
     mainImg.src = variantImg;
     mainImg.srcset = variantImg;
     mainImg.setAttribute('data-srcset', variantImg);
-    mainImg.style.display = 'block'; // important pour le hover thème
+    mainImg.style.display = 'block';
   }
 
   // 🔗 Mettre à jour tous les liens du produit
