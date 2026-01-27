@@ -12285,16 +12285,7 @@
 <script>
 document.addEventListener('click', function (e) {
   const swatch = e.target.closest('.swatch-label');
-  if (!swatch) return;
-
-  e.preventDefault();
-  e.stopImmediatePropagation();
-
-  const variantId = swatch.dataset.variantId;
-  const variantImg = swatch.dataset.variantImg;
-  const variantVideo = swatch.dataset.variantVideo;
-
-  const product = swatch.closest('.product');
+  const product = swatch ? swatch.closest('.product') : e.target.closest('.product');
   if (!product) return;
 
   const media = product.querySelector('.card-media');
@@ -12302,86 +12293,62 @@ document.addEventListener('click', function (e) {
 
   let mainImg = media.querySelector('img');
   let mainVideo = media.querySelector('video');
-  let overlay = media.querySelector('.video-overlay');
 
-  // ⚡ Créer la vidéo si elle n'existe pas
-  if (variantVideo) {
-    if (!mainVideo) {
-      mainVideo = document.createElement('video');
-      mainVideo.muted = true;
-      mainVideo.loop = true;
-      mainVideo.autoplay = false; // On ne force pas autoplay
-      mainVideo.playsInline = true;
-      mainVideo.style.width = '100%';
-      mainVideo.style.position = 'absolute';
-      mainVideo.style.top = '0';
-      mainVideo.style.left = '0';
-      mainVideo.style.display = 'none';
-      media.appendChild(mainVideo);
+  // 📌 Si on clique sur un swatch, on met à jour image/vidéo
+  if (swatch) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    const variantId = swatch.dataset.variantId;
+    const variantImg = swatch.dataset.variantImg;
+    const variantVideo = swatch.dataset.variantVideo;
+
+    if (variantVideo) {
+      if (!mainVideo) {
+        mainVideo = document.createElement('video');
+        mainVideo.muted = true;
+        mainVideo.loop = true;
+        mainVideo.autoplay = false;
+        mainVideo.playsInline = true;
+        mainVideo.style.width = '100%';
+        mainVideo.style.position = 'absolute';
+        mainVideo.style.top = '0';
+        mainVideo.style.left = '0';
+        mainVideo.style.display = 'none';
+        media.appendChild(mainVideo);
+      }
+      mainVideo.src = variantVideo;
     }
-    mainVideo.src = variantVideo;
 
-    // Créer overlay pour mobile
-    if (!overlay) {
-      overlay = document.createElement('div');
-      overlay.className = 'video-overlay';
-      overlay.style.position = 'absolute';
-      overlay.style.top = '0';
-      overlay.style.left = '0';
-      overlay.style.width = '100%';
-      overlay.style.height = '100%';
-      overlay.style.background = 'rgba(0,0,0,0.3)';
-      overlay.style.display = 'none';
-      overlay.style.alignItems = 'center';
-      overlay.style.justifyContent = 'center';
-      overlay.style.color = '#fff';
-      overlay.style.fontSize = '16px';
-      overlay.style.cursor = 'pointer';
-      overlay.style.textAlign = 'center';
-      overlay.innerHTML = 'Tap to play video';
-      media.appendChild(overlay);
-
-      // Click overlay pour lancer la vidéo
-      overlay.addEventListener('click', function() {
-        overlay.style.display = 'none';
-        mainVideo.style.display = 'block';
-        mainVideo.play().catch(() => console.warn("Lecture vidéo bloquée"));
-      });
+    if (variantImg && mainImg) {
+      mainImg.src = variantImg;
+      mainImg.srcset = variantImg;
+      mainImg.style.display = 'block';
     }
-  }
 
-  // ⚡ Toujours mettre à jour l'image
-  if (variantImg && mainImg) {
-    mainImg.src = variantImg;
-    mainImg.srcset = variantImg;
-    mainImg.setAttribute('data-srcset', variantImg);
-    mainImg.style.display = 'block';
-  }
+    // Gestion des liens et titre
+    product.querySelectorAll('a[href*="?variant="]').forEach(link => {
+      const baseUrl = link.href.split('?')[0];
+      link.href = `${baseUrl}?variant=${variantId}`;
+    });
+    const titleVariant = product.querySelector('[data-change-title]');
+    if (titleVariant) titleVariant.textContent = ' - ' + swatch.dataset.value;
 
-  // 🔗 Mettre à jour tous les liens du produit
-  product.querySelectorAll('a[href*="?variant="]').forEach(link => {
-    const baseUrl = link.href.split('?')[0];
-    link.href = `${baseUrl}?variant=${variantId}`;
-  });
-
-  // 🏷️ Mettre à jour le titre
-  const titleVariant = product.querySelector('[data-change-title]');
-  if (titleVariant) titleVariant.textContent = ' - ' + swatch.dataset.value;
-
-  // ✅ Gestion de l'état actif du swatch
-  const swatchContainer = swatch.closest('.swatch');
-  if (swatchContainer) {
-    swatchContainer.querySelectorAll('.swatch-label').forEach(l => l.classList.remove('is-active'));
-    swatch.classList.add('is-active');
+    // État actif swatch
+    const swatchContainer = swatch.closest('.swatch');
+    if (swatchContainer) {
+      swatchContainer.querySelectorAll('.swatch-label').forEach(l => l.classList.remove('is-active'));
+      swatch.classList.add('is-active');
+    }
   }
 
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   if (mainVideo) {
     if (isMobile) {
-      // Mobile : montrer overlay
-      mainVideo.style.display = 'none';
-      overlay.style.display = 'flex';
+      // Mobile : lecture directe dès le premier affichage
+      mainVideo.style.display = 'block';
+      mainVideo.play().catch(() => console.warn("Lecture vidéo bloquée sur mobile"));
     } else {
       // Desktop : hover
       media.addEventListener('mouseenter', () => {
@@ -12396,6 +12363,7 @@ document.addEventListener('click', function (e) {
   }
 });
 </script>
+
 
 
 
