@@ -12288,11 +12288,11 @@ document.addEventListener('click', function (e) {
   if (!swatch) return;
 
   e.preventDefault();
-  e.stopImmediatePropagation(); // empêche le code du thème de s'exécuter
+  e.stopImmediatePropagation();
 
   const variantId = swatch.dataset.variantId;
   const variantImg = swatch.dataset.variantImg;
-  const variantVideo = swatch.dataset.variantVideo; // vidéo spécifique pour ce variant
+  const variantVideo = swatch.dataset.variantVideo;
 
   const product = swatch.closest('.product');
   if (!product) return;
@@ -12300,7 +12300,7 @@ document.addEventListener('click', function (e) {
   const media = product.querySelector('.card-media');
   if (!media) return;
 
-  const mainImg = media.querySelector('img');
+  let mainImg = media.querySelector('img');
   let mainVideo = media.querySelector('video');
 
   // ⚡ Créer la vidéo si elle n'existe pas encore
@@ -12309,7 +12309,7 @@ document.addEventListener('click', function (e) {
       mainVideo = document.createElement('video');
       mainVideo.muted = true;
       mainVideo.loop = true;
-      mainVideo.autoplay = false; // autoplay seulement au hover
+      mainVideo.autoplay = false;
       mainVideo.playsInline = true;
       mainVideo.style.width = '100%';
       mainVideo.style.position = 'absolute';
@@ -12317,16 +12317,6 @@ document.addEventListener('click', function (e) {
       mainVideo.style.left = '0';
       mainVideo.style.display = 'none';
       media.appendChild(mainVideo);
-
-      // Hover pour lancer la vidéo
-      media.addEventListener('mouseenter', () => {
-        mainVideo.style.display = 'block';
-        mainVideo.play();
-      });
-      media.addEventListener('mouseleave', () => {
-        mainVideo.pause();
-        mainVideo.style.display = 'none';
-      });
     }
     mainVideo.src = variantVideo;
   }
@@ -12336,7 +12326,7 @@ document.addEventListener('click', function (e) {
     mainImg.src = variantImg;
     mainImg.srcset = variantImg;
     mainImg.setAttribute('data-srcset', variantImg);
-    mainImg.style.display = 'block'; // important pour le hover thème
+    mainImg.style.display = 'block';
   }
 
   // 🔗 Mettre à jour tous les liens du produit
@@ -12357,8 +12347,32 @@ document.addEventListener('click', function (e) {
     swatchContainer.querySelectorAll('.swatch-label').forEach(l => l.classList.remove('is-active'));
     swatch.classList.add('is-active');
   }
+
+  // 🌐 Détection mobile
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  if (mainVideo) {
+    if (isMobile) {
+      // Mobile : play directement au tap
+      mainVideo.style.display = 'block';
+      mainVideo.play().catch(() => {
+        console.warn("Lecture vidéo bloquée par le navigateur mobile");
+      });
+    } else {
+      // Desktop : hover
+      media.addEventListener('mouseenter', () => {
+        mainVideo.style.display = 'block';
+        mainVideo.play();
+      });
+      media.addEventListener('mouseleave', () => {
+        mainVideo.pause();
+        mainVideo.style.display = 'none';
+      });
+    }
+  }
 });
 </script>
+
 
 
 
