@@ -12283,54 +12283,69 @@
 
    <script src="cdn/shop/t/196/assets/halo.image-banner-slide.js?v=135492872895892112291728460616"></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const products = document.querySelectorAll('.product');
+// Fonction pour initialiser le media (image + vidéo)
+function initProductMedia(product) {
+  const media = product.querySelector('.card-media');
+  if (!media) return;
 
-  products.forEach(product => {
-    const media = product.querySelector('.card-media');
-    if (!media) return;
+  let mainImg = media.querySelector('img');
+  let mainVideo = media.querySelector('video');
 
-    const mainImg = media.querySelector('img');
-    let mainVideo = media.querySelector('video');
+  // Variant actif ou premier swatch
+  const activeSwatch = product.querySelector('.swatch-label.is-active') || product.querySelector('.swatch-label');
+  if (!activeSwatch) return;
 
-    // Préparer la vidéo si data-variant-video existe sur le premier swatch actif
-    const activeSwatch = product.querySelector('.swatch-label.is-active') || product.querySelector('.swatch-label');
-    if (activeSwatch) {
-      const variantVideo = activeSwatch.dataset.variantVideo;
-      if (variantVideo) {
-        if (!mainVideo) {
-          mainVideo = document.createElement('video');
-          mainVideo.muted = true;
-          mainVideo.loop = true;
-          mainVideo.autoplay = false;
-          mainVideo.playsInline = true;
-          mainVideo.style.width = '100%';
-          mainVideo.style.position = 'absolute';
-          mainVideo.style.top = '0';
-          mainVideo.style.left = '0';
-          mainVideo.style.display = 'none';
-          media.appendChild(mainVideo);
-        }
-        mainVideo.src = variantVideo;
-      }
+  const variantImg = activeSwatch.dataset.variantImg;
+  const variantVideo = activeSwatch.dataset.variantVideo;
+
+  // Mettre à jour l'image
+  if (variantImg && mainImg) {
+    mainImg.src = variantImg;
+    mainImg.srcset = variantImg;
+    mainImg.style.display = 'block';
+  }
+
+  // Créer la vidéo si nécessaire
+  if (variantVideo) {
+    if (!mainVideo) {
+      mainVideo = document.createElement('video');
+      mainVideo.muted = true;
+      mainVideo.loop = true;
+      mainVideo.autoplay = false;
+      mainVideo.playsInline = true;
+      mainVideo.style.width = '100%';
+      mainVideo.style.position = 'absolute';
+      mainVideo.style.top = '0';
+      mainVideo.style.left = '0';
+      mainVideo.style.display = 'none';
+      media.appendChild(mainVideo);
     }
+    mainVideo.src = variantVideo;
+  }
 
-    // Desktop hover
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (mainVideo && !isMobile) {
-      media.addEventListener('mouseenter', () => {
-        mainVideo.style.display = 'block';
-        mainVideo.play();
-      });
-      media.addEventListener('mouseleave', () => {
-        mainVideo.pause();
-        mainVideo.style.display = 'none';
-      });
-    }
-  });
-});
+  // Desktop hover
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (mainVideo && !isMobile) {
+    media.addEventListener('mouseenter', () => {
+      mainVideo.style.display = 'block';
+      mainVideo.play();
+    });
+    media.addEventListener('mouseleave', () => {
+      mainVideo.pause();
+      mainVideo.style.display = 'none';
+    });
+  }
 
-// Gestion du clic sur swatch pour changer image/video
+  // Mobile : play au tap
+  if (mainVideo && isMobile) {
+    media.addEventListener('click', () => {
+      mainVideo.style.display = 'block';
+      mainVideo.play().catch(() => {});
+    }, { once: true }); // un seul clic suffit
+  }
+}
+
+// Sur swatch click
 document.addEventListener('click', function(e) {
   const swatch = e.target.closest('.swatch-label');
   if (!swatch) return;
@@ -12351,7 +12366,14 @@ document.addEventListener('click', function(e) {
   let mainImg = media.querySelector('img');
   let mainVideo = media.querySelector('video');
 
-  // Créer la vidéo si nécessaire
+  // Mettre à jour l'image
+  if (variantImg && mainImg) {
+    mainImg.src = variantImg;
+    mainImg.srcset = variantImg;
+    mainImg.style.display = 'block';
+  }
+
+  // Créer ou mettre à jour la vidéo
   if (variantVideo) {
     if (!mainVideo) {
       mainVideo = document.createElement('video');
@@ -12367,23 +12389,13 @@ document.addEventListener('click', function(e) {
       media.appendChild(mainVideo);
     }
     mainVideo.src = variantVideo;
+
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      mainVideo.style.display = 'block';
+      mainVideo.play().catch(() => {});
+    }
   }
-
-  // Mettre à jour l'image
-  if (variantImg && mainImg) {
-    mainImg.src = variantImg;
-    mainImg.srcset = variantImg;
-    mainImg.style.display = 'block';
-  }
-
-  // Mettre à jour liens et titre
-  product.querySelectorAll('a[href*="?variant="]').forEach(link => {
-    const baseUrl = link.href.split('?')[0];
-    link.href = `${baseUrl}?variant=${variantId}`;
-  });
-
-  const titleVariant = product.querySelector('[data-change-title]');
-  if (titleVariant) titleVariant.textContent = ' - ' + swatch.dataset.value;
 
   // Swatch actif
   const swatchContainer = swatch.closest('.swatch');
@@ -12391,15 +12403,27 @@ document.addEventListener('click', function(e) {
     swatchContainer.querySelectorAll('.swatch-label').forEach(l => l.classList.remove('is-active'));
     swatch.classList.add('is-active');
   }
-
-  // Mobile : play au tap
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  if (mainVideo && isMobile) {
-    mainVideo.style.display = 'block';
-    mainVideo.play().catch(() => {});
-  }
 });
+
+// Observer pour Quick View
+const observer = new MutationObserver(mutations => {
+  mutations.forEach(m => {
+    m.addedNodes.forEach(node => {
+      if (node.nodeType === 1 && node.matches('.card-quickview')) {
+        // Quand Quick View s'ouvre, initialiser les médias
+        const product = node.querySelector('.product');
+        if (product) initProductMedia(product);
+      }
+    });
+  });
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
+
+// Initialiser les produits déjà présents
+document.querySelectorAll('.product').forEach(initProductMedia);
 </script>
+
 
 
 
