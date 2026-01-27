@@ -12283,196 +12283,167 @@
 
    <script src="cdn/shop/t/196/assets/halo.image-banner-slide.js?v=135492872895892112291728460616"></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('click', function (e) {
 
-  document.querySelectorAll('.product').forEach(product => {
+  const swatch = e.target.closest('.swatch-label');
+  if (!swatch) return;
 
-    const media = product.querySelector('.card-media');
-    if (!media) return;
+  e.preventDefault();
+  e.stopImmediatePropagation(); // bloque le thème
 
-    const img = media.querySelector('img');
-    let video = media.querySelector('video');
+  const variantId    = swatch.dataset.variantId;
+  const variantImg   = swatch.dataset.variantImg;
+  const variantVideo = swatch.dataset.variantVideo;
+
+  const product = swatch.closest('.product');
+  if (!product) return;
+
+  const media = product.querySelector('.card-media');
+  if (!media) return;
+
+  const mainImg = media.querySelector('img');
+  let mainVideo = media.querySelector('video');
 
 
-    /* ======================
-       Créer la vidéo
-    ====================== */
+  /* ===============================
+     Création vidéo si inexistante
+  =============================== */
+  if (variantVideo) {
 
-    if (!video) {
+    if (!mainVideo) {
 
-      video = document.createElement('video');
+      mainVideo = document.createElement('video');
 
-      video.muted = true;      // obligatoire mobile
-      video.loop = true;
-      video.playsInline = true;
-      video.preload = 'metadata';
+      mainVideo.muted = true;       // obligatoire mobile
+      mainVideo.loop = true;
+      mainVideo.autoplay = false;
+      mainVideo.playsInline = true;
+      mainVideo.preload = 'metadata';
 
-      video.style.position = 'absolute';
-      video.style.top = 0;
-      video.style.left = 0;
-      video.style.width = '100%';
-      video.style.height = '100%';
-      video.style.objectFit = 'cover';
-      video.style.display = 'none';
-      video.style.zIndex = 5;
+      mainVideo.style.width = '100%';
+      mainVideo.style.height = '100%';
+      mainVideo.style.objectFit = 'cover';
+      mainVideo.style.position = 'absolute';
+      mainVideo.style.top = '0';
+      mainVideo.style.left = '0';
+      mainVideo.style.display = 'none';
+      mainVideo.style.zIndex = '2';
 
-      media.appendChild(video);
+      media.appendChild(mainVideo);
+
+
+      /* ===============================
+         DESKTOP = HOVER
+      =============================== */
+
+      media.addEventListener('mouseenter', () => {
+
+        if (!mainVideo.src) return;
+
+        mainVideo.style.display = 'block';
+
+        mainVideo.play().catch(() => {});
+      });
+
+
+      media.addEventListener('mouseleave', () => {
+
+        mainVideo.pause();
+        mainVideo.currentTime = 0;
+
+        mainVideo.style.display = 'none';
+      });
+
+
+      /* ===============================
+         MOBILE = TOUCH
+      =============================== */
+
+      media.addEventListener('touchstart', (e) => {
+
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        if (!mainVideo.src) return;
+
+        mainVideo.style.display = 'block';
+
+        mainVideo.play().catch(() => {});
+      });
+
+
+      media.addEventListener('touchend', (e) => {
+
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        mainVideo.pause();
+        mainVideo.currentTime = 0;
+
+        mainVideo.style.display = 'none';
+      });
+
     }
 
-
-    /* ======================
-       DESKTOP = HOVER
-    ====================== */
-
-    media.addEventListener('mouseenter', (e) => {
-
-      e.preventDefault();
-      e.stopImmediatePropagation();
-
-      if (!video.src) return;
-
-      video.style.display = 'block';
-
-      video.play().catch(()=>{});
-
-      if (img) img.style.opacity = 0;
-    });
+    // Update vidéo
+    mainVideo.src = variantVideo;
+    mainVideo.load();
+  }
 
 
-    media.addEventListener('mouseleave', (e) => {
+  /* ===============================
+     Update image classique
+  =============================== */
 
-      e.preventDefault();
-      e.stopImmediatePropagation();
+  if (variantImg && mainImg) {
 
-      video.pause();
-      video.currentTime = 0;
+    mainImg.src = variantImg;
+    mainImg.srcset = variantImg;
+    mainImg.setAttribute('data-srcset', variantImg);
 
-      video.style.display = 'none';
-
-      if (img) img.style.opacity = 1;
-    });
-
-
-    /* ======================
-       MOBILE = TOUCH
-    ====================== */
-
-    media.addEventListener('pointerdown', (e) => {
-
-      if (e.pointerType !== 'touch') return;
-
-      e.preventDefault();
-      e.stopImmediatePropagation();
-
-      if (!video.src) return;
-
-      video.style.display = 'block';
-
-      video.play().catch(()=>{});
-
-      if (img) img.style.opacity = 0;
-    });
+    mainImg.style.display = 'block';
+  }
 
 
-    media.addEventListener('pointerup', (e) => {
+  /* ===============================
+     Update liens
+  =============================== */
 
-      if (e.pointerType !== 'touch') return;
+  product.querySelectorAll('a[href*="?variant="]').forEach(link => {
 
-      e.preventDefault();
-      e.stopImmediatePropagation();
-
-      video.pause();
-      video.currentTime = 0;
-
-      video.style.display = 'none';
-
-      if (img) img.style.opacity = 1;
-    });
-
+    const baseUrl = link.href.split('?')[0];
+    link.href = `${baseUrl}?variant=${variantId}`;
   });
 
 
+  /* ===============================
+     Titre variant
+  =============================== */
 
-  /* ======================
-     SWATCH
-  ====================== */
+  const titleVariant = product.querySelector('[data-change-title]');
 
-  document.addEventListener('click', e => {
-
-    const swatch = e.target.closest('.swatch-label');
-    if (!swatch) return;
-
-    e.preventDefault();
-    e.stopImmediatePropagation(); // IMPORTANT
+  if (titleVariant) {
+    titleVariant.textContent = ' - ' + swatch.dataset.value;
+  }
 
 
-    const product = swatch.closest('.product');
-    if (!product) return;
+  /* ===============================
+     Swatch actif
+  =============================== */
 
-    const media = product.querySelector('.card-media');
-    if (!media) return;
+  const swatchContainer = swatch.closest('.swatch');
 
-    const video = media.querySelector('video');
-    const img   = media.querySelector('img');
+  if (swatchContainer) {
 
+    swatchContainer
+      .querySelectorAll('.swatch-label')
+      .forEach(l => l.classList.remove('is-active'));
 
-    const videoUrl = swatch.dataset.variantVideo;
-    const imgUrl   = swatch.dataset.variantImg;
-
-
-    // Reset
-    if (video) {
-
-      video.pause();
-      video.currentTime = 0;
-      video.style.display = 'none';
-    }
-
-    if (img) img.style.opacity = 1;
-
-
-    // Update video
-    if (videoUrl && video) {
-
-      video.src = videoUrl;
-      video.load();
-    }
-
-
-    // Update image
-    if (imgUrl && img) {
-
-      img.src = imgUrl;
-      img.srcset = imgUrl;
-      img.setAttribute('data-srcset', imgUrl);
-    }
-
-
-    // Update URL
-    const variantId = swatch.dataset.variantId;
-
-    product.querySelectorAll('a[href*="?variant="]').forEach(link => {
-
-      link.href = link.href.split('?')[0] + '?variant=' + variantId;
-    });
-
-
-    // Active swatch
-    const wrap = swatch.closest('.swatch');
-
-    if (wrap) {
-
-      wrap.querySelectorAll('.swatch-label')
-        .forEach(el => el.classList.remove('is-active'));
-
-      swatch.classList.add('is-active');
-    }
-
-  });
+    swatch.classList.add('is-active');
+  }
 
 });
 </script>
-
 
 
 
