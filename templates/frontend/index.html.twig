@@ -12325,31 +12325,35 @@ document.addEventListener('click', function (e) {
 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    // ⚡ Mobile : tap sur media pour jouer / pause
+    // ⚡ Retirer anciens listeners
+    media.replaceWith(media.cloneNode(true));
+    const newMedia = product.querySelector('.card-media');
+
     if (isMobile) {
-      media.onclick = () => {
+      // Tap sur swatch pour mobile
+      newMedia.addEventListener('click', function () {
         if (mainVideo.paused) {
           mainVideo.style.display = 'block';
           mainVideo.play().catch(err => console.log(err));
-          mainImg.style.display = 'none';
+          if (mainImg) mainImg.style.display = 'none';
         } else {
           mainVideo.pause();
           mainVideo.style.display = 'none';
-          mainImg.style.display = 'block';
+          if (mainImg) mainImg.style.display = 'block';
         }
-      };
+      });
     } else {
-      // Desktop : hover
-      media.onmouseenter = () => {
+      // Hover desktop
+      newMedia.addEventListener('mouseenter', () => {
         mainVideo.style.display = 'block';
         mainVideo.play().catch(err => console.log(err));
-        mainImg.style.display = 'none';
-      };
-      media.onmouseleave = () => {
+        if (mainImg) mainImg.style.display = 'none';
+      });
+      newMedia.addEventListener('mouseleave', () => {
         mainVideo.pause();
         mainVideo.style.display = 'none';
-        mainImg.style.display = 'block';
-      };
+        if (mainImg) mainImg.style.display = 'block';
+      });
     }
   }
 
