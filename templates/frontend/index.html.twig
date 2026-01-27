@@ -12283,7 +12283,55 @@
 
    <script src="cdn/shop/t/196/assets/halo.image-banner-slide.js?v=135492872895892112291728460616"></script>
 <script>
-document.addEventListener('click', function (e) {
+document.addEventListener('DOMContentLoaded', () => {
+  const products = document.querySelectorAll('.product');
+
+  products.forEach(product => {
+    const media = product.querySelector('.card-media');
+    if (!media) return;
+
+    const mainImg = media.querySelector('img');
+    let mainVideo = media.querySelector('video');
+
+    // Préparer la vidéo si data-variant-video existe sur le premier swatch actif
+    const activeSwatch = product.querySelector('.swatch-label.is-active') || product.querySelector('.swatch-label');
+    if (activeSwatch) {
+      const variantVideo = activeSwatch.dataset.variantVideo;
+      if (variantVideo) {
+        if (!mainVideo) {
+          mainVideo = document.createElement('video');
+          mainVideo.muted = true;
+          mainVideo.loop = true;
+          mainVideo.autoplay = false;
+          mainVideo.playsInline = true;
+          mainVideo.style.width = '100%';
+          mainVideo.style.position = 'absolute';
+          mainVideo.style.top = '0';
+          mainVideo.style.left = '0';
+          mainVideo.style.display = 'none';
+          media.appendChild(mainVideo);
+        }
+        mainVideo.src = variantVideo;
+      }
+    }
+
+    // Desktop hover
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (mainVideo && !isMobile) {
+      media.addEventListener('mouseenter', () => {
+        mainVideo.style.display = 'block';
+        mainVideo.play();
+      });
+      media.addEventListener('mouseleave', () => {
+        mainVideo.pause();
+        mainVideo.style.display = 'none';
+      });
+    }
+  });
+});
+
+// Gestion du clic sur swatch pour changer image/video
+document.addEventListener('click', function(e) {
   const swatch = e.target.closest('.swatch-label');
   if (!swatch) return;
 
@@ -12303,7 +12351,7 @@ document.addEventListener('click', function (e) {
   let mainImg = media.querySelector('img');
   let mainVideo = media.querySelector('video');
 
-  // ⚡ Créer la vidéo si elle n'existe pas encore
+  // Créer la vidéo si nécessaire
   if (variantVideo) {
     if (!mainVideo) {
       mainVideo = document.createElement('video');
@@ -12321,55 +12369,38 @@ document.addEventListener('click', function (e) {
     mainVideo.src = variantVideo;
   }
 
-  // ⚡ Toujours mettre à jour l'image
+  // Mettre à jour l'image
   if (variantImg && mainImg) {
     mainImg.src = variantImg;
     mainImg.srcset = variantImg;
-    mainImg.setAttribute('data-srcset', variantImg);
     mainImg.style.display = 'block';
   }
 
-  // 🔗 Mettre à jour tous les liens du produit
+  // Mettre à jour liens et titre
   product.querySelectorAll('a[href*="?variant="]').forEach(link => {
     const baseUrl = link.href.split('?')[0];
     link.href = `${baseUrl}?variant=${variantId}`;
   });
 
-  // 🏷️ Mettre à jour le titre
   const titleVariant = product.querySelector('[data-change-title]');
-  if (titleVariant) {
-    titleVariant.textContent = ' - ' + swatch.dataset.value;
-  }
+  if (titleVariant) titleVariant.textContent = ' - ' + swatch.dataset.value;
 
-  // ✅ Gestion de l'état actif du swatch
+  // Swatch actif
   const swatchContainer = swatch.closest('.swatch');
   if (swatchContainer) {
     swatchContainer.querySelectorAll('.swatch-label').forEach(l => l.classList.remove('is-active'));
     swatch.classList.add('is-active');
   }
 
-  // 🌐 Détection mobile
+  // Mobile : play au tap
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-  if (mainVideo) {
-    if (isMobile) {
-      // Mobile : play directement au tap
-      mainVideo.style.display = 'block';
-      mainVideo.play().catch(() => {});
-    } else {
-      // Desktop : hover
-      media.addEventListener('mouseenter', () => {
-        mainVideo.style.display = 'block';
-        mainVideo.play();
-      });
-      media.addEventListener('mouseleave', () => {
-        mainVideo.pause();
-        mainVideo.style.display = 'none';
-      });
-    }
+  if (mainVideo && isMobile) {
+    mainVideo.style.display = 'block';
+    mainVideo.play().catch(() => {});
   }
 });
 </script>
+
 
 
 
