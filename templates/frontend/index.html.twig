@@ -12309,7 +12309,7 @@ document.addEventListener('click', function (e) {
       mainVideo = document.createElement('video');
       mainVideo.muted = true;
       mainVideo.loop = true;
-      mainVideo.autoplay = false; // autoplay seulement au hover / touch
+      mainVideo.autoplay = false; // autoplay seulement au hover
       mainVideo.playsInline = true;
       mainVideo.style.width = '100%';
       mainVideo.style.position = 'absolute';
@@ -12318,23 +12318,12 @@ document.addEventListener('click', function (e) {
       mainVideo.style.display = 'none';
       media.appendChild(mainVideo);
 
-      // Hover pour desktop
+      // Hover pour lancer la vidéo
       media.addEventListener('mouseenter', () => {
         mainVideo.style.display = 'block';
         mainVideo.play();
       });
       media.addEventListener('mouseleave', () => {
-        mainVideo.pause();
-        mainVideo.style.display = 'none';
-      });
-
-      // Touch pour mobile
-      media.addEventListener('touchstart', (ev) => {
-        ev.preventDefault(); // évite le comportement de sélection
-        mainVideo.style.display = 'block';
-        mainVideo.play();
-      }, {passive: false});
-      media.addEventListener('touchend', () => {
         mainVideo.pause();
         mainVideo.style.display = 'none';
       });
@@ -12347,7 +12336,7 @@ document.addEventListener('click', function (e) {
     mainImg.src = variantImg;
     mainImg.srcset = variantImg;
     mainImg.setAttribute('data-srcset', variantImg);
-    mainImg.style.display = 'block';
+    mainImg.style.display = 'block'; // important pour le hover thème
   }
 
   // 🔗 Mettre à jour tous les liens du produit
@@ -12369,7 +12358,6 @@ document.addEventListener('click', function (e) {
     swatch.classList.add('is-active');
   }
 });
-
 </script>
 
 
