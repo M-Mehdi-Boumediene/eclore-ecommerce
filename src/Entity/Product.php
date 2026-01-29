@@ -44,7 +44,7 @@ class Product
     private Collection $productImages;
 
     // 🔹 Champ slug
-    #[ORM\Column(length: 255, unique: true)]
+    #[ORM\Column(length: 190, unique: true)]
     private ?string $slug = null;
 
     public function __construct()

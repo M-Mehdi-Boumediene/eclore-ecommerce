@@ -24,7 +24,7 @@ class ProductCategory
     private ?string $photo = null;
 
     // 🔹 Champ slug unique
-    #[ORM\Column(length: 255, unique: true)]
+    #[ORM\Column(length: 190, unique: true)]
     private ?string $slug = null;
 
     /**
