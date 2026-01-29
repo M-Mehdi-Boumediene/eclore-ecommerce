@@ -24,13 +24,13 @@ class Color
     /**
      * @var Collection<int, Product>
      */
-    #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'Color')]
+    #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'Colors')]
     private Collection $products;
 
     /**
      * @var Collection<int, ProductImage>
      */
-    #[ORM\OneToMany(targetEntity: ProductImage::class, mappedBy: 'color')]
+    #[ORM\OneToMany(targetEntity: ProductImage::class, mappedBy: 'colors')]
     private Collection $productImages;
 
     public function __construct()
