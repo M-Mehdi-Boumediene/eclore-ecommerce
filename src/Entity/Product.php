@@ -7,8 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[ORM\HasLifecycleCallbacks] // 🔹 Pour générer automatiquement le slug
 class Product
 {
     #[ORM\Id]
@@ -31,24 +33,19 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $mainVideo = null;
 
-    // ✅ Relation ManyToOne vers ProductCategory
     #[ORM\ManyToOne(targetEntity: ProductCategory::class, inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
     private ?ProductCategory $productCategory = null;
 
-    // ✅ Relation ManyToMany vers Color
-    /**
-     * @var Collection<int, Color>
-     */
     #[ORM\ManyToMany(targetEntity: Color::class, inversedBy: 'products')]
     private Collection $colors;
 
-    // ✅ Relation OneToMany vers ProductImage
-    /**
-     * @var Collection<int, ProductImage>
-     */
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class, cascade: ['persist', 'remove'])]
     private Collection $productImages;
+
+    // 🔹 Champ slug
+    #[ORM\Column(length: 255, unique: true)]
+    private ?string $slug = null;
 
     public function __construct()
     {
@@ -56,10 +53,33 @@ class Product
         $this->productImages = new ArrayCollection();
     }
 
-    // ===========================
-    // Getters & Setters
-    // ===========================
+    // =====================
+    // Slug automatique
+    // =====================
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function updateSlug(): void
+    {
+        if ($this->name) {
+            $slugger = new AsciiSlugger();
+            $this->slug = strtolower($slugger->slug($this->name));
+        }
+    }
 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    // =====================
+    // Getters & Setters
+    // =====================
     public function getId(): ?int
     {
         return $this->id;
@@ -78,9 +98,8 @@ class Product
 
     public function __toString(): string
     {
-        return $this->name ?? ''; // 🔹 permet à EasyAdmin d’afficher correctement
+        return $this->name ?? '';
     }
-
 
     public function getDescription(): ?string
     {
@@ -137,9 +156,6 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection<int, Color>
-     */
     public function getColors(): Collection
     {
         return $this->colors;
@@ -159,9 +175,6 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection<int, ProductImage>
-     */
     public function getProductImages(): Collection
     {
         return $this->productImages;

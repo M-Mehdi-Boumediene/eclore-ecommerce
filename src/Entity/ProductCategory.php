@@ -6,8 +6,10 @@ use App\Repository\ProductCategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[ORM\Entity(repositoryClass: ProductCategoryRepository::class)]
+#[ORM\HasLifecycleCallbacks] // 🔹 nécessaire pour générer le slug automatiquement
 class ProductCategory
 {
     #[ORM\Id]
@@ -21,6 +23,10 @@ class ProductCategory
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
 
+    // 🔹 Champ slug unique
+    #[ORM\Column(length: 255, unique: true)]
+    private ?string $slug = null;
+
     /**
      * @var Collection<int, Product>
      */
@@ -32,6 +38,33 @@ class ProductCategory
         $this->products = new ArrayCollection();
     }
 
+    // =====================
+    // Slug automatique
+    // =====================
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function updateSlug(): void
+    {
+        if ($this->name) {
+            $slugger = new AsciiSlugger();
+            $this->slug = strtolower($slugger->slug($this->name));
+        }
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    // =====================
+    // Getters & Setters
+    // =====================
     public function getId(): ?int
     {
         return $this->id;
@@ -45,7 +78,6 @@ class ProductCategory
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -62,7 +94,6 @@ class ProductCategory
     public function setPhoto(?string $photo): static
     {
         $this->photo = $photo;
-
         return $this;
     }
 
@@ -80,19 +111,16 @@ class ProductCategory
             $this->products->add($product);
             $product->setProductCategory($this);
         }
-
         return $this;
     }
 
     public function removeProduct(Product $product): static
     {
         if ($this->products->removeElement($product)) {
-            // set the owning side to null (unless already changed)
             if ($product->getProductCategory() === $this) {
                 $product->setProductCategory(null);
             }
         }
-
         return $this;
     }
 }
