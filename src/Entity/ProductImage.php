@@ -21,6 +21,7 @@ class ProductImage
     private ?Product $product = null;
 
     #[ORM\ManyToOne(inversedBy: 'productImages')]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Color $color = null;
 
     public function getId(): ?int
