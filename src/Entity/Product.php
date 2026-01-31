@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
@@ -21,11 +20,12 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(type: 'text', nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
-    private ?string $price = null;
+    // 🔹 Changement type DECIMAL -> float
+    #[ORM\Column(type: 'float', nullable: true)]
+    private ?float $price = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $mainPhoto = null;
@@ -112,12 +112,12 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?string
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(?string $price): static
+    public function setPrice(?float $price): static
     {
         $this->price = $price;
         return $this;

@@ -28,7 +28,10 @@ class ProductCrudController extends AbstractCrudController
         return [
             TextField::new('name'),
             TextEditorField::new('description'),
-            MoneyField::new('price')->setCurrency('USD'),
+            MoneyField::new('price')
+            ->setCurrency('DZD')     // devise
+            ->setStoredAsCents(false) // important pour éviter que EasyAdmin multiplie par 100
+            ->setNumDecimals(2) ,
             AssociationField::new('productCategory'),
             AssociationField::new('colors')->setFormTypeOptions(['by_reference' => false]),
             ImageField::new('mainPhoto')
