@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ColorField;
 
 class ColorCrudController extends AbstractCrudController
 {
@@ -19,7 +20,12 @@ class ColorCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name'),
-            TextField::new('hex')->setHelp('Ex: #FF0000'),
+            ColorField::new('hex')
+            ->setFormTypeOption('attr', [
+                'name' => 'color'
+            ])
+            ->setHelp('Choisissez une couleur'),
+    
         ];
     }
 }
