@@ -24,6 +24,16 @@ class FrontendController extends AbstractController
             'productCategories' => $productCategory
         ]);
     }
+        #[Route('/shop', name: 'app_frontend_shop')]
+    public function shop(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository): Response
+    {
+         $products = $productRepository->findAll();
+         $productCategory = $productCategoryRepository->findAll();
+        return $this->render('frontend/shop.html.twig', [
+            'products' => $products,
+            'productCategories' => $productCategory
+        ]);
+    }
    #[Route('/{categorySlug}/{productSlug}', name: 'product_show')]
     public function show(
         string $categorySlug,
@@ -51,3 +61,4 @@ class FrontendController extends AbstractController
 
 
 }
+
