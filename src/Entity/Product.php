@@ -47,10 +47,17 @@ class Product
     #[ORM\Column(length: 190, unique: true)]
     private ?string $slug = null;
 
+    /**
+     * @var Collection<int, CartItem>
+     */
+    #[ORM\OneToMany(targetEntity: CartItem::class, mappedBy: 'product')]
+    private Collection $cartItems;
+
     public function __construct()
     {
         $this->colors = new ArrayCollection();
         $this->productImages = new ArrayCollection();
+        $this->cartItems = new ArrayCollection();
     }
 
     // =====================
@@ -196,6 +203,36 @@ class Product
                 $productImage->setProduct(null);
             }
         }
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CartItem>
+     */
+    public function getCartItems(): Collection
+    {
+        return $this->cartItems;
+    }
+
+    public function addCartItem(CartItem $cartItem): static
+    {
+        if (!$this->cartItems->contains($cartItem)) {
+            $this->cartItems->add($cartItem);
+            $cartItem->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCartItem(CartItem $cartItem): static
+    {
+        if ($this->cartItems->removeElement($cartItem)) {
+            // set the owning side to null (unless already changed)
+            if ($cartItem->getProduct() === $this) {
+                $cartItem->setProduct(null);
+            }
+        }
+
         return $this;
     }
 }
