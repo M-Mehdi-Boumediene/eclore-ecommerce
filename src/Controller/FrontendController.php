@@ -6,6 +6,8 @@ use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Entity\Product;
 use App\Entity\ProductCateory;
 use App\Repository\ProductRepository;
@@ -24,14 +26,29 @@ class FrontendController extends AbstractController
             'productCategories' => $productCategory
         ]);
     }
-        #[Route('/shop', name: 'app_frontend_shop')]
-    public function shop(ProductRepository $productRepository, ProductCategoryRepository $productCategoryRepository): Response
+    #[Route('/shop', name: 'app_frontend_shop')]
+    public function shop(
+        Request $request,
+        ProductRepository $productRepository, 
+        ProductCategoryRepository $productCategoryRepository,
+        SessionInterface $session
+    ): Response
     {
-         $products = $productRepository->findAll();
-         $productCategory = $productCategoryRepository->findAll();
+        $products = $productRepository->findAll();
+        $productCategories = $productCategoryRepository->findAll();
+
+        // Récupérer le panier depuis la session
+        $cart = $session->get('cart', []); 
+        // Exemple de structure: 
+        // $cart = [
+        //     1 => ['product' => $productObj, 'quantity' => 2],
+        //     3 => ['product' => $productObj, 'quantity' => 1]
+        // ];
+
         return $this->render('frontend/shop.html.twig', [
             'products' => $products,
-            'productCategories' => $productCategory
+            'productCategories' => $productCategories,
+            'cart' => $cart
         ]);
     }
    #[Route('/{categorySlug}/{productSlug}', name: 'product_show')]
