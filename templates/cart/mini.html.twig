@@ -1,63 +1,84 @@
+
 <div class="previewCart">
    {% if cart is empty %}
-            <li>Votre panier est vide</li>
-        {% else %}
+      <li>Votre panier est vide</li>
+   {% else %}
    <ul class="previewCartList list-unstyled">
-   {% for item in cart %}
+   {% for itemKey, item in cart %}
       <li class="previewCartItem clearfix" data-item-row="">
-         <a href="{{ path('product_show', {categorySlug: item.product.productCategory.slug, productSlug: item.product.slug}) }}" class="previewCartItem-image">
-          <img src="{{ asset('uploads/products/' ~ item.product.mainPhoto) }}" width="110" height="157" alt="{{ item.product.name }}">
+
+         {# lien produit #}
+         <a href="{{ path('product_show', {
+            categorySlug: item.product.category,
+            productSlug: item.product.slug
+         }) }}" class="previewCartItem-image">
+
+            {# image couleur si existe sinon mainPhoto #}
+            {% if item.image is defined and item.image %}
+               <img src="{{ item.image }}" width="110" height="157" alt="{{ item.color|default('couleur') }}">
+            {% else %}
+               <img src="{{ asset('uploads/products/' ~ item.product.mainPhoto) }}" width="110" height="157" alt="{{ item.product.name }}">
+            {% endif %}
+
          </a>
+
          <div class="previewCartItem-content cart-item-block-right">
+
             <script type="text/javascript">
-               window.cart_selling_array_6617631391834 = {'39504895967322': 'deny','39944082554970': 'deny','39944082587738': 'deny','39504896000090': 'deny','39944082620506': 'deny','39944082653274': 'deny','39504896032858': 'deny','39944082686042': 'deny','39944082718810': 'deny','39504896065626': 'deny','39944082751578': 'deny','39944082784346': 'deny','39504896098394': 'deny','39944082817114': 'deny','39944082849882': 'deny','39504896131162': 'deny','39944082882650': 'deny','39944082915418': 'deny','39504896163930': 'deny','39944082948186': 'deny','39944082980954': 'deny','39504896196698': 'deny','39944083013722': 'deny','39944083046490': 'deny','39504896229466': 'deny','39944083079258': 'deny','39944083112026': 'deny','39504896262234': 'deny','39944083144794': 'deny','39944083177562': 'deny','39944108834906': 'deny','39944108867674': 'deny','39944108900442': 'deny','39944108933210': 'deny','39944108965978': 'deny','39944108998746': 'deny','39944109031514': 'deny','39944109064282': 'deny','39944109097050': 'deny','39944109129818': 'deny','39944109162586': 'deny','39944109195354': 'deny','39944109228122': 'deny','39944109260890': 'deny','39944109293658': 'deny',};
+               window.cart_selling_array_6617631391834 = {'39504895967322': 'deny'};
             </script>
-             <a class="previewCartItem-name link-underline card-title" href="{{ path('product_show', {categorySlug: item.product.productCategory.slug, productSlug: item.product.slug}) }}">
-                            {{ item.product.name }}
-              </a>
+
+            <a class="previewCartItem-name link-underline card-title"
+               href="{{ path('product_show', {
+                  categorySlug: item.product.category,
+                  productSlug: item.product.slug
+               }) }}">
+               {{ item.product.name }}
+            </a>
+
             <div class="previewCartItem-options">
                <span class="previewCartItem-variant">
-               {{ item.product.color|default('') }} / {{ item.product.size|default('') }}
+                  {{ item.color|default('') }}
                </span>
-               <button type="button" class="previewCartItem-edit" data-open-edit-cart="" data-edit-cart-url="/products/dinterdum-pretium-condimento-2?variant=39504895967322&amp;view=ajax_edit_cart" data-edit-cart-id="39504895967322" data-edit-cart-quantity="1" data-line="39504895967322:0b791e96b1b11d9828d340678b65aa69" data-index="1" title="Edit Pink / M / Cotton">
-                  <svg viewBox="0 0 576 512" class="icon icon-edit" id="icon-edit">
-                     <path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"></path>
-                  </svg>
-               </button>
+
+               {% if item.image is defined and item.image %}
+                  <div class="previewCartItem-color-image">
+                     <img src="{{ item.image }}" width="40" height="40" alt="{{ item.color|default('couleur') }}">
+                  </div>
+               {% endif %}
             </div>
+
             <dl class="card-properties definitionList cart-item-properties"></dl>
+
             <div class="previewCartItem-change">
-               <div class="previewCartItem-price" data-price="6999" data-original-price="6999">
-                  <span class="price">
-                  <span class="previewCartItem-saving-price saved_compare_price" data-price-from-compare="">
-                  <s class="before-discount-price">
-                  <span class="money">{{ (item.product.price * item.quantity)|number_format(2, '.', ',') }} DZD</span>
-                  </s>
-                  <span class="discounted-price">
-                  <span class="money">{{ (item.product.price * item.quantity)|number_format(2, '.', ',') }} DZD</span>
-                  </span>
-                  </span>
+               <div class="previewCartItem-price">
+                  <span class="money">
+                     {{ (item.product.price * item.quantity)|number_format(2, '.', ',') }} DZD
                   </span>
                </div>
-               <cart-update-quantity class="previewCartItem-qty" data-product="6617631391834" data-variant="39504895967322">
-                  <label class="form-label hiddenLabels" for="upsell-update-39504895967322">
-                  Translation missing: en.sections.cart.heading.quantity
-                  </label>
-                  <a role="link" aria-disabled="true" class="minus btn-quantity" data-minus-quantity-cart=""></a>
-                  <input class="form-input quantity" name="quantity" id="upsell-update-39504895967322" data-qtt-id1="quantity39504895967322" value="{{ item.quantity }}" type="number" data-cart-quantity="" data-cart-quantity-id="39504895967322" data-line="39504895967322:0b791e96b1b11d9828d340678b65aa69" data-index="1">
-                  <a role="link" aria-disabled="true" class="plus btn-quantity" data-plus-quantity-cart=""></a>
+
+               <cart-update-quantity class="previewCartItem-qty">
+                  <a role="link" aria-disabled="true" class="minus btn-quantity"></a>
+                  <input class="form-input quantity"
+                         value="{{ item.quantity }}"
+                         type="number">
+                  <a role="link" aria-disabled="true" class="plus btn-quantity"></a>
                </cart-update-quantity>
             </div>
          </div>
-         <button type="button" class="previewCartItem-remove" data-cart-remove="" data-cart-remove-id="39504895967322" data-line="39504895967322:0b791e96b1b11d9828d340678b65aa69" data-index="1" title="Remove (Product 13) Sample - Clothing And Accessory Boutiques For Sale - Pink / M / Cotton">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-               <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
-            </svg>
+
+         {# bouton suppression (clé du panier) #}
+         <button type="button"
+                 class="previewCartItem-remove"
+                 data-cart-remove=""
+                 data-cart-remove-id="{{ itemKey }}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                           <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                        </svg>
          </button>
+
       </li>
-        {% endfor %}
+   {% endfor %}
    </ul>
-  {% endif %}
+   {% endif %}
 </div>
-
-

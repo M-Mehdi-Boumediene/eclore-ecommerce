@@ -795,10 +795,10 @@
                                           
                                           <div class="card-action has-compare">
                                           
-                                            <button type="button" type="button"  class="button button-ATC"  data-quickshop-popup="" data-product-handle="{{ product.id }}">Quick add
+                                            <button type="button" type="button"  class="button button-ATC"  data-quickshop-popup="" data-product-handle="{{ product.id }}">Quick  add
                                                 </button >
                                             
-                                             <div class="variants-popup custom-scrollbar">
+                                             <div class="variants-popup custom-scrollbar" data-product-id="{{ product.id }}">
                                                 <script>window.quick_view_inven_array_6617631129690 = {'39504890658906': '9','39504890691674': '0','39504890724442': '2','39504890757210': '1','39504890789978': '24','39504890822746': '3','39504890855514': '5','39504890888282': '7','39504890921050': '34','39504890953818': '4','39504890986586': '33','39504891019354': '44','39504891052122': '55','39504891084890': '1','39504891117658': '0','39504891150426': '3','39504891183194': '1','39504891215962': '0','39504891248730': '1','39504891281498': '23',};</script>
                                                 <a role="link" aria-disabled="true" class="variants-popup-close" data-cancel-quickshop-popup="">
                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
@@ -808,35 +808,56 @@
                                                 </a>
                                                 
                                                 <div class="variants-popup-content text-center" data-quickshop="">
-                                                
-                                                   <form action="/cart/add" method="post" class="variants" id="form-6617631129690-template--14613441937498__163247026462da6862" data-id="product-actions-6617631129690" enctype="multipart/form-data">
-                                                      <div class="selector-wrapper selector-wrapper-1 swatch option-color" data-option-index="0" data-option-position="0">
-                                                         <label class="form-label">Color: <span class="label-value-1">Gray</span></label>
-                                                         <div class="swatch-element gray available" data-value="Gray">
-                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690-template--14613441937498__163247026462da6862" data-index="option1" value="Gray" id="SingleOptionSelector0-Gray-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id101">
-                                                            <label class="single-label" title="Gray" for="SingleOptionSelector0-Gray-6617631129690-template--14613441937498__163247026462da6862">
-                                                            <span class="pattern" style="background-color: gray; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image11xxl_8c0594c5-f6fe-4cb6-b2a2-a52652633ec9_40x.jpg?v=1657872035); background-size: cover;"></span>
-                                                            </label>
-                                                         </div>
-                                                         <div class="swatch-element black available" data-value="Black">
-                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690-template--14613441937498__163247026462da6862" data-index="option1" value="Black" id="SingleOptionSelector0-Black-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id102">
-                                                            <label class="single-label" title="Black" for="SingleOptionSelector0-Black-6617631129690-template--14613441937498__163247026462da6862">
-                                                            <span class="pattern" style="background-color: black; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image12bxxl_40x.jpg?v=1657872035); background-size: cover;"></span>
-                                                            </label>
-                                                         </div>
-                                                         <div class="swatch-element cadetblue available" data-value="Cadetblue">
-                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690-template--14613441937498__163247026462da6862" data-index="option1" value="Cadetblue" id="SingleOptionSelector0-Cadetblue-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id103">
-                                                            <label class="single-label" title="Cadetblue" for="SingleOptionSelector0-Cadetblue-6617631129690-template--14613441937498__163247026462da6862">
-                                                            <span class="pattern" style="background-color: cadetblue; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image10xxl_3b27afc2-4c8c-4832-8324-a898fc662543_40x.jpg?v=1657872035); background-size: cover;"></span>
-                                                            </label>
-                                                         </div>
-                                                         <div class="swatch-element darkorange available" data-value="Darkorange">
-                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690-template--14613441937498__163247026462da6862" data-index="option1" value="Darkorange" id="SingleOptionSelector0-Darkorange-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id104">
-                                                            <label class="single-label" title="Darkorange" for="SingleOptionSelector0-Darkorange-6617631129690-template--14613441937498__163247026462da6862">
-                                                            <span class="pattern" style="background-color: darkorange; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image13bxxl_40x.jpg?v=1657872035); background-size: cover;"></span>
-                                                            </label>
-                                                         </div>
-                                                      </div>
+                                                   
+                                                   <form action="/cart/add" class="variants"  >
+                                                <div class="selector-wrapper selector-wrapper-1 swatch option-color" data-option-index="0" data-option-position="0">
+                                                   <label class="form-label">Color: <span class="label-value-1">{{ product.productImages|first.color.name }}</span></label>
+
+                                        {% for productImage in product.productImages %}
+                                          {% set colorName = productImage.color.name %}
+                                          {% set imageUrl = asset('uploads/product-images/' ~ productImage.path) %}
+
+                                          <div class="swatch-element {{ colorName|lower }} available" data-value="{{ colorName }}">
+
+                                             <input class="single-option"
+                                                   type="radio"
+                                                   name="SingleOptionSelector-0-{{ product.id }}"
+                                                   data-index="option1"
+                                                   value="{{ colorName }}"
+                                                   data-image="{{ imageUrl }}"
+                                                   id="SingleOptionSelector0-{{ colorName }}-{{ product.id }}"
+                                                   {% if loop.first %}checked{% endif %}>
+
+                                             <label class="single-label"
+                                                   title="{{ colorName }}"
+                                                   for="SingleOptionSelector0-{{ colorName }}-{{ product.id }}">
+
+                                                   <span class="pattern"
+                                                         style="background-color: {{ productImage.color.hex }};
+                                                               background: url('{{ imageUrl }}');
+                                                               background-size: cover;">
+                                                   </span>
+
+                                             </label>
+                                          </div>
+                                       {% endfor %}
+                                                </div>
+                                                   <script>
+                                                   document.addEventListener('DOMContentLoaded', function() {
+                                                      const colorInputs = document.querySelectorAll('.selector-wrapper-1 input.single-option');
+                                                      const labelSpan = document.querySelector('.selector-wrapper-1 .label-value-1');
+
+                                                      colorInputs.forEach(input => {
+                                                         input.addEventListener('change', function() {
+                                                               if (this.checked) {
+                                                                  labelSpan.textContent = this.value;
+                                                               }
+                                                         });
+                                                      });
+
+                                                      
+                                                   });
+                                                   </script>
                                                       <div class="selector-wrapper selector-wrapper-2 swatch" data-option-index="1">
                                                          <label class="form-label">Size: <span class="label-value-2">XS</span></label>
                                                          <div class="swatch-element xs available" data-value="XS">
@@ -1466,46 +1487,7 @@
       </style>
      
       <script src="//new-ella-demo.myshopify.com/cdn/shop/t/191/assets/recently-viewed-product.js?v=166542025565451574291692950798" type="text/javascript"></script>
-      <script type="text/javascript">
-         Shopify.Products.recordRecentlyViewed();
-         
-         var cookieValue = $.cookie('shopify_recently_viewed');
-         
-         if (!(cookieValue !== null && cookieValue !== undefined && cookieValue !== "")){
-             $('#halo-recently-viewed-block-template--14613264072794__product-recently-viewed').remove();
-         } else {
-             var recentlyViewed = $(this.popup);
-         
-             var limit = 10,
-                 expireDay = 1;
-         
-             const handler = (entries, observer) => {
-                 if (!entries[0].isIntersecting || entries[0].target.matches('.ajax-loaded')) return;
-                 entries[0].target.classList.add('ajax-loaded');
-                 Shopify.Products.showRecentlyViewed({
-                     howManyToShow: limit,
-                     wrapperId: 'recently-viewed-products-list-2', 
-                     templateId: 'recently-viewed-product-block',
-                     layout: 'slider',
-                     swipe: false,
-                     media: 'adapt',
-                     onComplete: function() {
-                         if (window.location.pathname.indexOf('/products/') !== -1) {
-                             $.cookie('shopify_recently_viewed', cookieValue, { expires: expireDay, path: "/", domain: window.location.hostname });
-                         }
-                     }
-                 });
-             }
-         
-             this.recentlyViewedBlock = document.querySelector('[data-recently-viewed-block]');
-         
-             const config = {
-                 threshold: 0.25,
-             }
-         
-             new IntersectionObserver(handler.bind(this.recentlyViewedBlock), ({}, config)).observe(this.recentlyViewedBlock);
-         }
-      </script>
+     
    </div>
 </main>
       <div class="wrapper-footer">
@@ -1986,36 +1968,15 @@
             .halo-sticky-toolbar-mobile span {color: #fff}
             .halo-sticky-toolbar-mobile span.icon svg {fill: #fff}
          </style>
-         <script>
-            const buttons = document.querySelectorAll('[data-bar-content]');
-            if (buttons.length) {
-                buttons.forEach((button) => {
-                    button.addEventListener('click', (event) => {
-                        event.preventDefault();
-                        if (event.target.nextSibling.classList.contains('show')) {
-                            event.target.nextSibling.classList.remove('show');
-                            document.querySelector('body').classList.remove('show-sidebar-content');
-                        } else {
-                            event.target.nextSibling.classList.add('show');
-                            document.querySelector('body').classList.add('show-sidebar-content');
-                        }
-                    })
-                });
-                document.querySelectorAll('[data-close-content-sidebar]').forEach((button) => {
-                    button.addEventListener('click', (event) => {
-                        event.target.closest('.bottom-bar--content').classList.remove('show');
-                    });
-                })
-            }
-            $('body').addClass('sticky-toolbar-mobile');
-         </script>
+     
       </section>
       <ul hidden="">
          <li id="a11y-refresh-page-message">Choosing a selection results in a full page refresh.</li>
       </ul>
       <script src="cdn/shop/t/196/assets/slider.js?v=140906245454472783371709022560" defer="defer"></script>
 
-      <script src="cdn/shop/t/196/assets/theme.js?v=122057593179847135831758714138" defer="defer"></script>
+      <script src="{{asset('cdn/shop/t/196/assets/theme.js?v=122057593179847135831758714138')}}" defer="defer"></script>
+
       
       
    </div>
@@ -2209,7 +2170,7 @@
    <noscript>
       <link href="//new-ella-demo.myshopify.com/cdn/shop/t/196/assets/component-quick-edit-cart.css?v=99986072539168487651728460611" rel="stylesheet" type="text/css" media="all" />
    </noscript>
-   <div class="halo-popup halo-edit-cart-popup customPopup-large" data-edit-cart-popup="" id="halo-edit-cart-popup" data-url-style-edit-cart="//new-ella-demo.myshopify.com/cdn/shop/t/196/assets/component-quick-edit-cart.css?v=99986072539168487651728460611" data-url-script-edit-cart="cdn/shop/t/196/assets/variants-edit-cart.js?v=90254834746306448101747987134">
+   <div class="halo-popup halo-edit-cart-popup customPopup-large" data-edit-cart-popup="" id="halo-edit-cart-popup" >
       <div class="halo-popup-wrapper">
          <div class="halo-popup-edit-header">
             <button type="button" class="halo-popup-close clearfix" data-close-edit-cart="" aria-label="Close">
@@ -2425,8 +2386,8 @@
       </div>
    </customer-auth>
    <script src="cdn/shop/t/196/assets/halo-customer-login.js?v=130338099368393207731728460613" defer="defer"></script>
-   <noscript>
-   </noscript>
+   <link rel="stylesheet" href="//new-ella-demo.myshopify.com/cdn/shop/t/196/assets/component-quick-cart.css?v=85216047258904419931752028200" media="all" onload="this.media='all'">
+  <noscript><link href="//new-ella-demo.myshopify.com/cdn/shop/t/196/assets/component-quick-cart.css?v=85216047258904419931752028200" rel="stylesheet" type="text/css" media="all" /></noscript>
 <div class="halo-sidebar halo-sidebar-right halo-cart-sidebar" id="halo-cart-sidebar">
    <button type="button" class="halo-sidebar-close button-effect" data-close-cart-sidebar="" aria-label="Close">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
@@ -2436,32 +2397,8 @@
    </button>
    <div class="halo-sidebar-header text-left">
       <span class="title">Shopping cart</span>
-      <div class="wrapper-cartCount"><span class="cartCount" data-cart-count="">1</span> <span data-cart-text="">item</span></div>
    </div>
    <div class="halo-sidebar-wrapper custom-scrollbar CartItemDrop">
-      <div class="previewCartMessage">
-         <free-shipping-component class="haloCalculatorShipping" data-free-shipping-wrapper="" style="display: block;">
-            <div class="progress progress-30" data-text-enabled="false" data-shipping-progress="">
-               <div class="progress_shipping" role="progressbar">
-                  <div class="progress-meter" style="width: 7.875%;" data-free-shipping-progress-meter="">
-                     <div class="progress-truck-wrapper">
-                        <svg class="icon-shipping-truck" viewBox="0 0 40.55 24">
-                           <g id="Layer_2" data-name="Layer 2">
-                              <g id="Layer_1-2" data-name="Layer 1">
-                                 <path class="truck-body" d="M40.43,11a3.86,3.86,0,0,0-3.68-2.65H28a1.25,1.25,0,0,1-1.43-1.43c0-2.18,0-4.35,0-6.53,0-.31-.08-.36-.37-.36H5.11a1.18,1.18,0,0,0-1.3,1.32c0,.74,0,1.48,0,2.22,0,.21-.06.27-.26.26-.36,0-.71,0-1.07,0a1.19,1.19,0,1,0,0,2.37H7.19c.43,0,.85,0,1.27,0a1,1,0,0,1,1.07,1A1.19,1.19,0,0,1,8.24,8.48H1.35a1.83,1.83,0,0,0-.47,0A1.19,1.19,0,0,0,0,9.85a1.18,1.18,0,0,0,1.19,1h9.66c.34,0,.68,0,1,0A1.19,1.19,0,0,1,13,12.47a1.26,1.26,0,0,1-1.26.76H1.24a1.19,1.19,0,1,0,0,2.38c.76,0,1.51,0,2.26,0,.26,0,.33.07.32.32,0,1,0,2.09,0,3.13A1.18,1.18,0,0,0,5.1,20.36c.63,0,1.26,0,1.9,0,.27,0,.39.06.47.36a4.55,4.55,0,0,0,8.78-.11.29.29,0,0,1,.32-.25H28.09a.3.3,0,0,1,.34.27,4.55,4.55,0,0,0,8.8,0,.31.31,0,0,1,.35-.26c.49,0,1,0,1.47,0a1.37,1.37,0,0,0,1.5-.87V11.41C40.41,11.29,40.47,11.12,40.43,11ZM32.84,21.62A2.18,2.18,0,1,1,35,19.45,2.21,2.21,0,0,1,32.84,21.62Zm-21,0A2.18,2.18,0,1,1,14,19.45,2.2,2.2,0,0,1,11.86,21.62Z"></path>
-                                 <path class="truck-body" d="M29.27,6h5.85c.1,0,.2,0,.29,0C33.64,2.72,32,.91,28.91.26V.57c0,1.68,0,3.35,0,5C28.9,5.9,29,6,29.27,6Z"></path>
-                                 <path class="wheel" d="M11.87,17.27A2.18,2.18,0,1,0,14,19.45,2.2,2.2,0,0,0,11.87,17.27Z"></path>
-                                 <path class="wheel" d="M32.85,17.27A2.18,2.18,0,1,0,35,19.45,2.22,2.22,0,0,0,32.85,17.27Z"></path>
-                              </g>
-                           </g>
-                        </svg>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="message" data-shipping-message=""><span>Only </span><span class="money">$737.00</span><span> away from </span><span class="text">free shipping</span></div>
-         </free-shipping-component>
-      </div>
       <cart-coupon-discount data-is-sidebar="true">
          <template data-discount-icon="">
             <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-discount" viewBox="0 0 12 12">
@@ -2472,8 +2409,10 @@
             <span class="previewCartItem-saving-price"><s class="before-discount-price" data-original-price-display=""></s><span class="discounted-price" data-current-price-display=""></span></span> 
          </template>
          <div class="previewCart-wrapper">
-         <div id="previewCartContainer"></div>
-            {% include 'cart/mini.html.twig' %}
+         <div id="previewCartContainer">
+         {% include 'cart/mini.html.twig' %}
+         </div>
+            
             <cart-item-tool class="previewCartTool">
               
              
@@ -2499,7 +2438,6 @@
                   <script src="/services/javascripts/countries.js" defer="defer"></script>
                   <script src="//new-ella-demo.myshopify.com/cdn/shopifycloud/storefront/assets/themes_support/shopify_common-5f594365.js" defer="defer"></script>
                   <script src="//new-ella-demo.myshopify.com/cdn/shop/t/196/assets/jquery.cart.min.js?v=8655692756595039211747987133" defer="defer"></script>
-                  <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" defer="defer"></script>
                   <div id="shipping-calculator">
                      <h3>
                      </h3>
@@ -2697,7 +2635,7 @@
       </cart-coupon-discount>
    </div>
 </div>
-   <script src="cdn/shop/t/196/assets/halo-toolcart.js?v=162384226680849288651754561207" defer="defer"></script>
+
    <div class="halo-sidebar halo-sidebar-left halo-sidebar_search" id="search-form-mobile">
       <a role="link" aria-disabled="true" class="halo-sidebar-close" data-search-close-sidebar="">
          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
@@ -3027,7 +2965,6 @@
                                              </div>
                                           </div>
                                           <div class="product">
-                                             <div class="product-item" data-product-id="6617631555674" data-json-product="{&quot;id&quot;: 6617631555674,&quot;handle&quot;: &quot;dempus-an-lortis-tempus-sapiendos&quot;,&quot;media&quot;: null,&quot;variants&quot;: [{&quot;id&quot;:39504898752602,&quot;title&quot;:&quot;Cornflowerblue \/ S&quot;,&quot;option1&quot;:&quot;Cornflowerblue&quot;,&quot;option2&quot;:&quot;S&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690063&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31316665106522,&quot;product_id&quot;:6617631555674,&quot;position&quot;:1,&quot;created_at&quot;:&quot;2022-07-19T03:31:41-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:1200,&quot;height&quot;:1708,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/Aries_Top_1_1-e22af7f40e761ac1640bb9f39898_145278d0-ef88-4713-bb7c-d1fb193c374a.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898752602,39504898785370,39504898818138,39504898850906,39504898883674,39504898916442]},&quot;available&quot;:false,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Cornflowerblue \/ S&quot;,&quot;public_title&quot;:&quot;Cornflowerblue \/ S&quot;,&quot;options&quot;:[&quot;Cornflowerblue&quot;,&quot;S&quot;],&quot;price&quot;:9900,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23580333506650,&quot;position&quot;:1,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1708,&quot;width&quot;:1200,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/Aries_Top_1_1-e22af7f40e761ac1640bb9f39898_145278d0-ef88-4713-bb7c-d1fb193c374a.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898785370,&quot;title&quot;:&quot;Cornflowerblue \/ M&quot;,&quot;option1&quot;:&quot;Cornflowerblue&quot;,&quot;option2&quot;:&quot;M&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690064&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31316665106522,&quot;product_id&quot;:6617631555674,&quot;position&quot;:1,&quot;created_at&quot;:&quot;2022-07-19T03:31:41-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:1200,&quot;height&quot;:1708,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/Aries_Top_1_1-e22af7f40e761ac1640bb9f39898_145278d0-ef88-4713-bb7c-d1fb193c374a.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898752602,39504898785370,39504898818138,39504898850906,39504898883674,39504898916442]},&quot;available&quot;:false,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Cornflowerblue \/ M&quot;,&quot;public_title&quot;:&quot;Cornflowerblue \/ M&quot;,&quot;options&quot;:[&quot;Cornflowerblue&quot;,&quot;M&quot;],&quot;price&quot;:18900,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23580333506650,&quot;position&quot;:1,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1708,&quot;width&quot;:1200,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/Aries_Top_1_1-e22af7f40e761ac1640bb9f39898_145278d0-ef88-4713-bb7c-d1fb193c374a.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898818138,&quot;title&quot;:&quot;Cornflowerblue \/ L&quot;,&quot;option1&quot;:&quot;Cornflowerblue&quot;,&quot;option2&quot;:&quot;L&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690065&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31316665106522,&quot;product_id&quot;:6617631555674,&quot;position&quot;:1,&quot;created_at&quot;:&quot;2022-07-19T03:31:41-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:1200,&quot;height&quot;:1708,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/Aries_Top_1_1-e22af7f40e761ac1640bb9f39898_145278d0-ef88-4713-bb7c-d1fb193c374a.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898752602,39504898785370,39504898818138,39504898850906,39504898883674,39504898916442]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Cornflowerblue \/ L&quot;,&quot;public_title&quot;:&quot;Cornflowerblue \/ L&quot;,&quot;options&quot;:[&quot;Cornflowerblue&quot;,&quot;L&quot;],&quot;price&quot;:28600,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23580333506650,&quot;position&quot;:1,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1708,&quot;width&quot;:1200,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/Aries_Top_1_1-e22af7f40e761ac1640bb9f39898_145278d0-ef88-4713-bb7c-d1fb193c374a.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898850906,&quot;title&quot;:&quot;Cornflowerblue \/ XL&quot;,&quot;option1&quot;:&quot;Cornflowerblue&quot;,&quot;option2&quot;:&quot;XL&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690066&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31316665106522,&quot;product_id&quot;:6617631555674,&quot;position&quot;:1,&quot;created_at&quot;:&quot;2022-07-19T03:31:41-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:1200,&quot;height&quot;:1708,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/Aries_Top_1_1-e22af7f40e761ac1640bb9f39898_145278d0-ef88-4713-bb7c-d1fb193c374a.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898752602,39504898785370,39504898818138,39504898850906,39504898883674,39504898916442]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Cornflowerblue \/ XL&quot;,&quot;public_title&quot;:&quot;Cornflowerblue \/ XL&quot;,&quot;options&quot;:[&quot;Cornflowerblue&quot;,&quot;XL&quot;],&quot;price&quot;:28999,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23580333506650,&quot;position&quot;:1,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1708,&quot;width&quot;:1200,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/Aries_Top_1_1-e22af7f40e761ac1640bb9f39898_145278d0-ef88-4713-bb7c-d1fb193c374a.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898883674,&quot;title&quot;:&quot;Cornflowerblue \/ 2X&quot;,&quot;option1&quot;:&quot;Cornflowerblue&quot;,&quot;option2&quot;:&quot;2X&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690067&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31316665106522,&quot;product_id&quot;:6617631555674,&quot;position&quot;:1,&quot;created_at&quot;:&quot;2022-07-19T03:31:41-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:1200,&quot;height&quot;:1708,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/Aries_Top_1_1-e22af7f40e761ac1640bb9f39898_145278d0-ef88-4713-bb7c-d1fb193c374a.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898752602,39504898785370,39504898818138,39504898850906,39504898883674,39504898916442]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Cornflowerblue \/ 2X&quot;,&quot;public_title&quot;:&quot;Cornflowerblue \/ 2X&quot;,&quot;options&quot;:[&quot;Cornflowerblue&quot;,&quot;2X&quot;],&quot;price&quot;:41400,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23580333506650,&quot;position&quot;:1,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1708,&quot;width&quot;:1200,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/Aries_Top_1_1-e22af7f40e761ac1640bb9f39898_145278d0-ef88-4713-bb7c-d1fb193c374a.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898916442,&quot;title&quot;:&quot;Cornflowerblue \/ 3X&quot;,&quot;option1&quot;:&quot;Cornflowerblue&quot;,&quot;option2&quot;:&quot;3X&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690068&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31316665106522,&quot;product_id&quot;:6617631555674,&quot;position&quot;:1,&quot;created_at&quot;:&quot;2022-07-19T03:31:41-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:1200,&quot;height&quot;:1708,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/Aries_Top_1_1-e22af7f40e761ac1640bb9f39898_145278d0-ef88-4713-bb7c-d1fb193c374a.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898752602,39504898785370,39504898818138,39504898850906,39504898883674,39504898916442]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Cornflowerblue \/ 3X&quot;,&quot;public_title&quot;:&quot;Cornflowerblue \/ 3X&quot;,&quot;options&quot;:[&quot;Cornflowerblue&quot;,&quot;3X&quot;],&quot;price&quot;:41999,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23580333506650,&quot;position&quot;:1,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1708,&quot;width&quot;:1200,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/Aries_Top_1_1-e22af7f40e761ac1640bb9f39898_145278d0-ef88-4713-bb7c-d1fb193c374a.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898162778,&quot;title&quot;:&quot;Pink \/ S&quot;,&quot;option1&quot;:&quot;Pink&quot;,&quot;option2&quot;:&quot;S&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690035&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438914138,&quot;product_id&quot;:6617631555674,&quot;position&quot;:2,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-MAGENTA_73f6c1dd-2aa6-4e8b-9765-37287380796f.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898162778,39504898195546,39504898228314,39504898261082,39504898293850,39504898326618]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Pink \/ S&quot;,&quot;public_title&quot;:&quot;Pink \/ S&quot;,&quot;options&quot;:[&quot;Pink&quot;,&quot;S&quot;],&quot;price&quot;:9900,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053509210,&quot;position&quot;:2,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-MAGENTA_73f6c1dd-2aa6-4e8b-9765-37287380796f.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898195546,&quot;title&quot;:&quot;Pink \/ M&quot;,&quot;option1&quot;:&quot;Pink&quot;,&quot;option2&quot;:&quot;M&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690036&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438914138,&quot;product_id&quot;:6617631555674,&quot;position&quot;:2,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-MAGENTA_73f6c1dd-2aa6-4e8b-9765-37287380796f.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898162778,39504898195546,39504898228314,39504898261082,39504898293850,39504898326618]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Pink \/ M&quot;,&quot;public_title&quot;:&quot;Pink \/ M&quot;,&quot;options&quot;:[&quot;Pink&quot;,&quot;M&quot;],&quot;price&quot;:18900,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053509210,&quot;position&quot;:2,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-MAGENTA_73f6c1dd-2aa6-4e8b-9765-37287380796f.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898228314,&quot;title&quot;:&quot;Pink \/ L&quot;,&quot;option1&quot;:&quot;Pink&quot;,&quot;option2&quot;:&quot;L&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690037&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438914138,&quot;product_id&quot;:6617631555674,&quot;position&quot;:2,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-MAGENTA_73f6c1dd-2aa6-4e8b-9765-37287380796f.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898162778,39504898195546,39504898228314,39504898261082,39504898293850,39504898326618]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Pink \/ L&quot;,&quot;public_title&quot;:&quot;Pink \/ L&quot;,&quot;options&quot;:[&quot;Pink&quot;,&quot;L&quot;],&quot;price&quot;:28600,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053509210,&quot;position&quot;:2,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-MAGENTA_73f6c1dd-2aa6-4e8b-9765-37287380796f.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898261082,&quot;title&quot;:&quot;Pink \/ XL&quot;,&quot;option1&quot;:&quot;Pink&quot;,&quot;option2&quot;:&quot;XL&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690038&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438914138,&quot;product_id&quot;:6617631555674,&quot;position&quot;:2,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-MAGENTA_73f6c1dd-2aa6-4e8b-9765-37287380796f.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898162778,39504898195546,39504898228314,39504898261082,39504898293850,39504898326618]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Pink \/ XL&quot;,&quot;public_title&quot;:&quot;Pink \/ XL&quot;,&quot;options&quot;:[&quot;Pink&quot;,&quot;XL&quot;],&quot;price&quot;:28999,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053509210,&quot;position&quot;:2,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-MAGENTA_73f6c1dd-2aa6-4e8b-9765-37287380796f.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898293850,&quot;title&quot;:&quot;Pink \/ 2X&quot;,&quot;option1&quot;:&quot;Pink&quot;,&quot;option2&quot;:&quot;2X&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690039&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438914138,&quot;product_id&quot;:6617631555674,&quot;position&quot;:2,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-MAGENTA_73f6c1dd-2aa6-4e8b-9765-37287380796f.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898162778,39504898195546,39504898228314,39504898261082,39504898293850,39504898326618]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Pink \/ 2X&quot;,&quot;public_title&quot;:&quot;Pink \/ 2X&quot;,&quot;options&quot;:[&quot;Pink&quot;,&quot;2X&quot;],&quot;price&quot;:41400,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053509210,&quot;position&quot;:2,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-MAGENTA_73f6c1dd-2aa6-4e8b-9765-37287380796f.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898326618,&quot;title&quot;:&quot;Pink \/ 3X&quot;,&quot;option1&quot;:&quot;Pink&quot;,&quot;option2&quot;:&quot;3X&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690040&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438914138,&quot;product_id&quot;:6617631555674,&quot;position&quot;:2,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-MAGENTA_73f6c1dd-2aa6-4e8b-9765-37287380796f.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898162778,39504898195546,39504898228314,39504898261082,39504898293850,39504898326618]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Pink \/ 3X&quot;,&quot;public_title&quot;:&quot;Pink \/ 3X&quot;,&quot;options&quot;:[&quot;Pink&quot;,&quot;3X&quot;],&quot;price&quot;:41999,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053509210,&quot;position&quot;:2,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-MAGENTA_73f6c1dd-2aa6-4e8b-9765-37287380796f.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898359386,&quot;title&quot;:&quot;Crimson \/ S&quot;,&quot;option1&quot;:&quot;Crimson&quot;,&quot;option2&quot;:&quot;S&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690042&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438979674,&quot;product_id&quot;:6617631555674,&quot;position&quot;:3,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-LIGHT-RED_a0b018f7-66e2-4144-8546-6b1db9f713f3.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898359386,39504898392154,39504898424922,39504898457690,39504898490458,39504898523226]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Crimson \/ S&quot;,&quot;public_title&quot;:&quot;Crimson \/ S&quot;,&quot;options&quot;:[&quot;Crimson&quot;,&quot;S&quot;],&quot;price&quot;:9900,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053476442,&quot;position&quot;:3,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-LIGHT-RED_a0b018f7-66e2-4144-8546-6b1db9f713f3.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898392154,&quot;title&quot;:&quot;Crimson \/ M&quot;,&quot;option1&quot;:&quot;Crimson&quot;,&quot;option2&quot;:&quot;M&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690043&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438979674,&quot;product_id&quot;:6617631555674,&quot;position&quot;:3,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-LIGHT-RED_a0b018f7-66e2-4144-8546-6b1db9f713f3.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898359386,39504898392154,39504898424922,39504898457690,39504898490458,39504898523226]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Crimson \/ M&quot;,&quot;public_title&quot;:&quot;Crimson \/ M&quot;,&quot;options&quot;:[&quot;Crimson&quot;,&quot;M&quot;],&quot;price&quot;:18900,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053476442,&quot;position&quot;:3,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-LIGHT-RED_a0b018f7-66e2-4144-8546-6b1db9f713f3.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898424922,&quot;title&quot;:&quot;Crimson \/ L&quot;,&quot;option1&quot;:&quot;Crimson&quot;,&quot;option2&quot;:&quot;L&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690044&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438979674,&quot;product_id&quot;:6617631555674,&quot;position&quot;:3,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-LIGHT-RED_a0b018f7-66e2-4144-8546-6b1db9f713f3.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898359386,39504898392154,39504898424922,39504898457690,39504898490458,39504898523226]},&quot;available&quot;:false,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Crimson \/ L&quot;,&quot;public_title&quot;:&quot;Crimson \/ L&quot;,&quot;options&quot;:[&quot;Crimson&quot;,&quot;L&quot;],&quot;price&quot;:28600,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053476442,&quot;position&quot;:3,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-LIGHT-RED_a0b018f7-66e2-4144-8546-6b1db9f713f3.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898457690,&quot;title&quot;:&quot;Crimson \/ XL&quot;,&quot;option1&quot;:&quot;Crimson&quot;,&quot;option2&quot;:&quot;XL&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690045&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438979674,&quot;product_id&quot;:6617631555674,&quot;position&quot;:3,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-LIGHT-RED_a0b018f7-66e2-4144-8546-6b1db9f713f3.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898359386,39504898392154,39504898424922,39504898457690,39504898490458,39504898523226]},&quot;available&quot;:false,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Crimson \/ XL&quot;,&quot;public_title&quot;:&quot;Crimson \/ XL&quot;,&quot;options&quot;:[&quot;Crimson&quot;,&quot;XL&quot;],&quot;price&quot;:28999,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053476442,&quot;position&quot;:3,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-LIGHT-RED_a0b018f7-66e2-4144-8546-6b1db9f713f3.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898490458,&quot;title&quot;:&quot;Crimson \/ 2X&quot;,&quot;option1&quot;:&quot;Crimson&quot;,&quot;option2&quot;:&quot;2X&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690046&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438979674,&quot;product_id&quot;:6617631555674,&quot;position&quot;:3,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-LIGHT-RED_a0b018f7-66e2-4144-8546-6b1db9f713f3.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898359386,39504898392154,39504898424922,39504898457690,39504898490458,39504898523226]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Crimson \/ 2X&quot;,&quot;public_title&quot;:&quot;Crimson \/ 2X&quot;,&quot;options&quot;:[&quot;Crimson&quot;,&quot;2X&quot;],&quot;price&quot;:41400,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053476442,&quot;position&quot;:3,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-LIGHT-RED_a0b018f7-66e2-4144-8546-6b1db9f713f3.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898523226,&quot;title&quot;:&quot;Crimson \/ 3X&quot;,&quot;option1&quot;:&quot;Crimson&quot;,&quot;option2&quot;:&quot;3X&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690047&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438979674,&quot;product_id&quot;:6617631555674,&quot;position&quot;:3,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-LIGHT-RED_a0b018f7-66e2-4144-8546-6b1db9f713f3.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898359386,39504898392154,39504898424922,39504898457690,39504898490458,39504898523226]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - Crimson \/ 3X&quot;,&quot;public_title&quot;:&quot;Crimson \/ 3X&quot;,&quot;options&quot;:[&quot;Crimson&quot;,&quot;3X&quot;],&quot;price&quot;:41999,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053476442,&quot;position&quot;:3,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-LIGHT-RED_a0b018f7-66e2-4144-8546-6b1db9f713f3.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898555994,&quot;title&quot;:&quot;White \/ S&quot;,&quot;option1&quot;:&quot;White&quot;,&quot;option2&quot;:&quot;S&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690049&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438946906,&quot;product_id&quot;:6617631555674,&quot;position&quot;:6,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-WHITE_415d23ad-4b88-453e-a7a1-7cd90a8d3b9b.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898555994,39504898588762,39504898621530,39504898654298,39504898687066,39504898719834]},&quot;available&quot;:false,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - White \/ S&quot;,&quot;public_title&quot;:&quot;White \/ S&quot;,&quot;options&quot;:[&quot;White&quot;,&quot;S&quot;],&quot;price&quot;:9900,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053607514,&quot;position&quot;:6,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-WHITE_415d23ad-4b88-453e-a7a1-7cd90a8d3b9b.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898588762,&quot;title&quot;:&quot;White \/ M&quot;,&quot;option1&quot;:&quot;White&quot;,&quot;option2&quot;:&quot;M&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690050&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438946906,&quot;product_id&quot;:6617631555674,&quot;position&quot;:6,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-WHITE_415d23ad-4b88-453e-a7a1-7cd90a8d3b9b.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898555994,39504898588762,39504898621530,39504898654298,39504898687066,39504898719834]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - White \/ M&quot;,&quot;public_title&quot;:&quot;White \/ M&quot;,&quot;options&quot;:[&quot;White&quot;,&quot;M&quot;],&quot;price&quot;:18900,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053607514,&quot;position&quot;:6,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-WHITE_415d23ad-4b88-453e-a7a1-7cd90a8d3b9b.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898621530,&quot;title&quot;:&quot;White \/ L&quot;,&quot;option1&quot;:&quot;White&quot;,&quot;option2&quot;:&quot;L&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690051&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438946906,&quot;product_id&quot;:6617631555674,&quot;position&quot;:6,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-WHITE_415d23ad-4b88-453e-a7a1-7cd90a8d3b9b.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898555994,39504898588762,39504898621530,39504898654298,39504898687066,39504898719834]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - White \/ L&quot;,&quot;public_title&quot;:&quot;White \/ L&quot;,&quot;options&quot;:[&quot;White&quot;,&quot;L&quot;],&quot;price&quot;:28600,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053607514,&quot;position&quot;:6,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-WHITE_415d23ad-4b88-453e-a7a1-7cd90a8d3b9b.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898654298,&quot;title&quot;:&quot;White \/ XL&quot;,&quot;option1&quot;:&quot;White&quot;,&quot;option2&quot;:&quot;XL&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690052&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438946906,&quot;product_id&quot;:6617631555674,&quot;position&quot;:6,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-WHITE_415d23ad-4b88-453e-a7a1-7cd90a8d3b9b.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898555994,39504898588762,39504898621530,39504898654298,39504898687066,39504898719834]},&quot;available&quot;:false,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - White \/ XL&quot;,&quot;public_title&quot;:&quot;White \/ XL&quot;,&quot;options&quot;:[&quot;White&quot;,&quot;XL&quot;],&quot;price&quot;:28999,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053607514,&quot;position&quot;:6,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-WHITE_415d23ad-4b88-453e-a7a1-7cd90a8d3b9b.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898687066,&quot;title&quot;:&quot;White \/ 2X&quot;,&quot;option1&quot;:&quot;White&quot;,&quot;option2&quot;:&quot;2X&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690053&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438946906,&quot;product_id&quot;:6617631555674,&quot;position&quot;:6,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-WHITE_415d23ad-4b88-453e-a7a1-7cd90a8d3b9b.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898555994,39504898588762,39504898621530,39504898654298,39504898687066,39504898719834]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - White \/ 2X&quot;,&quot;public_title&quot;:&quot;White \/ 2X&quot;,&quot;options&quot;:[&quot;White&quot;,&quot;2X&quot;],&quot;price&quot;:41400,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053607514,&quot;position&quot;:6,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-WHITE_415d23ad-4b88-453e-a7a1-7cd90a8d3b9b.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:39504898719834,&quot;title&quot;:&quot;White \/ 3X&quot;,&quot;option1&quot;:&quot;White&quot;,&quot;option2&quot;:&quot;3X&quot;,&quot;option3&quot;:null,&quot;sku&quot;:&quot;W0690054&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:{&quot;id&quot;:31314438946906,&quot;product_id&quot;:6617631555674,&quot;position&quot;:6,&quot;created_at&quot;:&quot;2022-07-18T06:02:13-04:00&quot;,&quot;updated_at&quot;:&quot;2022-07-19T03:31:44-04:00&quot;,&quot;alt&quot;:null,&quot;width&quot;:780,&quot;height&quot;:1110,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-WHITE_415d23ad-4b88-453e-a7a1-7cd90a8d3b9b.jpg?v=1658215904&quot;,&quot;variant_ids&quot;:[39504898555994,39504898588762,39504898621530,39504898654298,39504898687066,39504898719834]},&quot;available&quot;:true,&quot;name&quot;:&quot;(Product 18) Sample - Clothing And Accessory Boutiques For Sale - White \/ 3X&quot;,&quot;public_title&quot;:&quot;White \/ 3X&quot;,&quot;options&quot;:[&quot;White&quot;,&quot;3X&quot;],&quot;price&quot;:41999,&quot;weight&quot;:0,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:&quot;&quot;,&quot;featured_media&quot;:{&quot;alt&quot;:null,&quot;id&quot;:23578053607514,&quot;position&quot;:6,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:0.703,&quot;height&quot;:1110,&quot;width&quot;:780,&quot;src&quot;:&quot;\/\/new-ella-demo.myshopify.com\/cdn\/shop\/products\/image9xxl-WHITE_415d23ad-4b88-453e-a7a1-7cd90a8d3b9b.jpg?v=1658215904&quot;}},&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}}]}">
                                                 <div class="card">
                                                    <div class="card-product">
                                                       <div class="card-product__wrapper">
@@ -3636,32 +3573,93 @@
 
    <script src="cdn/shop/t/196/assets/halo.image-banner-slide.js?v=135492872895892112291728460616"></script>
 
-
-
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.button-ATC').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault(); // bloque le GET
-            const productId = this.dataset.productHandle;
+document.addEventListener('click', function(e) {
 
-            fetch(`/cart/add-ajax/${productId}`, {
-                method: 'POST',
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    let container = document.querySelector('#previewCartContainer');
-                    if (!container) {
-                        container = document.createElement('div');
-                        container.id = 'previewCartContainer';
-                        document.body.prepend(container);
-                    }
-                    container.innerHTML = data.html;
-                }
-            });
-        });
+    const button = e.target.closest('.add-to-cart-btn');
+    if (!button) return;
+
+    e.preventDefault();
+    e.stopImmediatePropagation(); // 🔥 évite double déclenchement
+
+    const popup = button.closest('.variants-popup');
+    if (!popup) {
+        console.error("Popup introuvable");
+        return;
+    }
+
+    const productId = popup.dataset.productId;
+    if (!productId) {
+        console.error("Product ID manquant");
+        return;
+    }
+
+    const selectedColorInput = popup.querySelector('input.single-option:checked');
+
+    const selectedColor = selectedColorInput ? selectedColorInput.value : null;
+    const selectedImage  = selectedColorInput ? selectedColorInput.dataset.image : null;
+
+    fetch(`/cart/add-ajax/${productId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: JSON.stringify({
+            color: selectedColor,
+            image: selectedImage
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.success) return;
+
+        let container = document.querySelector('#previewCartContainer');
+
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'previewCartContainer';
+
+            // 👉 important : crée le wrapper une seule fois
+            document.body.appendChild(container);
+        }
+
+        container.innerHTML = data.html;
+    });
+});
+</script>
+<script>
+document.addEventListener('click', function(e) {
+
+    const btn = e.target.closest('[data-cart-remove]');
+    if (!btn) return;
+
+    e.preventDefault();
+    e.stopImmediatePropagation(); // 🔥 évite double event
+
+    const key = btn.dataset.cartRemoveId;
+    if (!key) {
+        console.error('clé panier manquante');
+        return;
+    }
+
+    fetch('/cart/remove-ajax/' + key, {
+        method: 'POST',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.success) return;
+
+        let container = document.querySelector('#previewCartContainer');
+
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'previewCartContainer';
+            document.body.appendChild(container);
+        }
+
+        container.innerHTML = data.html;
     });
 });
 </script>
