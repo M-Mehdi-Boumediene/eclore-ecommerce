@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
+use App\Entity\Size;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -34,6 +35,10 @@ class ProductCrudController extends AbstractCrudController
             ->setNumDecimals(2) ,
             AssociationField::new('productCategory'),
             AssociationField::new('colors')->setFormTypeOptions(['by_reference' => false]),
+            AssociationField::new('sizes')
+            ->setFormTypeOptions([
+                'by_reference' => false
+            ]),
             ImageField::new('mainPhoto')
                 ->setBasePath('uploads/products')
                 ->setUploadDir('public/uploads/products')

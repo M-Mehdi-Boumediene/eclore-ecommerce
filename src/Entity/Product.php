@@ -53,11 +53,18 @@ class Product
     #[ORM\OneToMany(targetEntity: CartItem::class, mappedBy: 'product')]
     private Collection $cartItems;
 
+    /**
+     * @var Collection<int, Size>
+     */
+    #[ORM\ManyToMany(targetEntity: Size::class, mappedBy: 'products')]
+    private Collection $sizes;
+
     public function __construct()
     {
         $this->colors = new ArrayCollection();
         $this->productImages = new ArrayCollection();
         $this->cartItems = new ArrayCollection();
+        $this->sizes = new ArrayCollection();
     }
 
     // =====================
@@ -231,6 +238,33 @@ class Product
             if ($cartItem->getProduct() === $this) {
                 $cartItem->setProduct(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Size>
+     */
+    public function getSizes(): Collection
+    {
+        return $this->sizes;
+    }
+
+    public function addSize(Size $size): static
+    {
+        if (!$this->sizes->contains($size)) {
+            $this->sizes->add($size);
+            $size->addProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSize(Size $size): static
+    {
+        if ($this->sizes->removeElement($size)) {
+            $size->removeProduct($this);
         }
 
         return $this;
