@@ -24,10 +24,11 @@ public function addAjax(int $id, ProductRepository $productRepo, Request $reques
     $data = json_decode($request->getContent(), true);
     $color = $data['color'] ?? null;
     $image = $data['image'] ?? null;
+    $size  = $data['size'] ?? null;
 
     $cart = $session->get('cart', []);
 
-    $cartKey = $id . '_' . $color;
+    $cartKey = $id . '_' . $color . '_' . $size;
 
     if (isset($cart[$cartKey])) {
         $cart[$cartKey]['quantity']++;
@@ -42,6 +43,7 @@ public function addAjax(int $id, ProductRepository $productRepo, Request $reques
                 'mainPhoto' => $product->getMainPhoto()
             ],
             'color' => $color,
+            'size'  => $size,
             'image' => $image,
             'quantity' => 1
         ];
