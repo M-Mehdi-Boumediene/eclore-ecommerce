@@ -20,20 +20,18 @@ class Cart
     private ?User $user = null;
 
     #[ORM\Column(length: 20)]
-    private ?string $status = null;
+    private string $status = 'active';
 
     #[ORM\Column]
-    private ?\DateTime $createdAt = null;
+    private \DateTimeImmutable $createdAt;
 
-    /**
-     * @var Collection<int, CartItem>
-     */
-    #[ORM\OneToMany(targetEntity: CartItem::class, mappedBy: 'cart')]
+    #[ORM\OneToMany(mappedBy: 'cart', targetEntity: CartItem::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $cartItems;
 
     public function __construct()
     {
         $this->cartItems = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -49,11 +47,10 @@ class Cart
     public function setUser(?User $user): static
     {
         $this->user = $user;
-
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): string
     {
         return $this->status;
     }
@@ -61,25 +58,20 @@ class Cart
     public function setStatus(string $status): static
     {
         $this->status = $status;
-
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): static
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
-    /**
-     * @return Collection<int, CartItem>
-     */
     public function getCartItems(): Collection
     {
         return $this->cartItems;
@@ -98,7 +90,6 @@ class Cart
     public function removeCartItem(CartItem $cartItem): static
     {
         if ($this->cartItems->removeElement($cartItem)) {
-            // set the owning side to null (unless already changed)
             if ($cartItem->getCart() === $this) {
                 $cartItem->setCart(null);
             }

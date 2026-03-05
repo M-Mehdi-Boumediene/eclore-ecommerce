@@ -1,90 +1,90 @@
-
 <div class="previewCart">
    {% if cart is empty %}
       <li>Votre panier est vide</li>
    {% else %}
    <ul class="previewCartList list-unstyled">
-   {% for itemKey, item in cart %}
-      <li class="previewCartItem clearfix" data-item-row="">
 
-         {# lien produit #}
-         <a href="{{ path('product_show', {
-            categorySlug: item.product.category,
-            productSlug: item.product.slug
-         }) }}" class="previewCartItem-image">
+   {% set total = 0 %}
 
-            {# image couleur si existe sinon mainPhoto #}
-            {% if item.image is defined and item.image %}
-               <img src="{{ item.image }}" width="110" height="157" alt="{{ item.color|default('couleur') }}">
-            {% else %}
-               <img src="{{ asset('uploads/products/' ~ item.product.mainPhoto) }}" width="110" height="157" alt="{{ item.product.name }}">
+   {% for key, item in cart %}
+
+      {# 👉 product peut être objet (DB) ou tableau (session) #}
+      {% set product = item.product %}
+      {% set category = product.productCategory ?? null %}
+
+      {% set total = total + (product.price * item.quantity) %}
+
+      <li class="previewCartItem clearfix">
+
+         <a href="{% if category %}
+                    {{ path('product_show', {categorySlug: category.slug, productSlug: product.slug}) }}
+                 {% else %}# {% endif %}"
+            class="previewCartItem-image">
+
+            {% if item.image %}
+               <img src="{{ item.image }}" width="110" height="157" alt="{{ item.color }}">
+            {% elseif product.mainPhoto %}
+               <img src="{{ asset('uploads/products/' ~ product.mainPhoto) }}" width="110" height="157" alt="{{ product.name }}">
             {% endif %}
 
          </a>
 
-         <div class="previewCartItem-content cart-item-block-right">
+         <div class="previewCartItem-content">
 
-            <script type="text/javascript">
-               window.cart_selling_array_6617631391834 = {'39504895967322': 'deny'};
-            </script>
-
-            <a class="previewCartItem-name link-underline card-title"
-               href="{{ path('product_show', {
-                  categorySlug: item.product.category,
-                  productSlug: item.product.slug
-               }) }}">
-               {{ item.product.name }}
+            <a class="previewCartItem-name"
+               href="{% if category %}
+                        {{ path('product_show', {categorySlug: category.slug, productSlug: product.slug}) }}
+                     {% else %}# {% endif %}">
+               {{ product.name }} <br>
+               <span>
+                  Couleur : {{ item.color ?? 'N/A' }}
+                  - Taille : {{ item.size ?? 'N/A' }}
+               </span>
             </a>
 
-            <div class="previewCartItem-options">
-               <span class="previewCartItem-variant">
-                Color:  {{ item.color|default('') }}
-                 -
-               </span>
-               
-              
-                 
-                    
-                
-               {% if item.image is defined and item.image %}
-                  <div class="previewCartItem-color-image">
-                     <img src="{{ item.image }}" width="40" height="40" alt="{{ item.color|default('couleur') }}">
-                  </div>
-               {% endif %}
-
-            </div>
-
-            <dl class="card-properties definitionList cart-item-properties"></dl>
-
             <div class="previewCartItem-change">
+
                <div class="previewCartItem-price">
-                  <span class="money">
-                     {{ (item.product.price * item.quantity)|number_format(2, '.', ',') }} DZD
+                  <span style="color: #bb0000; font-size: 17px;">
+                     {{ (product.price * item.quantity)|number_format(2, '.', ',') }} DZD
                   </span>
                </div>
 
-               <cart-update-quantity class="previewCartItem-qty">
-                  <a role="link" aria-disabled="true" class="minus btn-quantity"></a>
-                  <input class="form-input quantity"
+               <div class="previewCartItem-subtotal">
+                  Sous-total :
+                  <strong>
+                     {{ (product.price * item.quantity)|number_format(2, '.', ',') }} DZD
+                  </strong>
+               </div>
+
+               <div class="previewCartItem-qt">
+                  <input type="number"
+                         class="form-input quantity qteitem"
                          value="{{ item.quantity }}"
-                         type="number">
-                  <a role="link" aria-disabled="true" class="plus btn-quantity"></a>
-               </cart-update-quantity>
+                         data-update-id="{{ key }}">
+               </div>
             </div>
          </div>
 
-         {# bouton suppression (clé du panier) #}
          <button type="button"
                  class="previewCartItem-remove"
                  data-cart-remove=""
-                 data-cart-remove-id="{{ itemKey }}">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                           <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
-                        </svg>
+                 data-cart-remove-id="{{ key }}"
+                 title="Supprimer">
+            ✖
          </button>
 
       </li>
    {% endfor %}
    </ul>
+
+   <div class="previewCart-total">
+      Total :
+      <span id="mini-cart-total">
+         {{ total|number_format(2, '.', ',') }}
+      </span>
+      DZD
+   </div>
+
    {% endif %}
 </div>

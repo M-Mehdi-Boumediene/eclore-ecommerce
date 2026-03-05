@@ -809,7 +809,7 @@
                                                 
                                                 <div class="variants-popup-content text-center" data-quickshop="">
                                                    
-                                                   <form action="/cart/add" class="variants"  >
+                                                   <form onsubmit="return false;" class="variants"  >
                                                 <div class="selector-wrapper selector-wrapper-1 swatch option-color" data-option-index="0" data-option-position="0">
                                                    <label class="form-label">Color: <span class="label-value-1">{{ product.productImages|first.color.name }}</span></label>
 
@@ -926,7 +926,7 @@
                                                          <button type="button" name="plus" data-plus-quantity-quickshop="" class="plus btn-quantity" data-form-id="template--14613441937498__163247026462da6862"></button>
                                                       </quickshop-update-quantity>
                                                       <div class="product-card__button2">
-                                                         <input type="hidden" name="quantity" value="1" wfd-id="id111"><button data-cancel-quickshop-popup="" class="button button2 cancel-btn" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Cancel</button><button data-btn-addtocart="" class="button button2 add-to-cart-btn" type="submit" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Add</button>
+                                                         <input type="hidden" name="quantity" value="1" wfd-id="id111"><button data-cancel-quickshop-popup="" class="button button2 cancel-btn" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Cancel</button><button data-btn-addtocart="" type="button" class="button button2 add-to-cart-btn"  data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Add</button>
                                                       </div>
                                                    </form>
                                                 </div>
@@ -1075,7 +1075,7 @@
                                                          <button type="button" name="plus" data-plus-quantity-quickshop="" class="plus btn-quantity" data-form-id="template--14613441937498__163247026462da6862"></button>
                                                       </quickshop-update-quantity>
                                                       <div class="product-card__button2">
-                                                         <input type="hidden" name="quantity" value="1" wfd-id="id123"><button data-cancel-quickshop-popup="" class="button button2 cancel-btn" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Cancel</button><button data-btn-addtocart="" class="button button2 add-to-cart-btn" type="submit" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Add</button>
+                                                         <input type="hidden" name="quantity" value="1" wfd-id="id123"><button data-cancel-quickshop-popup="" class="button button2 cancel-btn" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Cancel</button><button data-btn-addtocart=""  type="button" class="button button2 add-to-cart-btn"  data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Add</button>
                                                       </div>
                                                    
                                                 </div>
@@ -2589,63 +2589,76 @@
                   </cart-cancel-popup>
                </div>
             </div>
-            <div class="previewCartInfo">
-               <ul class="previewCartTotalsPrice list-unstyled">
-                  <li class="previewCartTotals subTotal clearfix">
-                     <div class="previewCartTotals-label">
-                        Subtotal:
-                     </div>
-                     <div class="previewCartTotals-value" data-cart-subtotal="">
-                        <span class="money">$69.99</span>
-                     </div>
-                  </li>
-                  <li class="previewCartTotals cart-total-savings" data-saved-discount-display="">
-                     <div class="previewCartTotals-label">
-                        <span class="text">Discount:</span>
-                     </div>
-                     <div class="previewCartTotals-value">
-                        <span class="text" data-saved-discount-value="">
-                           <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-discount" viewBox="0 0 12 12">
-                              <path fill-rule="evenodd" clip-rule="evenodd" d="M7 0h3a2 2 0 012 2v3a1 1 0 01-.3.7l-6 6a1 1 0 01-1.4 0l-4-4a1 1 0 010-1.4l6-6A1 1 0 017 0zm2 2a1 1 0 102 0 1 1 0 00-2 0z" fill="currentColor"></path>
-                           </svg>
-                           DISCOUNTALL10
-                           (-<span class="money">$6.99</span>)
-                        </span>
-                     </div>
-                  </li>
-                  <li class="previewCartTotals total clearfix">
-                     <div class="previewCartTotals-label">
-                        Total:
-                     </div>
-                     <div class="previewCartTotals-value" data-cart-total-value="6300">
-                        <span class="money">$63.00</span>
-                     </div>
-                  </li>
-                  <li class="previewCartTotals shipTotal clearfix">
-                     <div class="previewCartTotals-value">
-                        Tax included and shipping calculated at checkout
-                     </div>
-                  </li>
-               </ul>
-               <div class="previewCartAction text-left">
-                  <div class="previewCartCheckbox global-checkbox">
-                     <input class="global-checkbox--input" type="checkbox" name="conditions" id="sidebar_cart_conditions" data-target="#cart-sidebar-checkout">
-                     <label class="global-checkbox--label form-label--checkbox" for="sidebar_cart_conditions">
-                     I agree with
-                     </label><button type="button" title="Terms &amp; Conditions" data-term-condition="">
-                     Terms &amp; Conditions
-                     </button>
-                  </div>
-                  <div class="previewCartGroup">
-                     <button class="button button-1 button-checkout" onclick="window.location='/checkout'" disabled="disabled" id="cart-sidebar-checkout">
-                     Checkout
-                     </button>
-                     <a class="button button-2 button-view-cart" href="/cart">
-                     View cart
-                     </a>
-                  </div>
-               </div>
-            </div>
+           <div class="previewCartInfo">
+   <ul class="previewCartTotalsPrice list-unstyled">
+
+      <li class="previewCartTotals subTotal clearfix">
+         <div class="previewCartTotals-label">
+            Subtotal:
+         </div>
+         <div class="previewCartTotals-value" data-cart-subtotal="">
+            <span class="money">0.00 DZD</span>
+         </div>
+      </li>
+
+      <li class="previewCartTotals cart-total-savings" data-saved-discount-display="">
+         <div class="previewCartTotals-label">
+            <span class="text">Discount:</span>
+         </div>
+         <div class="previewCartTotals-value">
+            <span class="text" data-saved-discount-value="">
+               <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-discount" viewBox="0 0 12 12">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                     d="M7 0h3a2 2 0 012 2v3a1 1 0 01-.3.7l-6 6a1 1 0 01-1.4 0l-4-4a1 1 0 010-1.4l6-6A1 1 0 017 0zm2 2a1 1 0 102 0 1 1 0 00-2 0z"
+                     fill="currentColor"></path>
+               </svg>
+               DISCOUNTALL10
+               (-<span class="money">0.00 DZD</span>)
+            </span>
+         </div>
+      </li>
+
+      <li class="previewCartTotals total clearfix">
+         <div class="previewCartTotals-label">
+            Total:
+         </div>
+         <div class="previewCartTotals-value" data-cart-total-value="">
+            <span class="money">0.00 DZD</span>
+         </div>
+      </li>
+
+      <li class="previewCartTotals shipTotal clearfix">
+         <div class="previewCartTotals-value">
+            Tax included and shipping calculated at checkout
+         </div>
+      </li>
+
+   </ul>
+
+   <div class="previewCartAction text-left">
+      <div class="previewCartCheckbox global-checkbox">
+         <input class="global-checkbox--input" type="checkbox" name="conditions" id="sidebar_cart_conditions" data-target="#cart-sidebar-checkout">
+         <label class="global-checkbox--label form-label--checkbox" for="sidebar_cart_conditions">
+            I agree with
+         </label>
+         <button type="button" title="Terms & Conditions" data-term-condition="">
+            Terms & Conditions
+         </button>
+      </div>
+
+      <div class="previewCartGroup">
+         <button class="button button-1 button-checkout"
+                 onclick='window.location="{{ path('checkout') }}"'
+                 disabled="disabled"
+                 id="cart-sidebar-checkout">
+            Checkout
+         </button>
+         <a class="button button-2 button-view-cart" href="/cart">
+            View cart
+         </a>
+      </div>
+   </div>
+</div>
          </div>
       </cart-coupon-discount>
    </div>
@@ -3589,13 +3602,12 @@
    <script src="cdn/shop/t/196/assets/halo.image-banner-slide.js?v=135492872895892112291728460616"></script>
 
 <script>
-document.addEventListener('click', function(e) {
-
+document.addEventListener('click', function (e) {
     const button = e.target.closest('.add-to-cart-btn');
     if (!button) return;
 
     e.preventDefault();
-    e.stopImmediatePropagation(); // 🔥 évite double déclenchement
+    e.stopImmediatePropagation();
 
     const popup = button.closest('.variants-popup');
     if (!popup) {
@@ -3609,13 +3621,17 @@ document.addEventListener('click', function(e) {
         return;
     }
 
-const selectedColorInput = popup.querySelector('.selector-wrapper-1 input.single-option:checked');
-const selectedSizeInput   = popup.querySelector('.selector-wrapper-2 input.single-option:checked');
+    const selectedColorInput = popup.querySelector('.selector-wrapper-1 input.single-option:checked');
+    const selectedSizeInput = popup.querySelector('.selector-wrapper-2 input.single-option:checked');
 
-const selectedColor = selectedColorInput ? selectedColorInput.value : null;
-const selectedImage = selectedColorInput ? selectedColorInput.dataset.image : null;
+    const selectedColor = selectedColorInput ? selectedColorInput.value : null;
+    const selectedImage = selectedColorInput ? selectedColorInput.dataset.image : null;
+    const selectedSize = selectedSizeInput ? selectedSizeInput.value : null;
 
-const selectedSize  = selectedSizeInput ? selectedSizeInput.value : null;
+    // 👉 quantité (input du quickshop)
+    const qtyInput = popup.querySelector('input[name="quantity"]');
+    const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+
     fetch(`/cart/add-ajax/${productId}`, {
         method: 'POST',
         headers: {
@@ -3625,7 +3641,8 @@ const selectedSize  = selectedSizeInput ? selectedSizeInput.value : null;
         body: JSON.stringify({
             color: selectedColor,
             image: selectedImage,
-            size:  selectedSize
+            size: selectedSize,
+            quantity: quantity
         })
     })
     .then(res => res.json())
@@ -3637,8 +3654,6 @@ const selectedSize  = selectedSizeInput ? selectedSizeInput.value : null;
         if (!container) {
             container = document.createElement('div');
             container.id = 'previewCartContainer';
-
-            // 👉 important : crée le wrapper une seule fois
             document.body.appendChild(container);
         }
 
@@ -3647,13 +3662,52 @@ const selectedSize  = selectedSizeInput ? selectedSizeInput.value : null;
 });
 </script>
 <script>
+document.addEventListener('change', function (e) {
+    const input = e.target.closest('.qteitem');
+    if (!input) return;
+
+    const key = input.dataset.updateId;
+    const quantity = parseInt(input.value) || 1;
+
+    fetch('/cart/update-ajax/' + key, {
+        method: 'POST',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        body: JSON.stringify({ quantity })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.success) return;
+
+        refreshMiniCart(data.html, data.total);
+    });
+});
+
+function refreshMiniCart(html, total) {
+    let container = document.querySelector('#previewCartContainer');
+
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'previewCartContainer';
+        document.body.appendChild(container);
+    }
+
+    container.innerHTML = html;
+
+    // update total
+    const totalEl = container.querySelector('#mini-cart-total');
+    if (totalEl && total !== undefined) {
+        totalEl.textContent = total.toFixed(2);
+    }
+}
+</script>
+<script>
 document.addEventListener('click', function(e) {
 
-    const btn = e.target.closest('[data-cart-remove]');
+    const btn = e.target.closest('[data-cart-remove-id]');
     if (!btn) return;
 
     e.preventDefault();
-    e.stopImmediatePropagation(); // 🔥 évite double event
+    e.stopImmediatePropagation();
 
     const key = btn.dataset.cartRemoveId;
     if (!key) {
@@ -3680,6 +3734,29 @@ document.addEventListener('click', function(e) {
         container.innerHTML = data.html;
     });
 });
+</script>
+<script>
+function refreshMiniCart(html) {
+    let container = document.querySelector('#previewCartContainer');
+
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'previewCartContainer';
+        document.body.appendChild(container);
+    }
+
+    container.innerHTML = html;
+
+    // update total sidebar
+    const totalEl = container.querySelector('#mini-cart-total');
+    if (totalEl) {
+        document.querySelector('[data-cart-total-value] .money').textContent =
+            totalEl.textContent + ' DZD';
+
+        document.querySelector('[data-cart-subtotal] .money').textContent =
+            totalEl.textContent + ' DZD';
+    }
+}
 </script>
 </body>
 
