@@ -858,6 +858,7 @@
                                                       
                                                    });
                                                    </script>
+
                                                      <div class="selector-wrapper selector-wrapper-2 swatch" data-option-index="1">
                                                          <label class="form-label">
                                                             Size: <span class="label-value-2">{{ product.sizes|first ? product.sizes|first.name : '' }}</span>
@@ -970,7 +971,7 @@
                                           {% for productImage in product.productImages %}
                                              <li class="item">
                                                 <div class="item-wrapper clearfix">
-                                                   <label class="swatch-label {% if loop.first %}is-active{% endif %}" data-value="{{productImage.color.name}}" data-variant-id="{{productImage.color.id}}" title="{{productImage.color.id}}" data-variant-img="{{ asset('uploads/product-images/' ~ productImage.path) }}">
+                                                   <label class="swatch-label {% if loop.first %}is-active{% endif %}" data-value="{{productImage.color.name}}" data-product-id="{{ product.id }}" data-variant-id="{{productImage.color.id}}" title="{{productImage.color.id}}" data-variant-img="{{ asset('uploads/product-images/' ~ productImage.path) }}">
                                                    <span class="pattern" style="background-color:{{productImage.color.hex}} "></span>
                                                    {{productImage.color.name}}
                                                    </label>
@@ -3765,6 +3766,37 @@ function refreshMiniCart(html) {
             totalEl.textContent + ' DZD';
     }
 }
+</script>
+
+<script>
+document.body.addEventListener('click', function(e) {
+
+    // remonte jusqu'au label (même si on clique sur le span)
+    const label = e.target.closest('.swatch-label');
+    if (!label) return;
+
+    console.log("Swatch cliqué :", label.dataset.value);
+
+    const productId = label.dataset.productId;
+    if (productId) {
+        document.querySelectorAll('.swatch-label[data-product-id="' + productId + '"]')
+            .forEach(l => l.classList.remove('is-active'));
+    }
+
+    label.classList.add('is-active');
+
+    // sync popup
+    const popup = document.querySelector('.variants-popup[data-product-id="' + productId + '"]');
+    if (popup) {
+        const color = label.dataset.value;
+        const radio = popup.querySelector('input.single-option[value="' + color + '"]');
+
+        if (radio) {
+            radio.checked = true;
+            radio.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    }
+});
 </script>
 </body>
 
