@@ -3628,7 +3628,7 @@ document.addEventListener('click', function (e) {
     const selectedImage = selectedColorInput ? selectedColorInput.dataset.image : null;
     const selectedSize = selectedSizeInput ? selectedSizeInput.value : null;
 
-    // 👉 quantité (input du quickshop)
+    // quantité
     const qtyInput = popup.querySelector('input[name="quantity"]');
     const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
 
@@ -3647,6 +3647,7 @@ document.addEventListener('click', function (e) {
     })
     .then(res => res.json())
     .then(data => {
+
         if (!data.success) return;
 
         let container = document.querySelector('#previewCartContainer');
@@ -3658,6 +3659,13 @@ document.addEventListener('click', function (e) {
         }
 
         container.innerHTML = data.html;
+
+        // ✅ ouvrir le mini panier
+        const cartSidebarBtn = document.querySelector('[data-cart-sidebar]');
+        if (cartSidebarBtn) {
+            cartSidebarBtn.click();
+        }
+
     });
 });
 </script>
