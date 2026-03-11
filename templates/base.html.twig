@@ -2422,7 +2422,7 @@ document.addEventListener("DOMContentLoaded", function () {
                               </span>
                               <span class="menu-lv-2__action link focus-inset">
                               <span class="text">
-                              Home
+                              Accueil
                               </span>
                               </span>
                            </li>
@@ -2433,59 +2433,23 @@ document.addEventListener("DOMContentLoaded", function () {
                            <li class="menu-lv-item menu-lv-2 text-left dropdown">
                               <a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset">
                               <span class="text">
-                              Top Fashion
+                              Top Hijab
                               </span>
                               </a>
                               <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3 image-lower-rectangle">
                                  <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
+                                 {% for product in products %}
                                     <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127857242" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homeclassic.jpg?v=11831022517385125541" alt="new-ella-demo">
+                                       <a href="{{ path('product_show', {categorySlug: product.productCategory.slug,productSlug: product.slug}) }}" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
+                                       <img src="{{ asset('uploads/products/' ~ product.mainPhoto) }}" alt="new-ella-demo">
                                        </span><span class="text">
-                                       Classic
+                                       {{product.name}}
                                        </span>
                                        </a>
                                     </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123126775898" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homesurfing.jpg?v=1230676928991816331" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Surfing
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127103578" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homejewelry.jpg?v=943621226586350828" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Jewelry
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127365722" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homegames.jpg?v=3892041639043625816" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Games
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127464026" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homegym.jpg?v=15500170617400376981" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Gym
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123190444122" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homeshoes.jpg?v=7713798381999158192" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Shoes
-                                       </span>
-                                       </a>
-                                    </li>
+                                    {% endfor %}
+                                 
+                            
                                  </ul>
                               </div>
                            </li>
