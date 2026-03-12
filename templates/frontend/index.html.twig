@@ -318,6 +318,20 @@
                @media (min-width: 768px) {
                .section-block-template--14613441937498__16328142266b504c78 .halo-product-block .products-flex .product {flex-basis: calc(100% / calc(var(--count) + 0.5));width: calc(100% / calc(var(--count) + 0.5))}
                }
+.categories-intro {
+    color: #4a4a4a;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.spotlight-inner .des {
+    color: #555;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 10px 0;
+}
             </style>
             
          </div>
@@ -328,9 +342,14 @@
             </noscript>
             <div class="spotlight-block section-block-template--14613441937498__1632296224c9e90203" id="spotlight-template--14613441937498__1632296224c9e90203">
                <div class=" container">
-           >
+                    <div class="halo-block-header text-center block-title--style1 enable_border_title_style2 viewAll--center">
+                           <h3 class="title"><span class="text">Catégories</span></h3>
+                            <p class="categories-intro">
+        Explorez notre collection de vêtements pour femmes, conçue pour allier confort, élégance et style. Que vous cherchiez un hijab moderne, une abaya chic, un gilet tendance ou une robe raffinée, notre sélection répond à toutes vos envies et met en valeur votre personnalité.
+                     </p>
+                        </div>
                   <banner-slider-component>
-                     <div class="halo-row column-4 slider slider--tablet block-layout-grid" style="--animation-items: 4;--row-distance-style: -15px;--arrow-side-position: 0" data-swipe="slider" data-dots="false" data-dots-mb="true" data-center-mode="false">
+                     <div class="halo-row column-4 slider slider--tablet block-layout-grid" style="--animation-items: 3;--row-distance-style: -15px;--arrow-side-position: 0" data-swipe="slider" data-dots="false" data-dots-mb="true" data-center-mode="false">
                         {% for category in productCategories %}
                         <div class="halo-item slider__slide spotlight--image first-item" id="block-1632296224c9e90203-0" style="--item-distance-style: 15px;">
                            <div class="spotlight-item spotlight-item__image">
@@ -343,11 +362,20 @@
                                  </div>
                               </div>
                               <div class="content spotlight-inner text-center align-items--center" style="--align-items-spacing-top-style: 25px; --align-items-spacing-bottom-style: 0px; --align-items-spacing-lr-style: 10px;--align-items-postion-content-style: 0px;--align-items-postion-content-mb-style: 0px;--bg_color_content: ;--content-border-color: #e2e2e2">
-                                 <h3 class="title custom-text-style has--border_hover" style="--color-text-style: #232323;--fontsize-text-style: 20px;--fontsize-mobile-text-style: 20px;--title-font-weight: 500;--font-text-style:normal;--border-color-title-style: ;">
-                                    <a href="/collections/new-in" class="link_title"><span>{{ category.name }}</span></a>
-                                 </h3>
-                                 <div class="des custom-text-style" style="--color-text-style: #3c3c3c;--fontsize-text-style: 12px;--margin-top-des-style: 8px">Nullam aliquet vestibulum augue non varius. Cras cosmo congue an melitos. Dui del ante le maliquam. Praesent murna de tellus laoreet cosmopolis.</div>
-                                 <a href="/collections/new-in" class="spotlight-button button custom-button-style" style="--color-button-style: #ffffff; --bg-color-button-style: #232323; --border-color-button-style: #232323; --color-button-hover-style: #232323; --bg-color-button-hover-style: #ffffff; --border-color-button-hover-style: #232323; --text-transform-button-style: uppercase; --font-size-button-style: 16px; --margin-top-button-style: 30px; --button-width-style: 190px"><span>Shop Now</span></a>
+                              
+                                 <div class="des custom-text-style" style="--color-text-style: #3c3c3c;--fontsize-text-style: 12px;--margin-top-des-style: 8px"> {% if category.name == 'HIJAB' %}
+                                Nos hijabs allient confort et style, fabriqués dans des tissus légers et respirants. Découvrez des modèles modernes aux couleurs tendance, parfaits pour compléter vos tenues au quotidien ou lors d’occasions spéciales.
+                            {% elseif category.name == 'GILET' %}
+                                Nos gilets offrent polyvalence et élégance. Longs, courts ou ornés de détails subtils, ils permettent de créer des looks modernes et raffinés, idéaux pour superposer vos tenues avec style.
+                            {% elseif category.name == 'ROBE' %}
+                                Nos robes féminines et élégantes sont conçues pour toutes les occasions. Du quotidien aux soirées festives, elles allient confort, raffinement et coupe flatteuse pour mettre en valeur votre silhouette.
+                            {% elseif category.name == 'ABAYA' %}
+                                Nos abayas combinent tradition et modernité. Avec des coupes élégantes, des détails raffinés et des tissus de qualité, elles apportent sophistication et style à vos tenues pour toutes vos sorties ou événements spéciaux.
+                            {% else %}
+                                Découvrez nos modèles uniques et tendance pour compléter votre garde-robe avec style et confort.
+                            {% endif %}
+                            </div>
+                                 
                               </div>
                            </div>
                         </div>
@@ -370,7 +398,47 @@
                </div>
             </div>
         
-    
+            <style>
+
+            .section-block-template--14613441937498__1632296224c9e90203{padding-top: 0.0px}
+               .section-block-template--14613441937498__1632296224c9e90203.spotlight-block {margin-top: -0px}.section-block-template--14613441937498__1632296224c9e90203, .section-block-template--14613441937498__1632296224c9e90203 .halo-block-header .title .text {background: #ffffff;}.section-block-template--14613441937498__1632296224c9e90203 .halo-block-header .title:before {background-color: #232323;}
+               .section-block-template--14613441937498__1632296224c9e90203 .halo-block-header .title {color: #232323;font-size: 20px;line-height: 1;display: block}
+               .section-block-template--14613441937498__1632296224c9e90203 .halo-block-header .rte {color: #3c3c3c;font-size: 16px; line-height: 24px}
+               .section-block-template--14613441937498__1632296224c9e90203 .view_all {font-weight: var(--font-weight-view-all-style);margin-bottom: var(--mg-bottom-view-style);color: var(--color-view-all-style);font-size: var(--font-size-view-all-style)}
+               .section-block-template--14613441937498__1632296224c9e90203 .view_all:not(.has-border) {border-bottom: none}
+               .section-block-template--14613441937498__1632296224c9e90203 .view_all.has-border {border-bottom: 1px solid}.section-block-template--14613441937498__1632296224c9e90203 .spotlight-item .img-box a{border-radius: 0px}.section-block-template--14613441937498__1632296224c9e90203 .halo-block-header.text-center.viewAll--right .view_all.button, 
+               .section-block-template--14613441937498__1632296224c9e90203 .halo-block-header.text-left.viewAll--right .view_all.button {
+               width: auto;
+               min-width: 220px;
+               font-weight: var(--btn-1-font-weight);
+               line-height: var(--btn-1-line-height);
+               }@media (min-width: 1200px) {
+               .section-block-template--14613441937498__1632296224c9e90203 {padding-top: 20px;padding-bottom: 65px}
+               }
+               @media (min-width: 1025px) {}
+               @media (min-width: 768px) and (max-width: 1199px) {
+               .section-block-template--14613441937498__1632296224c9e90203 {padding-top: 0px;padding-bottom: 85px}
+               }
+               @media (max-width: 1024px) {.section-block-template--14613441937498__1632296224c9e90203 .halo-block-header.text-center.viewAll--right .view_all.button, 
+               .section-block-template--14613441937498__1632296224c9e90203 .halo-block-header.text-left.viewAll--right .view_all.button {
+               position: absolute;
+               right: 0;
+               top: 10px;
+               }
+               body.layout_rtl .section-block-template--14613441937498__1632296224c9e90203 .halo-block-header.text-center.viewAll--right .view_all.button, 
+               body.layout_rtl .section-block-template--14613441937498__1632296224c9e90203 .halo-block-header.text-left.viewAll--right .view_all.button {
+               right: auto;
+               left: 0;
+               margin: 0;
+               }
+               .section-block-template--14613441937498__1632296224c9e90203 .halo-block-header .title {font-size: 20px !important}
+               .section-block-template--14613441937498__1632296224c9e90203 .enable_po_title .halo-block-header .title {margin-bottom: 20px;}.section-block-template--14613441937498__1632296224c9e90203.spotlight-block {margin-top: -0px}
+               }
+               @media (max-width: 992px) {
+               .section-block-template--14613441937498__1632296224c9e90203 .enable_po_title .halo-block-header .title {font-weight: bold;margin-bottom: 48px;}}
+               @media (max-width: 767px) {.section-block-template--14613441937498__1632296224c9e90203 {padding-top: 25px;padding-bottom: 70px}}
+               @media (max-width: 551px) {}
+            </style>
          </div>
              
             </div>
@@ -500,7 +568,332 @@
                .section-block-template--14613441937498__163247026462da6862 .halo-product-block .products-flex .product {flex-basis: calc(100% / calc(var(--count) + 0.5));width: calc(100% / calc(var(--count) + 0.5))}
                }
             </style>
- 
+            <div class="product-block section-block-template--14613441937498__163247026462da6862" style="--grid-gap: 15.0px">
+               <div class="halo-block halo-product-block ajax-loaded" id="halo-product-block-template--14613441937498__163247026462da6862" data-product-block="" data-limit="8" data-layout="grid" sectionid="template--14613441937498__163247026462da6862" data-collection="collection-home-1-1" data-image-ratio="adapt" data-swipe="false">
+                  <div class=" container layout-body--default enable_image_mb" style="--width-box-banner: 40%" data-width-banner="40">
+                     <div class="halo-block-header text-center block-title--style1 enable_border_title_style2 viewAll--center">
+                        <h3 class="title"><span class="text">New Arrivals</span></h3>
+                        <a class="view_all" href="/collections/cosmopolis" title="View All">View All
+                        </a>
+                     </div>
+                     <div class="halo-block-content ">
+                        <div class="products-grid column-4" data-products-to-show="8">
+                        {% for product in products %}
+                         <div class="product">
+                              <div class="product-item">
+                                 <div class="card">
+                                    <div class="card-product">
+                                       <div class="card-product__wrapper">
+                                         
+                                          
+                                          <div class="card-media card-media--adapt media--hover-effect has-compare media--loading-effect" style="padding-bottom: 142.30769230769232%;">
+                                           <img data-srcset="{{ asset('uploads/products/' ~ product.mainPhoto) }}" src="{{ asset('uploads/products/' ~ product.mainPhoto) }}" style="object-fit: cover;">
+                                             
+                                             <video  playsinline="playsinline" muted="muted" loop="loop" preload="metadata" aria-label="(Product 5) Sample - Clothing And Accessory Boutiques For Sale" >
+                                            
+                                                <source src="{{ asset('uploads/videos/' ~ product.mainVideo) }}" type="video/mp4">
+                                                
+                                             </video>
+                                               
+                                             <span class="data-lazy-loading"></span>
+                                             <a class="card-link" href="{{ path('product_show', {categorySlug: product.productCategory.slug,productSlug: product.slug}) }}" title="(Product 5) Sample - Clothing And Accessory Boutiques For Sale"></a>
+                                          </div>
+                                          <div class="card-product__group group-right">
+                                             <div class="card-product__group-item card-wishlist">
+                                                <button type="button" title="Add to wishlist" class="wishlist-icon show-mb" data-wishlist="" data-wishlist-handle="loremous-saliduar-a-cosmopolito" data-product-id="6617631129690">
+                                                   <span class="text">Add to wishlist</span> 
+                                                   <svg role="img" aria-hidden="true" viewBox="0 0 512 512" class="icon icon-wishlist w-h-">
+                                                      <g>
+                                                         <g>
+                                                            <path d="M474.644,74.27C449.391,45.616,414.358,29.836,376,29.836c-53.948,0-88.103,32.22-107.255,59.25 c-4.969,7.014-9.196,14.047-12.745,20.665c-3.549-6.618-7.775-13.651-12.745-20.665c-19.152-27.03-53.307-59.25-107.255-59.25 c-38.358,0-73.391,15.781-98.645,44.435C13.267,101.605,0,138.213,0,177.351c0,42.603,16.633,82.228,52.345,124.7 c31.917,37.96,77.834,77.088,131.005,122.397c19.813,16.884,40.302,34.344,62.115,53.429l0.655,0.574 c2.828,2.476,6.354,3.713,9.88,3.713s7.052-1.238,9.88-3.713l0.655-0.574c21.813-19.085,42.302-36.544,62.118-53.431 c53.168-45.306,99.085-84.434,131.002-122.395C495.367,259.578,512,219.954,512,177.351 C512,138.213,498.733,101.605,474.644,74.27z M309.193,401.614c-17.08,14.554-34.658,29.533-53.193,45.646 c-18.534-16.111-36.113-31.091-53.196-45.648C98.745,312.939,30,254.358,30,177.351c0-31.83,10.605-61.394,29.862-83.245 C79.34,72.007,106.379,59.836,136,59.836c41.129,0,67.716,25.338,82.776,46.594c13.509,19.064,20.558,38.282,22.962,45.659 c2.011,6.175,7.768,10.354,14.262,10.354c6.494,0,12.251-4.179,14.262-10.354c2.404-7.377,9.453-26.595,22.962-45.66 c15.06-21.255,41.647-46.593,82.776-46.593c29.621,0,56.66,12.171,76.137,34.27C471.395,115.957,482,145.521,482,177.351 C482,254.358,413.255,312.939,309.193,401.614z"></path>
+                                                         </g>
+                                                      </g>
+                                                   </svg>
+                                                </button>
+                                             </div>
+                                             
+                                             <div class="card-product__group-item card-quickview card-quickviewIcon show-mb">
+                                                <button type="button" title="Quick view" class="quickview-icon" data-product-id="6617631129690" data-open-quick-view-popup="" data-product-handle="loremous-saliduar-a-cosmopolito">
+                                                   <span class="text">Quick view</span>
+                                                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.999 511.999" aria-hidden="true" focusable="false" role="presentation" class="icon icon-eyes">
+                                                      <path d=" M508.745,246.041c-4.574-6.257-113.557-153.206-252.748-153.206S7.818,239.784,3.249,246.035 c-4.332,5.936-4.332,13.987,0,19.923c4.569,6.257,113.557,153.206,252.748,153.206s248.174-146.95,252.748-153.201 C513.083,260.028,513.083,251.971,508.745,246.041z M255.997,385.406c-102.529,0-191.33-97.533-217.617-129.418 c26.253-31.913,114.868-129.395,217.617-129.395c102.524,0,191.319,97.516,217.617,129.418 C447.361,287.923,358.746,385.406,255.997,385.406z"></path>
+                                                      <path d="M255.997,154.725c-55.842,0-101.275,45.433-101.275,101.275s45.433,101.275,101.275,101.275  s101.275-45.433,101.275-101.275S311.839,154.725,255.997,154.725z M255.997,323.516c-37.23,0-67.516-30.287-67.516-67.516 s30.287-67.516,67.516-67.516s67.516,30.287,67.516,67.516S293.227,323.516,255.997,323.516z"></path>
+                                                   </svg>
+                                                </button>
+                                             </div>
+                                          </div>
+                                          
+                                          <div class="card-action has-compare">
+                                          
+                                             <form action="/cart/add" method="post" class="variants" id="form-6617631129690-template--14613441937498__163247026462da6862" data-product-id="6617631129690" enctype="multipart/form-data"><a class="button button-ATC" href="/products/loremous-saliduar-a-cosmopolito" data-quickshop-popup="" data-product-handle="loremous-saliduar-a-cosmopolito">Quick add
+                                                </a>
+                                             </form>
+                                             <div class="variants-popup custom-scrollbar">
+                                                <script>window.quick_view_inven_array_6617631129690 = {'39504890658906': '9','39504890691674': '0','39504890724442': '2','39504890757210': '1','39504890789978': '24','39504890822746': '3','39504890855514': '5','39504890888282': '7','39504890921050': '34','39504890953818': '4','39504890986586': '33','39504891019354': '44','39504891052122': '55','39504891084890': '1','39504891117658': '0','39504891150426': '3','39504891183194': '1','39504891215962': '0','39504891248730': '1','39504891281498': '23',};</script>
+                                                <a role="link" aria-disabled="true" class="variants-popup-close" data-cancel-quickshop-popup="">
+                                                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                                      <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                                                   </svg>
+                                                   Close
+                                                </a>
+                                                
+                                                <div class="variants-popup-content text-center" data-quickshop="">
+                                                
+                                                   <form action="/cart/add" method="post" class="variants" id="form-6617631129690-template--14613441937498__163247026462da6862" data-id="product-actions-6617631129690" enctype="multipart/form-data">
+                                                      <div class="selector-wrapper selector-wrapper-1 swatch option-color" data-option-index="0" data-option-position="0">
+                                                         <label class="form-label">Color: <span class="label-value-1">Gray</span></label>
+                                                         <div class="swatch-element gray available" data-value="Gray">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690-template--14613441937498__163247026462da6862" data-index="option1" value="Gray" id="SingleOptionSelector0-Gray-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id101">
+                                                            <label class="single-label" title="Gray" for="SingleOptionSelector0-Gray-6617631129690-template--14613441937498__163247026462da6862">
+                                                            <span class="pattern" style="background-color: gray; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image11xxl_8c0594c5-f6fe-4cb6-b2a2-a52652633ec9_40x.jpg?v=1657872035); background-size: cover;"></span>
+                                                            </label>
+                                                         </div>
+                                                         <div class="swatch-element black available" data-value="Black">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690-template--14613441937498__163247026462da6862" data-index="option1" value="Black" id="SingleOptionSelector0-Black-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id102">
+                                                            <label class="single-label" title="Black" for="SingleOptionSelector0-Black-6617631129690-template--14613441937498__163247026462da6862">
+                                                            <span class="pattern" style="background-color: black; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image12bxxl_40x.jpg?v=1657872035); background-size: cover;"></span>
+                                                            </label>
+                                                         </div>
+                                                         <div class="swatch-element cadetblue available" data-value="Cadetblue">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690-template--14613441937498__163247026462da6862" data-index="option1" value="Cadetblue" id="SingleOptionSelector0-Cadetblue-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id103">
+                                                            <label class="single-label" title="Cadetblue" for="SingleOptionSelector0-Cadetblue-6617631129690-template--14613441937498__163247026462da6862">
+                                                            <span class="pattern" style="background-color: cadetblue; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image10xxl_3b27afc2-4c8c-4832-8324-a898fc662543_40x.jpg?v=1657872035); background-size: cover;"></span>
+                                                            </label>
+                                                         </div>
+                                                         <div class="swatch-element darkorange available" data-value="Darkorange">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690-template--14613441937498__163247026462da6862" data-index="option1" value="Darkorange" id="SingleOptionSelector0-Darkorange-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id104">
+                                                            <label class="single-label" title="Darkorange" for="SingleOptionSelector0-Darkorange-6617631129690-template--14613441937498__163247026462da6862">
+                                                            <span class="pattern" style="background-color: darkorange; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image13bxxl_40x.jpg?v=1657872035); background-size: cover;"></span>
+                                                            </label>
+                                                         </div>
+                                                      </div>
+                                                      <div class="selector-wrapper selector-wrapper-2 swatch" data-option-index="1">
+                                                         <label class="form-label">Size: <span class="label-value-2">XS</span></label>
+                                                         <div class="swatch-element xs available" data-value="XS">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690-template--14613441937498__163247026462da6862" data-index="option2" value="XS" id="SingleOptionSelector1-XS-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id105">
+                                                            <label class="single-label" title="XS" for="SingleOptionSelector1-XS-6617631129690-template--14613441937498__163247026462da6862">XS</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
+                                                         </div>
+                                                         <div class="swatch-element s soldout" data-value="S">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690-template--14613441937498__163247026462da6862" data-index="option2" value="S" id="SingleOptionSelector1-S-6617631129690-template--14613441937498__163247026462da6862" disabled="" wfd-id="id106">
+                                                            <label class="single-label" title="S" for="SingleOptionSelector1-S-6617631129690-template--14613441937498__163247026462da6862">S</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
+                                                         </div>
+                                                         <div class="swatch-element m available" data-value="M">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690-template--14613441937498__163247026462da6862" data-index="option2" value="M" id="SingleOptionSelector1-M-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id107">
+                                                            <label class="single-label" title="M" for="SingleOptionSelector1-M-6617631129690-template--14613441937498__163247026462da6862">M</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
+                                                         </div>
+                                                         <div class="swatch-element l available" data-value="L">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690-template--14613441937498__163247026462da6862" data-index="option2" value="L" id="SingleOptionSelector1-L-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id108">
+                                                            <label class="single-label" title="L" for="SingleOptionSelector1-L-6617631129690-template--14613441937498__163247026462da6862">L</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
+                                                         </div>
+                                                         <div class="swatch-element xl available" data-value="XL">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690-template--14613441937498__163247026462da6862" data-index="option2" value="XL" id="SingleOptionSelector1-XL-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id109">
+                                                            <label class="single-label" title="XL" for="SingleOptionSelector1-XL-6617631129690-template--14613441937498__163247026462da6862">XL</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
+                                                         </div>
+                                                      </div>
+                                                      <select name="id" id="ProductSelect-6617631129690-template--14613441937498__163247026462da6862" class="selector-wrapper-hidden" style="display: none;">
+                                                         <option value="39504890658906" data-value="39504890658906">Gray / XS</option>
+                                                         <option disabled="disabled" data-value="39504890691674">Gray / S - Sold out</option>
+                                                         <option value="39504890724442" data-value="39504890724442">Gray / M</option>
+                                                         <option value="39504890757210" data-value="39504890757210">Gray / L</option>
+                                                         <option value="39504890789978" data-value="39504890789978">Gray / XL</option>
+                                                         <option value="39504890822746" data-value="39504890822746">Black / XS</option>
+                                                         <option value="39504890855514" data-value="39504890855514">Black / S</option>
+                                                         <option value="39504890888282" data-value="39504890888282">Black / M</option>
+                                                         <option value="39504890921050" data-value="39504890921050">Black / L</option>
+                                                         <option value="39504890953818" data-value="39504890953818">Black / XL</option>
+                                                         <option value="39504890986586" data-value="39504890986586">Cadetblue / XS</option>
+                                                         <option value="39504891019354" data-value="39504891019354">Cadetblue / S</option>
+                                                         <option value="39504891052122" data-value="39504891052122">Cadetblue / M</option>
+                                                         <option value="39504891084890" data-value="39504891084890">Cadetblue / L</option>
+                                                         <option disabled="disabled" data-value="39504891117658">Cadetblue / XL - Sold out</option>
+                                                         <option value="39504891150426" data-value="39504891150426">Darkorange / XS</option>
+                                                         <option value="39504891183194" data-value="39504891183194">Darkorange / S</option>
+                                                         <option disabled="disabled" data-value="39504891215962">Darkorange / M - Sold out</option>
+                                                         <option value="39504891248730" data-value="39504891248730">Darkorange / L</option>
+                                                         <option value="39504891281498" data-value="39504891281498">Darkorange / XL</option>
+                                                      </select>
+                                                      <label class="form-label label-quantity-2">Quantity:</label>
+                                                      <quickshop-update-quantity class="previewCartItem-qty quickshop-quantity">
+                                                         <button type="button" name="minus" data-minus-quantity-quickshop="" class="minus btn-quantity" data-form-id="template--14613441937498__163247026462da6862"></button>
+                                                         <input class="form-input quantity ProductDrop" name="quantity" id="quickshop-update-6617631129690-" data-qtt-id1="quantity6617631129690" value="1" type="number" data-product-card-quantity="" data-product-card-quantity-id="6617631129690" wfd-id="id110">
+                                                         <button type="button" name="plus" data-plus-quantity-quickshop="" class="plus btn-quantity" data-form-id="template--14613441937498__163247026462da6862"></button>
+                                                      </quickshop-update-quantity>
+                                                      <div class="product-card__button2">
+                                                         <input type="hidden" name="quantity" value="1" wfd-id="id111"><button data-cancel-quickshop-popup="" class="button button2 cancel-btn" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Cancel</button><button data-btn-addtocart="" class="button button2 add-to-cart-btn" type="submit" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Add</button>
+                                                      </div>
+                                                   </form>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="card-compare" data-product-compare="" data-product-compare-handle="loremous-saliduar-a-cosmopolito" data-product-compare-id="6617631129690">
+                                             <div class="compare-button">
+                                                <input id="compare-6617631129690" class="compare-checkbox" type="checkbox" name="compare" value="loremous-saliduar-a-cosmopolito" wfd-id="id112">
+                                                <label class="compare-label form-label--checkbox" for="compare-6617631129690"><span>Compare</span></label>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="card-information">
+                                       <div class="card-information__wrapper text-center">
+                                          <div class="card-information__group card-information__group-2">
+                                             <div class="card-vendor"><span class="visually-hidden">Vendor:</span><a class="vendor-text" href="/collections/vendors?q=Donatello" title="Donatello">{{product.productCategory.name}}</a></div>
+                                          </div>
+                                          <h3 class="card__heading"><a class="card-title link-underline card-title-ellipsis card-title-change" href="/products/loremous-saliduar-a-cosmopolito" data-product-title="(Product 5) Sample - Clothing And Accessory Boutiques For Sale" data-product-url="/products/loremous-saliduar-a-cosmopolito">{{product.name}} <span data-change-title=""> </span></a></h3>
+                                          <div class="card-summary card-list__hidden">Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo pharetras loremos. Donec pretium egestas sapien et mollis. Vestibulum ante ipsum primis in faucibus orci...</div>
+                                          <div class="card-price">
+                                             <div class="price ">
+                                                <dl>
+                                                   <div class="price__regular">
+                                                      <dd class="price__last"><span class="price-item price-item--regular"><span class="money">{{ product.price|number_format(2, '.', ' ') }} DZD</span></span></dd>
+                                                   </div>
+                                                   <div class="price__sale">
+                                                      <dd class="price__compare" data-compare=""><s class="price-item price-item--regular"></s></dd>
+                                                      <dd class="price__last" data-last="8600"><span class="price-item price-item--sale"><span class="money">$86.00</span></span></dd>
+                                                   </div>
+                                                   <small class="unit-price caption hidden">
+                                                      <dt class="visually-hidden">Unit price</dt>
+                                                      <dd class="price__last"><span></span><span aria-hidden="true">/</span><span class="visually-hidden">&nbsp;per&nbsp;</span><span></span></dd>
+                                                   </small>
+                                                </dl>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="card-swatch text-center clearfix quick_shop_type_2" id="product-swatch-{{product.id}}">
+                                          <ul class="swatch list-unstyled">
+                                          {% for productImage in product.productImages %}
+                                             <li class="item">
+                                                <div class="item-wrapper clearfix">
+                                                   <label class="swatch-label" data-value="{{productImage.color.name}}" data-variant-id="{{productImage.color.id}}" title="{{productImage.color.id}}" data-variant-img="{{ asset('uploads/product-images/' ~ productImage.path) }}">
+                                                   <span class="pattern" style="background-color:{{productImage.color.hex}} "></span>
+                                                   {{productImage.color.name}}
+                                                   </label>
+                                                   <span class="tooltip">{{productImage.color.name}}</span>
+                                                </div>
+                                             </li>
+                                          {% endfor %}
+                                          </ul>
+                                       </div>
+                                       <div class="card-action__group card-list__hidden">
+                                          <div class="card-action">
+                                             <form action="/cart/add" method="post" class="variants" id="form-6617631129690-template--14613441937498__163247026462da6862" data-product-id="6617631129690" enctype="multipart/form-data"><a class="button button-ATC" href="/products/loremous-saliduar-a-cosmopolito" data-quickshop-popup="">Quick add</a></form>
+                                          </div>
+                                       </div>
+                                       <div class="card-action__group variants-popup card-list__hidden">
+                                          <div class="card-action variants-popup-form">
+                                             <div class="custom-scrollbar">
+                                                <script>window.quick_view_inven_array_6617631129690 = {'39504890658906': '9','39504890691674': '0','39504890724442': '2','39504890757210': '1','39504890789978': '24','39504890822746': '3','39504890855514': '5','39504890888282': '7','39504890921050': '34','39504890953818': '4','39504890986586': '33','39504891019354': '44','39504891052122': '55','39504891084890': '1','39504891117658': '0','39504891150426': '3','39504891183194': '1','39504891215962': '0','39504891248730': '1','39504891281498': '23',};</script>
+                                                <a role="link" aria-disabled="true" class="variants-popup-close" data-cancel-quickshop-popup="">
+                                                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                                      <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                                                   </svg>
+                                                   Close
+                                                </a>
+                                                <div class="variants-popup-content text-center" data-quickshop="">
+                                                   <form action="/cart/add" method="post" class="variants" id="form-6617631129690-template--14613441937498__163247026462da6862" data-id="product-actions-6617631129690list" enctype="multipart/form-data">
+                                                      <div class="selector-wrapper selector-wrapper-1 swatch option-color" data-option-index="0" data-option-position="0">
+                                                         <label class="form-label">Color: <span class="label-value-1">Gray</span></label>
+                                                         <div class="swatch-element gray available" data-value="Gray">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" data-index="option1" value="Gray" id="SingleOptionSelector0-Gray-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" wfd-id="id113">
+                                                            <label class="single-label" title="Gray" for="SingleOptionSelector0-Gray-6617631129690--categorylisttemplate--14613441937498__163247026462da6862">
+                                                            <span class="pattern" style="background-color: gray; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image11xxl_8c0594c5-f6fe-4cb6-b2a2-a52652633ec9_40x.jpg?v=1657872035); background-size: cover;"></span>
+                                                            </label>
+                                                         </div>
+                                                         <div class="swatch-element black available" data-value="Black">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" data-index="option1" value="Black" id="SingleOptionSelector0-Black-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" wfd-id="id114">
+                                                            <label class="single-label" title="Black" for="SingleOptionSelector0-Black-6617631129690--categorylisttemplate--14613441937498__163247026462da6862">
+                                                            <span class="pattern" style="background-color: black; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image12bxxl_40x.jpg?v=1657872035); background-size: cover;"></span>
+                                                            </label>
+                                                         </div>
+                                                         <div class="swatch-element cadetblue available" data-value="Cadetblue">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" data-index="option1" value="Cadetblue" id="SingleOptionSelector0-Cadetblue-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" wfd-id="id115">
+                                                            <label class="single-label" title="Cadetblue" for="SingleOptionSelector0-Cadetblue-6617631129690--categorylisttemplate--14613441937498__163247026462da6862">
+                                                            <span class="pattern" style="background-color: cadetblue; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image10xxl_3b27afc2-4c8c-4832-8324-a898fc662543_40x.jpg?v=1657872035); background-size: cover;"></span>
+                                                            </label>
+                                                         </div>
+                                                         <div class="swatch-element darkorange available" data-value="Darkorange">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" data-index="option1" value="Darkorange" id="SingleOptionSelector0-Darkorange-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" wfd-id="id116">
+                                                            <label class="single-label" title="Darkorange" for="SingleOptionSelector0-Darkorange-6617631129690--categorylisttemplate--14613441937498__163247026462da6862">
+                                                            <span class="pattern" style="background-color: darkorange; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image13bxxl_40x.jpg?v=1657872035); background-size: cover;"></span>
+                                                            </label>
+                                                         </div>
+                                                      </div>
+                                                      <div class="selector-wrapper selector-wrapper-2 swatch" data-option-index="1">
+                                                         <label class="form-label">Size: <span class="label-value-2">XS</span></label>
+                                                         <div class="swatch-element xs available" data-value="XS">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" data-index="option2" value="XS" id="SingleOptionSelector1-XS-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" wfd-id="id117">
+                                                            <label class="single-label" title="XS" for="SingleOptionSelector1-XS-6617631129690--categorylisttemplate--14613441937498__163247026462da6862">XS</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
+                                                         </div>
+                                                         <div class="swatch-element s soldout" data-value="S">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" data-index="option2" value="S" id="SingleOptionSelector1-S-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" disabled="" wfd-id="id118">
+                                                            <label class="single-label" title="S" for="SingleOptionSelector1-S-6617631129690--categorylisttemplate--14613441937498__163247026462da6862">S</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
+                                                         </div>
+                                                         <div class="swatch-element m available" data-value="M">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" data-index="option2" value="M" id="SingleOptionSelector1-M-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" wfd-id="id119">
+                                                            <label class="single-label" title="M" for="SingleOptionSelector1-M-6617631129690--categorylisttemplate--14613441937498__163247026462da6862">M</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
+                                                         </div>
+                                                         <div class="swatch-element l available" data-value="L">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" data-index="option2" value="L" id="SingleOptionSelector1-L-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" wfd-id="id120">
+                                                            <label class="single-label" title="L" for="SingleOptionSelector1-L-6617631129690--categorylisttemplate--14613441937498__163247026462da6862">L</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
+                                                         </div>
+                                                         <div class="swatch-element xl available" data-value="XL">
+                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" data-index="option2" value="XL" id="SingleOptionSelector1-XL-6617631129690--categorylisttemplate--14613441937498__163247026462da6862" wfd-id="id121">
+                                                            <label class="single-label" title="XL" for="SingleOptionSelector1-XL-6617631129690--categorylisttemplate--14613441937498__163247026462da6862">XL</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
+                                                         </div>
+                                                      </div>
+                                                      <select name="id" id="ProductSelect-6617631129690-template--14613441937498__163247026462da6862" class="selector-wrapper-hidden" style="display: none;">
+                                                         <option value="39504890658906" data-value="39504890658906">Gray / XS</option>
+                                                         <option disabled="disabled" data-value="39504890691674">Gray / S - Sold out</option>
+                                                         <option value="39504890724442" data-value="39504890724442">Gray / M</option>
+                                                         <option value="39504890757210" data-value="39504890757210">Gray / L</option>
+                                                         <option value="39504890789978" data-value="39504890789978">Gray / XL</option>
+                                                         <option value="39504890822746" data-value="39504890822746">Black / XS</option>
+                                                         <option value="39504890855514" data-value="39504890855514">Black / S</option>
+                                                         <option value="39504890888282" data-value="39504890888282">Black / M</option>
+                                                         <option value="39504890921050" data-value="39504890921050">Black / L</option>
+                                                         <option value="39504890953818" data-value="39504890953818">Black / XL</option>
+                                                         <option value="39504890986586" data-value="39504890986586">Cadetblue / XS</option>
+                                                         <option value="39504891019354" data-value="39504891019354">Cadetblue / S</option>
+                                                         <option value="39504891052122" data-value="39504891052122">Cadetblue / M</option>
+                                                         <option value="39504891084890" data-value="39504891084890">Cadetblue / L</option>
+                                                         <option disabled="disabled" data-value="39504891117658">Cadetblue / XL - Sold out</option>
+                                                         <option value="39504891150426" data-value="39504891150426">Darkorange / XS</option>
+                                                         <option value="39504891183194" data-value="39504891183194">Darkorange / S</option>
+                                                         <option disabled="disabled" data-value="39504891215962">Darkorange / M - Sold out</option>
+                                                         <option value="39504891248730" data-value="39504891248730">Darkorange / L</option>
+                                                         <option value="39504891281498" data-value="39504891281498">Darkorange / XL</option>
+                                                      </select>
+                                                      <label class="form-label label-quantity-2">Quantity:</label>
+                                                      <quickshop-update-quantity class="previewCartItem-qty quickshop-quantity">
+                                                         <button type="button" name="minus" data-minus-quantity-quickshop="" class="minus btn-quantity" data-form-id="template--14613441937498__163247026462da6862"></button>
+                                                         <input class="form-input quantity ProductDrop" name="quantity" id="quickshop-update-6617631129690--category" data-qtt-id1="quantity6617631129690" value="1" type="number" data-product-card-quantity="" data-product-card-quantity-id="6617631129690" wfd-id="id122">
+                                                         <button type="button" name="plus" data-plus-quantity-quickshop="" class="plus btn-quantity" data-form-id="template--14613441937498__163247026462da6862"></button>
+                                                      </quickshop-update-quantity>
+                                                      <div class="product-card__button2">
+                                                         <input type="hidden" name="quantity" value="1" wfd-id="id123"><button data-cancel-quickshop-popup="" class="button button2 cancel-btn" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Cancel</button><button data-btn-addtocart="" class="button button2 add-to-cart-btn" type="submit" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Add</button>
+                                                      </div>
+                                                   </form>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="card-compare-wrapper card-list__hidden">
+                                          <div class="" data-product-compare="" data-product-compare-handle="loremous-saliduar-a-cosmopolito" data-product-compare-id="6617631129690">
+                                             <div class="compare-button">
+                                                <input id="compare-6617631129690-list" class="compare-checkbox" type="checkbox" name="compare" value="loremous-saliduar-a-cosmopolito" wfd-id="id124">
+                                                <label class="compare-label form-label--checkbox" for="compare-6617631129690-list"><span>Compare</span></label>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                         {% endfor %}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
             <div id="shopify-section-template--14613441937498__16323855104e3e74f6" class="shopify-section sections-image-banner-block">
                <style type="text/css" media="screen">#halo-image-banner-template--14613441937498__16323855104e3e74f6 .container-full {padding-left: calc(var(--padding_full_width) * 0.5);padding-right: calc(var(--padding_full_width) * 0.5)}
                   #halo-image-banner-template--14613441937498__16323855104e3e74f6 .halo-block-header .title:before {background-color: var(--color_title)}
