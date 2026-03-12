@@ -720,7 +720,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                                    English
                                                 </option>
                                                 <option value="de" lang="de">
-                                                   Deutsch
+                                                   Français
                                                 </option>
                                              </select>
                                           </div>
@@ -735,7 +735,66 @@ document.addEventListener("DOMContentLoaded", function () {
                                                 <p class="title text-left" id="HeaderLanguageLabel">Language</p>
                                                 <ul id="HeaderLanguageList" role="list" class="disclosure__list list-unstyled custom-scrollbar d-flex flex-align-center flex-wrap">
                                                    <li class="disclosure__item" tabindex="-1">
-                                                      <a role="link" aria-disabled="true" class="link link--text disclosure__link d-flex flex-align-center disclosure__link--active focus-inset" hreflang="en" lang="en" aria-current="true" data-value="en">
+                                                      <a role="link" aria-disabled="true" class="link link--text disclosure__link d-flex flex-align-center  disclosure__link--active focus-inset" hreflang="de" lang="de" data-value="de">
+                                                         <span class="icon">
+                                                         <svg viewBox="0 0 512 512" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+                                                      <defs>
+                                                         <clipPath id="circleFlagFR">
+                                                            <circle cx="256" cy="256" r="256"></circle>
+                                                         </clipPath>
+                                                      </defs>
+
+                                                      <g clip-path="url(#circleFlagFR)">
+                                                         <!-- Bleu -->
+                                                         <rect x="0" y="0" width="170.67" height="512" fill="#0052B4"></rect>
+
+                                                         <!-- Blanc -->
+                                                         <rect x="170.67" y="0" width="170.67" height="512" fill="#FFFFFF"></rect>
+
+                                                         <!-- Rouge -->
+                                                         <rect x="341.34" y="0" width="170.66" height="512" fill="#D80027"></rect>
+                                                      </g>
+                                                      </svg>
+                                                         </span>
+                                                         <span class="text">FR</span>
+                                                      </a>
+                                                   </li>
+                                                      <li class="disclosure__item" tabindex="-1">
+                                                      <a role="link" aria-disabled="true" class="link link--text disclosure__link d-flex flex-align-center focus-inset" hreflang="de" lang="de" data-value="de">
+                                                         <span class="icon">
+                                                           <svg x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xmlns="http://www.w3.org/2000/svg">
+
+                                                         <!-- Cercle de base blanc -->
+                                                         <circle cx="256" cy="256" r="256" style="fill:#FFFFFF;"></circle>
+
+                                                            <!-- Moitié verte (gauche) avec demi-cercle -->
+                                                            <path d="M0,256 A256,256 0 0,1 256,0 L256,512 A256,256 0 0,1 0,256 Z" style="fill:#006233;"></path>
+                                                         <!-- Croissant rouge -->
+                                                         <circle cx="270" cy="256" r="80" style="fill:#D80027;"></circle>
+                                                         <circle cx="300" cy="256" r="64" style="fill:#FFFFFF;"></circle>
+
+                                                         <!-- Etoile rouge à 5 branches -->
+                                                         <polygon points="
+                                                            290,220
+                                                            302,248
+                                                            332,248
+                                                            308,265
+                                                            318,295
+                                                            290,278
+                                                            262,295
+                                                            272,265
+                                                            248,248
+                                                            278,248
+                                                         " style="fill:#D80027;"></polygon>
+
+                                                         </svg>
+
+                                                         </span>
+                                                         <span class="text">AR</span>
+                                                      </a>
+                                                   </li>
+                                                   <li class="disclosure__item" tabindex="-1">
+                                                      <a role="link" aria-disabled="true" class="link link--text disclosure__link d-flex flex-align-center focus-inset" hreflang="en" lang="en" aria-current="true" data-value="en">
                                                          <span class="icon">
                                                             <svg viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;">
                                                                <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"></circle>
@@ -758,21 +817,11 @@ document.addEventListener("DOMContentLoaded", function () {
                                                                </g>
                                                             </svg>
                                                          </span>
-                                                         <span class="text">en</span>
+                                                         <span class="text">EN</span>
                                                       </a>
                                                    </li>
-                                                   <li class="disclosure__item" tabindex="-1">
-                                                      <a role="link" aria-disabled="true" class="link link--text disclosure__link d-flex flex-align-center focus-inset" hreflang="de" lang="de" data-value="de">
-                                                         <span class="icon">
-                                                            <svg viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;">
-                                                               <path style="fill:#FFDA44;" d="M15.923,345.043C52.094,442.527,145.929,512,256,512s203.906-69.473,240.077-166.957L256,322.783  L15.923,345.043z"></path>
-                                                               <path d="M256,0C145.929,0,52.094,69.472,15.923,166.957L256,189.217l240.077-22.261C459.906,69.472,366.071,0,256,0z"></path>
-                                                               <path style="fill:#D80027;" d="M15.923,166.957C5.633,194.69,0,224.686,0,256s5.633,61.31,15.923,89.043h480.155  C506.368,317.31,512,287.314,512,256s-5.632-61.31-15.923-89.043H15.923z"></path>
-                                                            </svg>
-                                                         </span>
-                                                         <span class="text">de</span>
-                                                      </a>
-                                                   </li>
+                                                
+                                                 
                                                 </ul>
                                              </div>
                                              <input type="hidden" name="locale_code" value="en" wfd-id="id4">
@@ -849,67 +898,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                                    <path d="m275.565 361.679-223.897-223.896h-51.668l275.565 275.565 275.565-275.565h-51.668z"></path>
                                                 </svg>
                                              </a>
-                                             <a role="link" aria-disabled="true" class="dropdown-item" data-currency="EUR">
-                                                <span class="icon" role="text" aria-label="currency">
-                                                   <svg x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;">
-                                                      <circle style="fill:#0052B4;" cx="256" cy="256" r="256"></circle>
-                                                      <g>
-                                                         <polygon style="fill:#FFDA44;" points="256.001,100.174 264.29,125.683 291.11,125.683 269.411,141.448 277.7,166.957 256.001,151.191 234.301,166.957 242.59,141.448 220.891,125.683 247.712,125.683"></polygon>
-                                                         <polygon style="fill:#FFDA44;" points="145.814,145.814 169.714,157.99 188.679,139.026 184.482,165.516 208.381,177.693 181.89,181.889 177.694,208.381 165.517,184.482 139.027,188.679 157.992,169.714"></polygon>
-                                                         <polygon style="fill:#FFDA44;" points="100.175,256 125.684,247.711 125.684,220.89 141.448,242.59 166.958,234.301 151.191,256 166.958,277.699 141.448,269.411 125.684,291.11 125.684,264.289"></polygon>
-                                                         <polygon style="fill:#FFDA44;" points="145.814,366.186 157.991,342.286 139.027,323.321 165.518,327.519 177.693,303.62 181.89,330.111 208.38,334.307 184.484,346.484 188.679,372.974 169.714,354.009"></polygon>
-                                                         <polygon style="fill:#FFDA44;" points="256.001,411.826 247.711,386.317 220.891,386.317 242.591,370.552 234.301,345.045 256.001,360.809 277.7,345.045 269.411,370.552 291.11,386.317 264.289,386.317"></polygon>
-                                                         <polygon style="fill:#FFDA44;" points="366.187,366.186 342.288,354.01 323.322,372.975 327.519,346.483 303.622,334.307 330.112,330.111 334.308,303.62 346.484,327.519 372.974,323.321 354.009,342.288"></polygon>
-                                                         <polygon style="fill:#FFDA44;" points="411.826,256 386.317,264.289 386.317,291.11 370.552,269.41 345.045,277.699 360.81,256 345.045,234.301 370.553,242.59 386.317,220.89 386.317,247.712"></polygon>
-                                                         <polygon style="fill:#FFDA44;" points="366.187,145.814 354.01,169.714 372.975,188.679 346.483,184.481 334.308,208.38 330.112,181.889 303.622,177.692 327.519,165.516 323.322,139.027 342.289,157.991"></polygon>
-                                                      </g>
-                                                   </svg>
-                                                </span>
-                                                <span class="text" role="text" aria-label="currency">EUR</span>
-                                                <svg role="img" xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 551.13 551.13" height="512" viewBox="0 0 551.13 551.13" width="512">
-                                                   <path d="m275.565 361.679-223.897-223.896h-51.668l275.565 275.565 275.565-275.565h-51.668z"></path>
-                                                </svg>
-                                             </a>
-                                             <a role="link" aria-disabled="true" class="dropdown-item" data-currency="GBP">
-                                                <span class="icon" role="text" aria-label="currency">
-                                                   <svg viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;">
-                                                      <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"></circle>
-                                                      <g>
-                                                         <path style="fill:#0052B4;" d="M52.92,100.142c-20.109,26.163-35.272,56.318-44.101,89.077h133.178L52.92,100.142z"></path>
-                                                         <path style="fill:#0052B4;" d="M503.181,189.219c-8.829-32.758-23.993-62.913-44.101-89.076l-89.075,89.076H503.181z"></path>
-                                                         <path style="fill:#0052B4;" d="M8.819,322.784c8.83,32.758,23.993,62.913,44.101,89.075l89.074-89.075L8.819,322.784L8.819,322.784 z"></path>
-                                                         <path style="fill:#0052B4;" d="M411.858,52.921c-26.163-20.109-56.317-35.272-89.076-44.102v133.177L411.858,52.921z"></path>
-                                                         <path style="fill:#0052B4;" d="M100.142,459.079c26.163,20.109,56.318,35.272,89.076,44.102V370.005L100.142,459.079z"></path>
-                                                         <path style="fill:#0052B4;" d="M189.217,8.819c-32.758,8.83-62.913,23.993-89.075,44.101l89.075,89.075V8.819z"></path>
-                                                         <path style="fill:#0052B4;" d="M322.783,503.181c32.758-8.83,62.913-23.993,89.075-44.101l-89.075-89.075V503.181z"></path>
-                                                         <path style="fill:#0052B4;" d="M370.005,322.784l89.075,89.076c20.108-26.162,35.272-56.318,44.101-89.076H370.005z"></path>
-                                                      </g>
-                                                      <g>
-                                                         <path style="fill:#D80027;" d="M509.833,222.609h-220.44h-0.001V2.167C278.461,0.744,267.317,0,256,0 c-11.319,0-22.461,0.744-33.391,2.167v220.44v0.001H2.167C0.744,233.539,0,244.683,0,256c0,11.319,0.744,22.461,2.167,33.391 h220.44h0.001v220.442C233.539,511.256,244.681,512,256,512c11.317,0,22.461-0.743,33.391-2.167v-220.44v-0.001h220.442 C511.256,278.461,512,267.319,512,256C512,244.683,511.256,233.539,509.833,222.609z"></path>
-                                                         <path style="fill:#D80027;" d="M322.783,322.784L322.783,322.784L437.019,437.02c5.254-5.252,10.266-10.743,15.048-16.435 l-97.802-97.802h-31.482V322.784z"></path>
-                                                         <path style="fill:#D80027;" d="M189.217,322.784h-0.002L74.98,437.019c5.252,5.254,10.743,10.266,16.435,15.048l97.802-97.804 V322.784z"></path>
-                                                         <path style="fill:#D80027;" d="M189.217,189.219v-0.002L74.981,74.98c-5.254,5.252-10.266,10.743-15.048,16.435l97.803,97.803 H189.217z"></path>
-                                                         <path style="fill:#D80027;" d="M322.783,189.219L322.783,189.219L437.02,74.981c-5.252-5.254-10.743-10.266-16.435-15.047 l-97.802,97.803V189.219z"></path>
-                                                      </g>
-                                                   </svg>
-                                                </span>
-                                                <span class="text" role="text" aria-label="currency">GBP</span>
-                                                <svg role="img" xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 551.13 551.13" height="512" viewBox="0 0 551.13 551.13" width="512">
-                                                   <path d="m275.565 361.679-223.897-223.896h-51.668l275.565 275.565 275.565-275.565h-51.668z"></path>
-                                                </svg>
-                                             </a>
-                                             <a role="link" aria-disabled="true" class="dropdown-item" data-currency="CHF">
-                                                <span class="icon" role="text" aria-label="currency">
-                                                   <svg viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;">
-                                                      <circle style="fill:#D80027;" cx="256" cy="256" r="256"></circle>
-                                                      <polygon style="fill:#F0F0F0;" points="389.565,211.479 300.522,211.479 300.522,122.435 211.478,122.435 211.478,211.479   122.435,211.479 122.435,300.522 211.478,300.522 211.478,389.565 300.522,389.565 300.522,300.522 389.565,300.522 "></polygon>
-                                                   </svg>
-                                                </span>
-                                                <span class="text" role="text" aria-label="currency">CHF</span>
-                                                <svg role="img" xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 551.13 551.13" height="512" viewBox="0 0 551.13 551.13" width="512">
-                                                   <path d="m275.565 361.679-223.897-223.896h-51.668l275.565 275.565 275.565-275.565h-51.668z"></path>
-                                                </svg>
-                                             </a>
+                                          
+                                          
                                           </div>
                                        </div>
                                     </div>
@@ -2401,213 +2391,13 @@ document.addEventListener("DOMContentLoaded", function () {
             </style>
             <template>
                <ul class="list-menu list-menu--inline list-unstyled" role="list" id="MenuMobileListSection-menu" data-heading="Menu">
-                  <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
-                     <a href="#" class="menu-lv-1__action list-menu__item link focus-inset menu-lv__flex menu_mobile_link">
-                        <span class="custom-icon style-circle">
-                        <img src="//new-ella-demo.myshopify.com/cdn/shop/files/image-menu-1.jpg?v=1650942439" alt="Home">
-                        </span><span class="text">Accueil</span>
-                        <span class="icon-dropdown" data-toggle-menu-mb="">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
-                              <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
-                           </svg>
-                        </span>
-                     </a>
-                     <div class="menu-lv__dropdownmenu menu-dropdown">
-                        <ul class="menu-lv__list list-menu list-unstyled motion-reduce" role="list">
-                           <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
-                              <span class="icon-dropdown">
-                                 <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav">
-                                    <path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path>
-                                 </svg>
-                              </span>
-                              <span class="menu-lv-2__action link focus-inset">
-                              <span class="text">
-                              Accueil
-                              </span>
-                              </span>
-                           </li>
-                           <a href="javascript:void(0)" class="image-zoom adaptive_height" style="padding-top: 34.32835820895522%;">
-                           <img data-srcset="//new-ella-demo.myshopify.com/cdn/shop/files/1_115ccd38-1514-4357-b4a8-8463bec85317_165x.jpg?v=1659672463 165w,//new-ella-demo.myshopify.com/cdn/shop/files/1_115ccd38-1514-4357-b4a8-8463bec85317_170x.jpg?v=1659672463 170w,//new-ella-demo.myshopify.com/cdn/shop/files/1_115ccd38-1514-4357-b4a8-8463bec85317_185x.jpg?v=1659672463 185w,//new-ella-demo.myshopify.com/cdn/shop/files/1_115ccd38-1514-4357-b4a8-8463bec85317_198x.jpg?v=1659672463 198w,//new-ella-demo.myshopify.com/cdn/shop/files/1_115ccd38-1514-4357-b4a8-8463bec85317_205x.jpg?v=1659672463 205w,//new-ella-demo.myshopify.com/cdn/shop/files/1_115ccd38-1514-4357-b4a8-8463bec85317_210x.jpg?v=1659672463 210w,//new-ella-demo.myshopify.com/cdn/shop/files/1_115ccd38-1514-4357-b4a8-8463bec85317_220x.jpg?v=1659672463 220w,//new-ella-demo.myshopify.com/cdn/shop/files/1_115ccd38-1514-4357-b4a8-8463bec85317_245x.jpg?v=1659672463 245w,//new-ella-demo.myshopify.com/cdn/shop/files/1_115ccd38-1514-4357-b4a8-8463bec85317_270x.jpg?v=1659672463 270w,//new-ella-demo.myshopify.com/cdn/shop/files/1_115ccd38-1514-4357-b4a8-8463bec85317_290x.jpg?v=1659672463 290w,//new-ella-demo.myshopify.com/cdn/shop/files/1_115ccd38-1514-4357-b4a8-8463bec85317_320x.jpg?v=1659672463 320w" loading="lazy" sizes="(min-width: 1100px) 335px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="" size="335" class=" lazyload">
-                           <span class="data-lazy-loading"></span>
-                           </a>
-                           <li class="menu-lv-item menu-lv-2 text-left dropdown">
-                              <a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset">
-                              <span class="text">
-                               Hijab
-                              </span>
-                              </a>
-                              <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3 image-lower-rectangle">
-                                 <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                 {% for product in products %}
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="{{ path('product_show', {categorySlug: product.productCategory.slug,productSlug: product.slug}) }}" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="{{ asset('uploads/products/' ~ product.mainPhoto) }}" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       {{product.name}}
-                                       </span>
-                                       </a>
-                                    </li>
-                                    {% endfor %}
-                                 
-                            
-                                 </ul>
-                              </div>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left dropdown">
-                              <a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset">
-                              <span class="text">
-                              Robe
-                              </span>
-                              </a>
-                              <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3 image-lower-rectangle">
-                                 <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123126317146" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-hometrendy-style.jpg?v=7251465250368442980" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Trendy Style
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123126677594" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homein-vouge.jpg?v=17104127367718848581" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       In Vouge
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123126710362" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homehigh-fashion.jpg?v=4468719816331335136" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       High Fashion
-                                       </span>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left dropdown">
-                              <a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset">
-                              <span class="text">
-                              Gilet
-                              </span>
-                              </a>
-                              <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3 image-lower-rectangle">
-                                 <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127005274" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homepet-supplies.jpg?v=15350722249106986716" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Pet Supplies
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127234650" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homemen-fashion.jpg?v=4164384323207597874" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Men Fashion
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127267418" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homewinter-sports.jpg?v=9768853690632663873" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Winter sports
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127300186" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homeautomotive-1.jpg?v=14246575546512217970" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Automotive 1
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127332954" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homeautomotive-2.jpg?v=10817773715202478733" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Automotive 2
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123126906970" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homelarge-catalogs.jpg?v=9361937786781204326" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Large Catalogs
-                                       </span>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </li>
-                            <li class="menu-lv-item menu-lv-2 text-left dropdown">
-                              <a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset">
-                              <span class="text">
-                              Abaya
-                              </span>
-                              </a>
-                              <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3 image-lower-rectangle">
-                                 <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127005274" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homepet-supplies.jpg?v=15350722249106986716" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Pet Supplies
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127234650" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homemen-fashion.jpg?v=4164384323207597874" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Men Fashion
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127267418" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homewinter-sports.jpg?v=9768853690632663873" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Winter sports
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127300186" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homeautomotive-1.jpg?v=14246575546512217970" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Automotive 1
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123127332954" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homeautomotive-2.jpg?v=10817773715202478733" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Automotive 2
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://new-ella-demo.myshopify.com/?fts=0&amp;preview_theme_id=123126906970" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-homelarge-catalogs.jpg?v=9361937786781204326" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Large Catalogs
-                                       </span>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </li>
-                        </ul>
-                     </div>
+                    <li class="menu-lv-item menu-lv-1 text-left no-megamenu"><a role="link" href="{{path('app_frontend')}}" aria-disabled="true" class="menu-lv-1__action list-menu__item list-menu__item--end link focus-inset  menu-lv__flex menu_mobile_link"><span class="custom-icon style-circle">
+                     <img src="//new-ella-demo.myshopify.com/cdn/shop/files/menu-mobile-2.jpg?v=1650942534" alt="My Wish List">
+                     </span><span class="text">Accueil</span></a>
+                  </li>
+                      <li class="menu-lv-item menu-lv-1 text-left no-megamenu"><a role="link" href="{{path('app_frontend_shop')}}" aria-disabled="true" class="menu-lv-1__action list-menu__item list-menu__item--end link focus-inset  menu-lv__flex menu_mobile_link"><span class="custom-icon style-circle">
+                     <img src="//new-ella-demo.myshopify.com/cdn/shop/files/menu-mobile-2.jpg?v=1650942534" alt="My Wish List">
+                     </span><span class="text">Shop</span></a>
                   </li>
                   <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
                      <a role="link" aria-disabled="true" class="menu-lv-1__action list-menu__item link focus-inset menu-lv__flex menu_mobile_link" style="color: #000000;">
@@ -2856,358 +2646,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         </ul>
                      </div>
                   </li>
-                  <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
-                     <a role="link" aria-disabled="true" class="menu-lv-1__action list-menu__item link focus-inset menu-lv__flex menu_mobile_link">
-                        <span class="custom-icon style-circle">
-                        <img src="//new-ella-demo.myshopify.com/cdn/shop/files/1_411515b1-4680-4ec7-83a7-f24f212c9ca7.jpg?v=1650942504" alt="Accessories">
-                        </span><span class="text">Accessories</span>
-                        <span class="icon-dropdown" data-toggle-menu-mb="">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
-                              <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
-                           </svg>
-                        </span>
-                     </a>
-                     <div class="menu-lv__dropdownmenu menu-dropdown">
-                        <ul class="menu-lv__list list-menu list-unstyled motion-reduce" role="list">
-                           <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
-                              <span class="icon-dropdown">
-                                 <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav">
-                                    <path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path>
-                                 </svg>
-                              </span>
-                              <span class="menu-lv-2__action link focus-inset">
-                              <span class="text">
-                              Accessories
-                              </span>
-                              </span>
-                           </li>
-                           <a href="javascript:void(0)" class="image-zoom adaptive_height" style="padding-top: 34.32835820895522%;">
-                           <img data-srcset="//new-ella-demo.myshopify.com/cdn/shop/files/3_696d27bd-f5ac-4150-a79a-07353dc8cfa4_165x.jpg?v=1659672488 165w,//new-ella-demo.myshopify.com/cdn/shop/files/3_696d27bd-f5ac-4150-a79a-07353dc8cfa4_170x.jpg?v=1659672488 170w,//new-ella-demo.myshopify.com/cdn/shop/files/3_696d27bd-f5ac-4150-a79a-07353dc8cfa4_185x.jpg?v=1659672488 185w,//new-ella-demo.myshopify.com/cdn/shop/files/3_696d27bd-f5ac-4150-a79a-07353dc8cfa4_198x.jpg?v=1659672488 198w,//new-ella-demo.myshopify.com/cdn/shop/files/3_696d27bd-f5ac-4150-a79a-07353dc8cfa4_205x.jpg?v=1659672488 205w,//new-ella-demo.myshopify.com/cdn/shop/files/3_696d27bd-f5ac-4150-a79a-07353dc8cfa4_210x.jpg?v=1659672488 210w,//new-ella-demo.myshopify.com/cdn/shop/files/3_696d27bd-f5ac-4150-a79a-07353dc8cfa4_220x.jpg?v=1659672488 220w,//new-ella-demo.myshopify.com/cdn/shop/files/3_696d27bd-f5ac-4150-a79a-07353dc8cfa4_245x.jpg?v=1659672488 245w,//new-ella-demo.myshopify.com/cdn/shop/files/3_696d27bd-f5ac-4150-a79a-07353dc8cfa4_270x.jpg?v=1659672488 270w,//new-ella-demo.myshopify.com/cdn/shop/files/3_696d27bd-f5ac-4150-a79a-07353dc8cfa4_290x.jpg?v=1659672488 290w,//new-ella-demo.myshopify.com/cdn/shop/files/3_696d27bd-f5ac-4150-a79a-07353dc8cfa4_320x.jpg?v=1659672488 320w" loading="lazy" sizes="(min-width: 1100px) 335px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="" size="335" class=" lazyload">
-                           <span class="data-lazy-loading"></span>
-                           </a>
-                           <li class="menu-lv-item menu-lv-2 text-left dropdown">
-                              <a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset">
-                              <span class="text">
-                              Trendy
-                              </span>
-                              </a>
-                              <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3 image-lower-rectangle">
-                                 <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-accessoriesheart.jpg?v=16411742940398138901" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Heart
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-accessoriesgilded.jpg?v=12714436505248569770" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Gilded
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-accessoriesbutterfly.jpg?v=3837769506582499301" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Butterfly
-                                       </span>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left dropdown">
-                              <a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset">
-                              <span class="text">
-                              Occasional
-                              </span>
-                              </a>
-                              <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3 image-lower-rectangle">
-                                 <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-accessoriesbusiness.jpg?v=18316737386919732607" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Business
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-accessoriesstreet.jpg?v=17872920463585974112" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Street
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-accessoriesparty.jpg?v=4935076262690855296" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Party
-                                       </span>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left dropdown">
-                              <a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset">
-                              <span class="text">
-                              Elegant
-                              </span>
-                              </a>
-                              <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3 image-lower-rectangle">
-                                 <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-accessoriesearrings.jpg?v=3947341293707447229" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Earrings
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-accessoriesbracelets.jpg?v=6840330713830186673" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Bracelets
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-accessoriesrings.jpg?v=14839814472035310488" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Rings
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-accessoriesnecklaces.jpg?v=18016746568746039998" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Necklaces
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-accessoriesdiy.jpg?v=1822935315507949183" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       DIY
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-accessoriesbodycare.jpg?v=6814786553781703390" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       BodyCare
-                                       </span>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </li>
-                        </ul>
-                     </div>
-                  </li>
-                  <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
-                     <a role="link" aria-disabled="true" class="menu-lv-1__action list-menu__item link focus-inset menu-lv__flex menu_mobile_link">
-                        <span class="custom-icon style-circle">
-                        <img src="//new-ella-demo.myshopify.com/cdn/shop/files/menu-mobile-3.jpg?v=1650942509" alt="Shop This Look">
-                        </span><span class="text">Shop This Look</span>
-                        <span class="icon-dropdown" data-toggle-menu-mb="">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
-                              <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
-                           </svg>
-                        </span>
-                     </a>
-                     <div class="menu-lv__dropdownmenu menu-dropdown">
-                        <ul class="menu-lv__list list-menu list-unstyled motion-reduce" role="list">
-                           <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
-                              <span class="icon-dropdown">
-                                 <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav">
-                                    <path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path>
-                                 </svg>
-                              </span>
-                              <span class="menu-lv-2__action link focus-inset">
-                              <span class="text">
-                              Shop This Look
-                              </span>
-                              </span>
-                           </li>
-                           <a href="javascript:void(0)" class="image-zoom adaptive_height" style="padding-top: 33.854166666666664%;">
-                           <img data-srcset="//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_165x.jpg?v=1659666111 165w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_170x.jpg?v=1659666111 170w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_185x.jpg?v=1659666111 185w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_198x.jpg?v=1659666111 198w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_205x.jpg?v=1659666111 205w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_210x.jpg?v=1659666111 210w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_220x.jpg?v=1659666111 220w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_245x.jpg?v=1659666111 245w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_270x.jpg?v=1659666111 270w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_290x.jpg?v=1659666111 290w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_320x.jpg?v=1659666111 320w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_355x.jpg?v=1659666111 355w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_360x.jpg?v=1659666111 360w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_370x.jpg?v=1659666111 370w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_420x.jpg?v=1659666111 420w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_430x.jpg?v=1659666111 430w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_460x.jpg?v=1659666111 460w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_470x.jpg?v=1659666111 470w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_510x.jpg?v=1659666111 510w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_523x.jpg?v=1659666111 523w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_533x.jpg?v=1659666111 533w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_534x.jpg?v=1659666111 534w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_570x.jpg?v=1659666111 570w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_640x.jpg?v=1659666111 640w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_665x.jpg?v=1659666111 665w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_670x.jpg?v=1659666111 670w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_720x.jpg?v=1659666111 720w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_775x.jpg?v=1659666111 775w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_785x.jpg?v=1659666111 785w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_870x.jpg?v=1659666111 870w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_930x.jpg?v=1659666111 930w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_935x.jpg?v=1659666111 935w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_940x.jpg?v=1659666111 940w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_1066x.jpg?v=1659666111 1066w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_1160x.jpg?v=1659666111 1160w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_1170x.jpg?v=1659666111 1170w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_1270x.jpg?v=1659666111 1270w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_1370x.jpg?v=1659666111 1370w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_1570x.jpg?v=1659666111 1570w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_1770x.jpg?v=1659666111 1770w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_1850x.jpg?v=1659666111 1850w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_1880x.jpg?v=1659666111 1880w,//new-ella-demo.myshopify.com/cdn/shop/files/banner14_1920x_693197f2-5d87-4e2_1920x.jpg?v=1659666111 1920w" loading="lazy" sizes="(min-width: 1100px) 1920px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="" size="1920" class=" lazyload">
-                           <span class="data-lazy-loading"></span>
-                           </a>
-                           <li class="menu-lv-item menu-lv-2 text-left dropdown">
-                              <a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset">
-                              <span class="text">
-                              Introduction
-                              </span>
-                              </a>
-                              <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3 image-lower-rectangle">
-                                 <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="/collections/all" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-lookall-items.jpg?v=4304120592611253709" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       All Items
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="/collections/collection-home-1-1" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-looknew-arrival.jpg?v=5995010432956403554" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       New Arrival
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="/collections/collection-home-04-flash-sale" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-lookon-sale.jpg?v=4975726196914663599" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       On Sale
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="/collections/collection-home-03-featured" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-looksummer-wear.jpg?v=217628227647998596" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Summer Wear
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="/collections/collection-home-07-featured" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-lookbest-sellers.jpg?v=1542293484344054211" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Best Sellers
-                                       </span>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left dropdown">
-                              <a href="/collections" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset">
-                              <span class="text">
-                              Categories
-                              </span>
-                              </a>
-                              <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3 image-lower-rectangle">
-                                 <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-looktop.jpg?v=17949711705618224183" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Top
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-lookbottom.jpg?v=1167079444611646317" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Bottom
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-lookcoat.jpg?v=6515496653004710308" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Coat
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-lookblazers.jpg?v=7812358308439761568" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Blazers
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-lookdress.jpg?v=15517118477322969736" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Dress
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="text">
-                                       Suit
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-lookwedding.jpg?v=14901717700151823509" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Wedding
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-looksport.jpg?v=15672620432664366484" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Sport
-                                       </span>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left dropdown">
-                              <a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset">
-                              <span class="text">
-                              Price
-                              </span>
-                              </a>
-                              <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3 image-lower-rectangle">
-                                 <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="/collections/collection-home-09-flash-deals" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-lookunder-90.jpg?v=251645304560918283" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Under $90
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="/collections/collection-home-16-flash-sale" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-lookunder-190.jpg?v=4099364253099109216" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Under $190
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="/collections/collection-home-03-new" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-shop-the-lookunder-399.jpg?v=1443027658079626515" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Under $399
-                                       </span>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </li>
-                        </ul>
-                     </div>
-                  </li>
+                
+                
                   <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
                      <a role="link" aria-disabled="true" class="menu-lv-1__action list-menu__item link focus-inset menu-lv__flex menu_mobile_link">
                         <span class="custom-icon style-circle">
@@ -3318,67 +2758,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         </ul>
                      </div>
                   </li>
-                  <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
-                     <a role="link" aria-disabled="true" class="menu-lv-1__action list-menu__item link focus-inset menu-lv__flex menu_mobile_link">
-                        <span class="custom-icon style-circle">
-                        <img src="//new-ella-demo.myshopify.com/cdn/shop/files/menu-mobile-4.jpg?v=1650942534" alt="Buy Theme">
-                        </span><span class="text">Buy Theme</span>
-                        <span class="icon-dropdown" data-toggle-menu-mb="">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
-                              <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
-                           </svg>
-                        </span>
-                     </a>
-                     <div class="menu-lv__dropdownmenu menu-dropdown">
-                        <ul class="menu-lv__list list-menu list-unstyled motion-reduce" role="list">
-                           <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
-                              <span class="icon-dropdown">
-                                 <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav">
-                                    <path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path>
-                                 </svg>
-                              </span>
-                              <span class="menu-lv-2__action link focus-inset">
-                              <span class="text">
-                              Buy Theme
-                              </span>
-                              </span>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left dropdown">
-                              <a href="https://new-ella-demo.myshopify.com/" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset">
-                              <span class="text">
-                              Ella
-                              </span>
-                              </a>
-                              <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3 image-lower-rectangle">
-                                 <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://1.envato.market/dokaB2" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-buy-themebuy-ella.jpg?v=18440816427712716502" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Buy Ella
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://halosoft.ticksy.com/" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="custom-image">
-                                       <img src="//new-ella-demo.myshopify.com/cdn/shop/files/mobile-menu-buy-themecontact-us.jpg?v=12299931064983979784" alt="new-ella-demo">
-                                       </span><span class="text">
-                                       Contact Us
-                                       </span>
-                                       </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-3 text-center">
-                                       <a href="https://shopify.pxf.io/Jry3Ve" class="menu-lv-3__action grid-menu__item link focus-inset"><span class="text">
-                                       Open a Store FREE
-                                       </span>
-                                       </a>
-                                    </li>
-                                 </ul>
-                              </div>
-                           </li>
-                        </ul>
-                     </div>
-                  </li>
+               
                   <li class="menu-lv-item menu-lv-1 text-left no-megamenu"><a role="link" aria-disabled="true" class="menu-lv-1__action list-menu__item list-menu__item--end link focus-inset  menu-lv__flex menu_mobile_link"><span class="custom-icon style-circle">
                      <img src="//new-ella-demo.myshopify.com/cdn/shop/files/menu-mobile-2.jpg?v=1650942534" alt="My Wish List">
                      </span><span class="text">Mes favoris</span></a>
@@ -3391,397 +2771,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </template>
          </div>
       </div>
-      <div id="shopify-section-halo-navigation-mobile-2" class="shopify-section">
-         <div data-section-id="halo-navigation-mobile-2" data-section-type="menu" id="MenuMobileSection-demo">
-            <style type="text/css" media="screen">
-               :root {
-               --lv-1-demo-font: var(--font-heading-family);
-               --lv-2-demo-font: var(--font-heading-family);
-               --lv-title-demo-font: var(--font-heading-family);
-               }
-               @media (max-width: 1024px){
-               #MenuMobileListSection-demo .menu-lv-1 > p {padding-top: 0;padding-bottom:0}
-               #MenuMobileListSection-demo .menu-lv-1__action{
-               font-family: var(--lv-1-demo-font);
-               font-size: 12px;
-               font-weight: 400;
-               text-transform: capitalize;
-               }
-               #MenuMobileListSection-demo .menu-lv-2__action,
-               #MenuMobileListSection-demo .menu-lv-3__action{
-               font-family: var(--lv-2-demo-font);
-               font-size: 12px;
-               font-weight: 400;
-               text-transform: capitalize;
-               }
-               #MenuMobileListSection-demo .nav-title-mobile .menu-lv-2__action .text, 
-               #MenuMobileListSection-demo .nav-title-mobile .menu-lv-3__action .text {
-               font-family: var(--lv-title-demo-font);
-               font-size: 12px;
-               font-weight: 600;
-               text-transform: uppercase;
-               }
-               #MenuMobileListSection-demo .custom-icon svg{
-               width: 35px;
-               height: 35px;
-               }
-               #MenuMobileListSection-demo .custom-icon img{
-               width: 100%;
-               height: 100%;
-               max-width: 35px;
-               max-height: 35px;
-               }
-               #MenuMobileListSection-demo .custom-image img{
-               width: 100%;
-               height: 100%;
-               max-width: 70px;
-               max-height: 72px;
-               }
-               .nav-mobile-menu-tab .menu-tab .link[data-target="MenuMobileListSection-demo"] {
-               background: #000000;
-               color: #808080;
-               }
-               .nav-mobile-menu-tab .menu-tab .item.is-active .link[data-target="MenuMobileListSection-demo"] {
-               background: #000000;
-               color: #ffffff;
-               }
-               }
-            </style>
-            <template>
-               <ul class="list-menu list-menu--inline list-unstyled" role="list" id="MenuMobileListSection-demo" data-heading="Demo">
-                  <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
-                     <a role="link" aria-disabled="true" class="menu-lv-1__action list-menu__item link focus-inset menu-lv__flex menu_mobile_link">
-                        <span class="custom-icon style-circle">
-                        <img src="//new-ella-demo.myshopify.com/cdn/shop/files/menu-mobile-new-inhome-page.jpg?v=1659519768" alt="Home Page">
-                        </span><span class="text">Home Page</span>
-                        <span class="icon-dropdown" data-toggle-menu-mb="">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
-                              <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
-                           </svg>
-                        </span>
-                     </a>
-                     <div class="menu-lv__dropdownmenu menu-dropdown">
-                        <ul class="menu-lv__list list-menu list-unstyled motion-reduce" role="list">
-                           <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
-                              <span class="icon-dropdown">
-                                 <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav">
-                                    <path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path>
-                                 </svg>
-                              </span>
-                              <span class="menu-lv-2__action link focus-inset">
-                              <span class="text">
-                              Home Page
-                              </span>
-                              </span>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127857242" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesclassic.jpg?v=16350138635391310811" alt="new-ella-demo">
-                              </span><span class="text">
-                              Classic
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126317146" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagestrendy-style.jpg?v=15419223596449415373" alt="new-ella-demo">
-                              </span><span class="text">
-                              Trendy Style
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126677594" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesin-vogue.jpg?v=4193177475950024068" alt="new-ella-demo">
-                              </span><span class="text">
-                              In Vogue
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126710362" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepageshigh-fashion.jpg?v=17271426890546981691" alt="new-ella-demo">
-                              </span><span class="text">
-                              High Fashion
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126775898" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagessurfing.jpg?v=11061420460211213490" alt="new-ella-demo">
-                              </span><span class="text">
-                              Surfing
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126808666" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagessupermarket.jpg?v=15255947667395611202" alt="new-ella-demo">
-                              </span><span class="text">
-                              Supermarket
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126841434" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepageselectronics.jpg?v=17320842531235039828" alt="new-ella-demo">
-                              </span><span class="text">
-                              Electronics
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126906970" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepageslarge-catalogs.jpg?v=9552205609654573974" alt="new-ella-demo">
-                              </span><span class="text">
-                              Large Catalogs
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127005274" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagespet-supplies.jpg?v=4951395143356584331" alt="new-ella-demo">
-                              </span><span class="text">
-                              Pet Supplies
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127103578" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesjewelry.jpg?v=7240935649486552678" alt="new-ella-demo">
-                              </span><span class="text">
-                              Jewelry
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127169114" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepageshealth-beauty.jpg?v=387948859350741072" alt="new-ella-demo">
-                              </span><span class="text">
-                              Health &amp; Beauty
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127234650" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesmen-fashion.jpg?v=3478992397269852713" alt="new-ella-demo">
-                              </span><span class="text">
-                              Men Fashion
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127267418" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepageswinter-sport.jpg?v=4211014356760187915" alt="new-ella-demo">
-                              </span><span class="text">
-                              Winter Sport
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127300186" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesautomotive-1.jpg?v=11970033314218260548" alt="new-ella-demo">
-                              </span><span class="text">
-                              Automotive 1
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127332954" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesautomotive-2.jpg?v=255076957331354719" alt="new-ella-demo">
-                              </span><span class="text">
-                              Automotive 2
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127365722" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesgames.jpg?v=7651256529495441812" alt="new-ella-demo">
-                              </span><span class="text">
-                              Games
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127464026" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesgym.jpg?v=6823083087769955587" alt="new-ella-demo">
-                              </span><span class="text">
-                              Gym
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123190444122" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesshoes.jpg?v=5202534222580601909" alt="new-ella-demo">
-                              </span><span class="text">
-                              Shoes
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo-11.myshopify.com//?fts=0&amp;preview_theme_id=123385806899" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesswimwear.jpg?v=15049038111245061835" alt="new-ella-demo">
-                              </span><span class="text">
-                              Swimwear
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo-11.myshopify.com//?fts=0&amp;preview_theme_id=123385872435" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesfurniture.jpg?v=13362908545685496203" alt="new-ella-demo">
-                              </span><span class="text">
-                              Furniture
-                              </span>
-                              </a>
-                           </li>
-                        </ul>
-                     </div>
-                  </li>
-                  <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
-                     <a href="/collections/all" class="menu-lv-1__action list-menu__item link focus-inset menu-lv__flex menu_mobile_link">
-                        <span class="custom-icon style-circle">
-                        <img src="//new-ella-demo.myshopify.com/cdn/shop/files/product.jpg?v=1659520059" alt="Product">
-                        </span><span class="text">Product</span>
-                        <span class="icon-dropdown" data-toggle-menu-mb="">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
-                              <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
-                           </svg>
-                        </span>
-                     </a>
-                     <div class="menu-lv__dropdownmenu menu-dropdown">
-                        <ul class="menu-lv__list list-menu list-unstyled motion-reduce" role="list">
-                           <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
-                              <span class="icon-dropdown">
-                                 <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav">
-                                    <path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path>
-                                 </svg>
-                              </span>
-                              <span class="menu-lv-2__action link focus-inset">
-                              <span class="text">
-                              Product
-                              </span>
-                              </span>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsdefault.jpg?v=2381374066144388380" alt="new-ella-demo">
-                              </span><span class="text">
-                              Default
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsfull-width.jpg?v=4367141411307615266" alt="new-ella-demo">
-                              </span><span class="text">
-                              Full Width
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsgrid-view.jpg?v=14579069876193630934" alt="new-ella-demo">
-                              </span><span class="text">
-                              Grid View
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsslider.jpg?v=9875858716177283152" alt="new-ella-demo">
-                              </span><span class="text">
-                              Slider
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsgallery.jpg?v=454485516755089415" alt="new-ella-demo">
-                              </span><span class="text">
-                              Gallery
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsleft-thumb.jpg?v=16219722299365416732" alt="new-ella-demo">
-                              </span><span class="text">
-                              Left Thumb
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsright-thumb.jpg?v=4193177475950024068" alt="new-ella-demo">
-                              </span><span class="text">
-                              Right Thumb
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsleft-sidebar.jpg?v=12337792393494734217" alt="new-ella-demo">
-                              </span><span class="text">
-                              Left Sidebar
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsright-sidebar.jpg?v=13563227830962811862" alt="new-ella-demo">
-                              </span><span class="text">
-                              Right Sidebar
-                              </span>
-                              </a>
-                           </li>
-                        </ul>
-                     </div>
-                  </li>
-                  <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
-                     <a role="link" aria-disabled="true" class="menu-lv-1__action list-menu__item link focus-inset menu-lv__flex menu_mobile_link">
-                        <span class="custom-icon style-circle">
-                        <img src="//new-ella-demo.myshopify.com/cdn/shop/files/menu-mobile-new-incollections.jpg?v=1659519780" alt="Collections">
-                        </span><span class="text">Collections</span>
-                        <span class="icon-dropdown" data-toggle-menu-mb="">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
-                              <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
-                           </svg>
-                        </span>
-                     </a>
-                     <div class="menu-lv__dropdownmenu menu-dropdown">
-                        <ul class="menu-lv__list list-menu list-unstyled motion-reduce" role="list">
-                           <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
-                              <span class="icon-dropdown">
-                                 <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav">
-                                    <path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path>
-                                 </svg>
-                              </span>
-                              <span class="menu-lv-2__action link focus-inset">
-                              <span class="text">
-                              Collections
-                              </span>
-                              </span>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/demo-collectionsleft-sidebar.jpg?v=1627927615754276660" alt="new-ella-demo">
-                              </span><span class="text">
-                              Left Sidebar
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/demo-collectionsno-sidebar.jpg?v=12687372392366012644" alt="new-ella-demo">
-                              </span><span class="text">
-                              No Sidebar
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/demo-collectionsright-sidebar.jpg?v=6906055385029407067" alt="new-ella-demo">
-                              </span><span class="text">
-                              Right Sidebar
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/demo-collectionsmasonry.jpg?v=11076310384510884388" alt="new-ella-demo">
-                              </span><span class="text">
-                              Masonry
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/demo-collectionswith-banners.jpg?v=2998200880873990124" alt="new-ella-demo">
-                              </span><span class="text">
-                              With Banners
-                              </span>
-                              </a>
-                           </li>
-                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
-                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/demo-collectionsexpress-orders.jpg?v=5017872592439180559" alt="new-ella-demo">
-                              </span><span class="text">
-                              Express Orders
-                              </span>
-                              </a>
-                           </li>
-                        </ul>
-                     </div>
-                  </li>
-               </ul>
-            </template>
-         </div>
-      </div>
+
       <div id="shopify-section-halo-navigation-mobile-3" class="shopify-section"></div>
    
         
