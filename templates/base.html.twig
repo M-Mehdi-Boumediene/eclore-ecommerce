@@ -2771,7 +2771,397 @@ document.addEventListener("DOMContentLoaded", function () {
             </template>
          </div>
       </div>
-
+      <div id="shopify-section-halo-navigation-mobile-2" class="shopify-section">
+         <div data-section-id="halo-navigation-mobile-2" data-section-type="menu" id="MenuMobileSection-demo">
+            <style type="text/css" media="screen">
+               :root {
+               --lv-1-demo-font: var(--font-heading-family);
+               --lv-2-demo-font: var(--font-heading-family);
+               --lv-title-demo-font: var(--font-heading-family);
+               }
+               @media (max-width: 1024px){
+               #MenuMobileListSection-demo .menu-lv-1 > p {padding-top: 0;padding-bottom:0}
+               #MenuMobileListSection-demo .menu-lv-1__action{
+               font-family: var(--lv-1-demo-font);
+               font-size: 12px;
+               font-weight: 400;
+               text-transform: capitalize;
+               }
+               #MenuMobileListSection-demo .menu-lv-2__action,
+               #MenuMobileListSection-demo .menu-lv-3__action{
+               font-family: var(--lv-2-demo-font);
+               font-size: 12px;
+               font-weight: 400;
+               text-transform: capitalize;
+               }
+               #MenuMobileListSection-demo .nav-title-mobile .menu-lv-2__action .text, 
+               #MenuMobileListSection-demo .nav-title-mobile .menu-lv-3__action .text {
+               font-family: var(--lv-title-demo-font);
+               font-size: 12px;
+               font-weight: 600;
+               text-transform: uppercase;
+               }
+               #MenuMobileListSection-demo .custom-icon svg{
+               width: 35px;
+               height: 35px;
+               }
+               #MenuMobileListSection-demo .custom-icon img{
+               width: 100%;
+               height: 100%;
+               max-width: 35px;
+               max-height: 35px;
+               }
+               #MenuMobileListSection-demo .custom-image img{
+               width: 100%;
+               height: 100%;
+               max-width: 70px;
+               max-height: 72px;
+               }
+               .nav-mobile-menu-tab .menu-tab .link[data-target="MenuMobileListSection-demo"] {
+               background: #000000;
+               color: #808080;
+               }
+               .nav-mobile-menu-tab .menu-tab .item.is-active .link[data-target="MenuMobileListSection-demo"] {
+               background: #000000;
+               color: #ffffff;
+               }
+               }
+            </style>
+            <template>
+               <ul class="list-menu list-menu--inline list-unstyled" role="list" id="MenuMobileListSection-demo" data-heading="Demo">
+                  <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
+                     <a role="link" aria-disabled="true" class="menu-lv-1__action list-menu__item link focus-inset menu-lv__flex menu_mobile_link">
+                        <span class="custom-icon style-circle">
+                        <img src="//new-ella-demo.myshopify.com/cdn/shop/files/menu-mobile-new-inhome-page.jpg?v=1659519768" alt="Home Page">
+                        </span><span class="text">Home Page</span>
+                        <span class="icon-dropdown" data-toggle-menu-mb="">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
+                              <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
+                           </svg>
+                        </span>
+                     </a>
+                     <div class="menu-lv__dropdownmenu menu-dropdown">
+                        <ul class="menu-lv__list list-menu list-unstyled motion-reduce" role="list">
+                           <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
+                              <span class="icon-dropdown">
+                                 <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav">
+                                    <path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path>
+                                 </svg>
+                              </span>
+                              <span class="menu-lv-2__action link focus-inset">
+                              <span class="text">
+                              Home Page
+                              </span>
+                              </span>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127857242" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesclassic.jpg?v=16350138635391310811" alt="new-ella-demo">
+                              </span><span class="text">
+                              Classic
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126317146" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagestrendy-style.jpg?v=15419223596449415373" alt="new-ella-demo">
+                              </span><span class="text">
+                              Trendy Style
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126677594" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesin-vogue.jpg?v=4193177475950024068" alt="new-ella-demo">
+                              </span><span class="text">
+                              In Vogue
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126710362" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepageshigh-fashion.jpg?v=17271426890546981691" alt="new-ella-demo">
+                              </span><span class="text">
+                              High Fashion
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126775898" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagessurfing.jpg?v=11061420460211213490" alt="new-ella-demo">
+                              </span><span class="text">
+                              Surfing
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126808666" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagessupermarket.jpg?v=15255947667395611202" alt="new-ella-demo">
+                              </span><span class="text">
+                              Supermarket
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126841434" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepageselectronics.jpg?v=17320842531235039828" alt="new-ella-demo">
+                              </span><span class="text">
+                              Electronics
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123126906970" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepageslarge-catalogs.jpg?v=9552205609654573974" alt="new-ella-demo">
+                              </span><span class="text">
+                              Large Catalogs
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127005274" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagespet-supplies.jpg?v=4951395143356584331" alt="new-ella-demo">
+                              </span><span class="text">
+                              Pet Supplies
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127103578" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesjewelry.jpg?v=7240935649486552678" alt="new-ella-demo">
+                              </span><span class="text">
+                              Jewelry
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127169114" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepageshealth-beauty.jpg?v=387948859350741072" alt="new-ella-demo">
+                              </span><span class="text">
+                              Health &amp; Beauty
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127234650" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesmen-fashion.jpg?v=3478992397269852713" alt="new-ella-demo">
+                              </span><span class="text">
+                              Men Fashion
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127267418" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepageswinter-sport.jpg?v=4211014356760187915" alt="new-ella-demo">
+                              </span><span class="text">
+                              Winter Sport
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127300186" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesautomotive-1.jpg?v=11970033314218260548" alt="new-ella-demo">
+                              </span><span class="text">
+                              Automotive 1
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127332954" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesautomotive-2.jpg?v=255076957331354719" alt="new-ella-demo">
+                              </span><span class="text">
+                              Automotive 2
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127365722" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesgames.jpg?v=7651256529495441812" alt="new-ella-demo">
+                              </span><span class="text">
+                              Games
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123127464026" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesgym.jpg?v=6823083087769955587" alt="new-ella-demo">
+                              </span><span class="text">
+                              Gym
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo.myshopify.com//?fts=0&amp;preview_theme_id=123190444122" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesshoes.jpg?v=5202534222580601909" alt="new-ella-demo">
+                              </span><span class="text">
+                              Shoes
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo-11.myshopify.com//?fts=0&amp;preview_theme_id=123385806899" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesswimwear.jpg?v=15049038111245061835" alt="new-ella-demo">
+                              </span><span class="text">
+                              Swimwear
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="https://new-ella-demo-11.myshopify.com//?fts=0&amp;preview_theme_id=123385872435" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/homepagesfurniture.jpg?v=13362908545685496203" alt="new-ella-demo">
+                              </span><span class="text">
+                              Furniture
+                              </span>
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </li>
+                  <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
+                     <a href="/collections/all" class="menu-lv-1__action list-menu__item link focus-inset menu-lv__flex menu_mobile_link">
+                        <span class="custom-icon style-circle">
+                        <img src="//new-ella-demo.myshopify.com/cdn/shop/files/product.jpg?v=1659520059" alt="Product">
+                        </span><span class="text">Product</span>
+                        <span class="icon-dropdown" data-toggle-menu-mb="">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
+                              <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
+                           </svg>
+                        </span>
+                     </a>
+                     <div class="menu-lv__dropdownmenu menu-dropdown">
+                        <ul class="menu-lv__list list-menu list-unstyled motion-reduce" role="list">
+                           <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
+                              <span class="icon-dropdown">
+                                 <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav">
+                                    <path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path>
+                                 </svg>
+                              </span>
+                              <span class="menu-lv-2__action link focus-inset">
+                              <span class="text">
+                              Product
+                              </span>
+                              </span>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsdefault.jpg?v=2381374066144388380" alt="new-ella-demo">
+                              </span><span class="text">
+                              Default
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsfull-width.jpg?v=4367141411307615266" alt="new-ella-demo">
+                              </span><span class="text">
+                              Full Width
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsgrid-view.jpg?v=14579069876193630934" alt="new-ella-demo">
+                              </span><span class="text">
+                              Grid View
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsslider.jpg?v=9875858716177283152" alt="new-ella-demo">
+                              </span><span class="text">
+                              Slider
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsgallery.jpg?v=454485516755089415" alt="new-ella-demo">
+                              </span><span class="text">
+                              Gallery
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsleft-thumb.jpg?v=16219722299365416732" alt="new-ella-demo">
+                              </span><span class="text">
+                              Left Thumb
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsright-thumb.jpg?v=4193177475950024068" alt="new-ella-demo">
+                              </span><span class="text">
+                              Right Thumb
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsleft-sidebar.jpg?v=12337792393494734217" alt="new-ella-demo">
+                              </span><span class="text">
+                              Left Sidebar
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/productsright-sidebar.jpg?v=13563227830962811862" alt="new-ella-demo">
+                              </span><span class="text">
+                              Right Sidebar
+                              </span>
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </li>
+                  <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
+                     <a role="link" aria-disabled="true" class="menu-lv-1__action list-menu__item link focus-inset menu-lv__flex menu_mobile_link">
+                        <span class="custom-icon style-circle">
+                        <img src="//new-ella-demo.myshopify.com/cdn/shop/files/menu-mobile-new-incollections.jpg?v=1659519780" alt="Collections">
+                        </span><span class="text">Collections</span>
+                        <span class="icon-dropdown" data-toggle-menu-mb="">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
+                              <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
+                           </svg>
+                        </span>
+                     </a>
+                     <div class="menu-lv__dropdownmenu menu-dropdown">
+                        <ul class="menu-lv__list list-menu list-unstyled motion-reduce" role="list">
+                           <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
+                              <span class="icon-dropdown">
+                                 <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav">
+                                    <path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path>
+                                 </svg>
+                              </span>
+                              <span class="menu-lv-2__action link focus-inset">
+                              <span class="text">
+                              Collections
+                              </span>
+                              </span>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/demo-collectionsleft-sidebar.jpg?v=1627927615754276660" alt="new-ella-demo">
+                              </span><span class="text">
+                              Left Sidebar
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/demo-collectionsno-sidebar.jpg?v=12687372392366012644" alt="new-ella-demo">
+                              </span><span class="text">
+                              No Sidebar
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/demo-collectionsright-sidebar.jpg?v=6906055385029407067" alt="new-ella-demo">
+                              </span><span class="text">
+                              Right Sidebar
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/demo-collectionsmasonry.jpg?v=11076310384510884388" alt="new-ella-demo">
+                              </span><span class="text">
+                              Masonry
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/demo-collectionswith-banners.jpg?v=2998200880873990124" alt="new-ella-demo">
+                              </span><span class="text">
+                              With Banners
+                              </span>
+                              </a>
+                           </li>
+                           <li class="menu-lv-item menu-lv-2 text-left"><a href="#" class="menu-lv-2__action list-menu__item list-menu__item--end link focus-inset menu-lv__flex"><span class="custom-icon style-circle">
+                              <img src="//new-ella-demo.myshopify.com/cdn/shop/files/demo-collectionsexpress-orders.jpg?v=5017872592439180559" alt="new-ella-demo">
+                              </span><span class="text">
+                              Express Orders
+                              </span>
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </li>
+               </ul>
+            </template>
+         </div>
+      </div>
       <div id="shopify-section-halo-navigation-mobile-3" class="shopify-section"></div>
    
         
