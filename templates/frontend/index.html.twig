@@ -688,7 +688,7 @@
                      </div>
                      <div class="halo-block-content ">
                         <div class="products-grid column-4" data-products-to-show="8">
-                        {% for product in products %}
+                          {% for product in products %}
                          <div class="product">
                               <div class="product-item">
                                  <div class="card">
@@ -735,10 +735,10 @@
                                           
                                           <div class="card-action has-compare">
                                           
-                                             <form action="/cart/add" method="post" class="variants" id="form-6617631129690-template--14613441937498__163247026462da6862" data-product-id="6617631129690" enctype="multipart/form-data"><a class="button button-ATC" href="/products/loremous-saliduar-a-cosmopolito" data-quickshop-popup="" data-product-handle="loremous-saliduar-a-cosmopolito">Quick add
-                                                </a>
-                                             </form>
-                                             <div class="variants-popup custom-scrollbar">
+                                            <button type="button" type="button"  class="button button-ATC"  data-quickshop-popup="" data-product-handle="{{ product.id }}">Quick  add
+                                                </button >
+                                            
+                                             <div class="variants-popup custom-scrollbar" data-product-id="{{ product.id }}">
                                                 <script>window.quick_view_inven_array_6617631129690 = {'39504890658906': '9','39504890691674': '0','39504890724442': '2','39504890757210': '1','39504890789978': '24','39504890822746': '3','39504890855514': '5','39504890888282': '7','39504890921050': '34','39504890953818': '4','39504890986586': '33','39504891019354': '44','39504891052122': '55','39504891084890': '1','39504891117658': '0','39504891150426': '3','39504891183194': '1','39504891215962': '0','39504891248730': '1','39504891281498': '23',};</script>
                                                 <a role="link" aria-disabled="true" class="variants-popup-close" data-cancel-quickshop-popup="">
                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
@@ -748,58 +748,96 @@
                                                 </a>
                                                 
                                                 <div class="variants-popup-content text-center" data-quickshop="">
-                                                
-                                                   <form action="/cart/add" method="post" class="variants" id="form-6617631129690-template--14613441937498__163247026462da6862" data-id="product-actions-6617631129690" enctype="multipart/form-data">
-                                                      <div class="selector-wrapper selector-wrapper-1 swatch option-color" data-option-index="0" data-option-position="0">
-                                                         <label class="form-label">Color: <span class="label-value-1">Grayy</span></label>
-                                                         <div class="swatch-element gray available" data-value="Gray">
-                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690-template--14613441937498__163247026462da6862" data-index="option1" value="Gray" id="SingleOptionSelector0-Gray-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id101">
-                                                            <label class="single-label" title="Gray" for="SingleOptionSelector0-Gray-6617631129690-template--14613441937498__163247026462da6862">
-                                                            <span class="pattern" style="background-color: gray; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image11xxl_8c0594c5-f6fe-4cb6-b2a2-a52652633ec9_40x.jpg?v=1657872035); background-size: cover;"></span>
-                                                            </label>
-                                                         </div>
-                                                         <div class="swatch-element black available" data-value="Black">
-                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690-template--14613441937498__163247026462da6862" data-index="option1" value="Black" id="SingleOptionSelector0-Black-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id102">
-                                                            <label class="single-label" title="Black" for="SingleOptionSelector0-Black-6617631129690-template--14613441937498__163247026462da6862">
-                                                            <span class="pattern" style="background-color: black; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image12bxxl_40x.jpg?v=1657872035); background-size: cover;"></span>
-                                                            </label>
-                                                         </div>
-                                                         <div class="swatch-element cadetblue available" data-value="Cadetblue">
-                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690-template--14613441937498__163247026462da6862" data-index="option1" value="Cadetblue" id="SingleOptionSelector0-Cadetblue-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id103">
-                                                            <label class="single-label" title="Cadetblue" for="SingleOptionSelector0-Cadetblue-6617631129690-template--14613441937498__163247026462da6862">
-                                                            <span class="pattern" style="background-color: cadetblue; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image10xxl_3b27afc2-4c8c-4832-8324-a898fc662543_40x.jpg?v=1657872035); background-size: cover;"></span>
-                                                            </label>
-                                                         </div>
-                                                         <div class="swatch-element darkorange available" data-value="Darkorange">
-                                                            <input class="single-option" type="radio" name="SingleOptionSelector-0-6617631129690-template--14613441937498__163247026462da6862" data-index="option1" value="Darkorange" id="SingleOptionSelector0-Darkorange-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id104">
-                                                            <label class="single-label" title="Darkorange" for="SingleOptionSelector0-Darkorange-6617631129690-template--14613441937498__163247026462da6862">
-                                                            <span class="pattern" style="background-color: darkorange; background: url(//new-ella-demo.myshopify.com/cdn/shop/products/image13bxxl_40x.jpg?v=1657872035); background-size: cover;"></span>
-                                                            </label>
-                                                         </div>
+                                                   
+                                                   <form onsubmit="return false;" class="variants"  >
+                                                <div class="selector-wrapper selector-wrapper-1 swatch option-color" data-option-index="0" data-option-position="0">
+                                                   <label class="form-label">Color: <span class="label-value-1">{{ product.productImages|first.color.name }}</span></label>
+
+                                        {% for productImage in product.productImages %}
+                                          {% set colorName = productImage.color.name %}
+                                          {% set imageUrl = asset('uploads/product-images/' ~ productImage.path) %}
+
+                                          <div class="swatch-element {{ colorName|lower }} available" data-value="{{ colorName }}">
+
+                                             <input class="single-option"
+                                                   type="radio"
+                                                   name="SingleOptionSelector-0-{{ product.id }}"
+                                                   data-index="option1"
+                                                   value="{{ colorName }}"
+                                                   data-image="{{ imageUrl }}"
+                                                   id="SingleOptionSelector0-{{ colorName }}-{{ product.id }}"
+                                                   {% if loop.first %}checked{% endif %}>
+
+                                             <label class="single-label"
+                                                   title="{{ colorName }}"
+                                                   for="SingleOptionSelector0-{{ colorName }}-{{ product.id }}">
+
+                                                   <span class="pattern"
+                                                         style="background-color: {{ productImage.color.hex }};
+                                                               background: url('{{ imageUrl }}');
+                                                               background-size: cover;">
+                                                   </span>
+
+                                             </label>
+                                          </div>
+                                       {% endfor %}
+                                                </div>
+                                                   <script>
+                                                   document.addEventListener('DOMContentLoaded', function() {
+                                                      const colorInputs = document.querySelectorAll('.selector-wrapper-1 input.single-option');
+                                                      const labelSpan = document.querySelector('.selector-wrapper-1 .label-value-1');
+
+                                                      colorInputs.forEach(input => {
+                                                         input.addEventListener('change', function() {
+                                                               if (this.checked) {
+                                                                  labelSpan.textContent = this.value;
+                                                               }
+                                                         });
+                                                      });
+
+                                                      
+                                                   });
+                                                   </script>
+
+                                                     <div class="selector-wrapper selector-wrapper-2 swatch" data-option-index="1">
+                                                         <label class="form-label">
+                                                            Size: <span class="label-value-2">{{ product.sizes|first ? product.sizes|first.name : '' }}</span>
+                                                         </label>
+
+                                                         {% for size in product.sizes %}
+                                                            <div class="swatch-element available" data-value="{{ size.name|upper }}">
+
+                                                               <input class="single-option"
+                                                                     type="radio"
+                                                                     name="SingleOptionSelector-size-{{ product.id }}"
+                                                                     data-index="option2"
+                                                                     value="{{ size.name }}"
+                                                                     id="size-{{ size.id }}-{{ product.id }}"
+                                                                     {% if loop.first %}checked{% endif %}>
+
+                                                               <label class="single-label" for="size-{{ size.id }}-{{ product.id }}">
+                                                                  {{ size.name }}
+                                                               </label>
+
+                                                            </div>
+                                                         {% endfor %}
                                                       </div>
-                                                      <div class="selector-wrapper selector-wrapper-2 swatch" data-option-index="1">
-                                                         <label class="form-label">Size: <span class="label-value-2">XS</span></label>
-                                                         <div class="swatch-element xs available" data-value="XS">
-                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690-template--14613441937498__163247026462da6862" data-index="option2" value="XS" id="SingleOptionSelector1-XS-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id105">
-                                                            <label class="single-label" title="XS" for="SingleOptionSelector1-XS-6617631129690-template--14613441937498__163247026462da6862">XS</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
-                                                         </div>
-                                                         <div class="swatch-element s soldout" data-value="S">
-                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690-template--14613441937498__163247026462da6862" data-index="option2" value="S" id="SingleOptionSelector1-S-6617631129690-template--14613441937498__163247026462da6862" disabled="" wfd-id="id106">
-                                                            <label class="single-label" title="S" for="SingleOptionSelector1-S-6617631129690-template--14613441937498__163247026462da6862">S</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
-                                                         </div>
-                                                         <div class="swatch-element m available" data-value="M">
-                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690-template--14613441937498__163247026462da6862" data-index="option2" value="M" id="SingleOptionSelector1-M-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id107">
-                                                            <label class="single-label" title="M" for="SingleOptionSelector1-M-6617631129690-template--14613441937498__163247026462da6862">M</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
-                                                         </div>
-                                                         <div class="swatch-element l available" data-value="L">
-                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690-template--14613441937498__163247026462da6862" data-index="option2" value="L" id="SingleOptionSelector1-L-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id108">
-                                                            <label class="single-label" title="L" for="SingleOptionSelector1-L-6617631129690-template--14613441937498__163247026462da6862">L</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
-                                                         </div>
-                                                         <div class="swatch-element xl available" data-value="XL">
-                                                            <input class="single-option" type="radio" name="SingleOptionSelector-1-6617631129690-template--14613441937498__163247026462da6862" data-index="option2" value="XL" id="SingleOptionSelector1-XL-6617631129690-template--14613441937498__163247026462da6862" wfd-id="id109">
-                                                            <label class="single-label" title="XL" for="SingleOptionSelector1-XL-6617631129690-template--14613441937498__163247026462da6862">XL</label><a role="link" aria-disabled="true" class="single-action clearfix" data-open-notify-popup="" data-variant-id=""><span class="text">Notify me</span></a>
-                                                         </div>
-                                                      </div>
+                                                      <script>
+                                                      document.addEventListener('DOMContentLoaded', function() {
+
+                                                            const sizeInputs = document.querySelectorAll('.selector-wrapper-2 input.single-option');
+                                                            const sizeLabel = document.querySelector('.selector-wrapper-2 .label-value-2');
+
+                                                            sizeInputs.forEach(input => {
+                                                               input.addEventListener('change', function() {
+                                                                  if (this.checked) {
+                                                                     sizeLabel.textContent = this.value;
+                                                                  }
+                                                               });
+                                                            });
+
+                                                         });
+                                                      </script>
                                                       <select name="id" id="ProductSelect-6617631129690-template--14613441937498__163247026462da6862" class="selector-wrapper-hidden" style="display: none;">
                                                          <option value="39504890658906" data-value="39504890658906">Gray / XS</option>
                                                          <option disabled="disabled" data-value="39504890691674">Gray / S - Sold out</option>
@@ -829,7 +867,7 @@
                                                          <button type="button" name="plus" data-plus-quantity-quickshop="" class="plus btn-quantity" data-form-id="template--14613441937498__163247026462da6862"></button>
                                                       </quickshop-update-quantity>
                                                       <div class="product-card__button2">
-                                                         <input type="hidden" name="quantity" value="1" wfd-id="id111"><button data-cancel-quickshop-popup="" class="button button2 cancel-btn" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Cancel</button><button data-btn-addtocart="" class="button button2 add-to-cart-btn" type="submit" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Add</button>
+                                                         <input type="hidden" name="quantity" value="1" wfd-id="id111"><button data-cancel-quickshop-popup="" class="button button2 cancel-btn" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Cancel</button><button data-btn-addtocart="" type="button" class="button button2 add-to-cart-btn"  data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Add</button>
                                                       </div>
                                                    </form>
                                                 </div>
@@ -873,7 +911,7 @@
                                           {% for productImage in product.productImages %}
                                              <li class="item">
                                                 <div class="item-wrapper clearfix">
-                                                   <label class="swatch-label" data-value="{{productImage.color.name}}" data-variant-id="{{productImage.color.id}}" title="{{productImage.color.id}}" data-variant-img="{{ asset('uploads/product-images/' ~ productImage.path) }}">
+                                                   <label class="swatch-label {% if loop.first %}is-active{% endif %}" data-value="{{productImage.color.name}}" data-product-id="{{ product.id }}" data-variant-id="{{productImage.color.id}}" title="{{productImage.color.id}}" data-variant-img="{{ asset('uploads/product-images/' ~ productImage.path) }}">
                                                    <span class="pattern" style="background-color:{{productImage.color.hex}} "></span>
                                                    {{productImage.color.name}}
                                                    </label>
@@ -885,7 +923,7 @@
                                        </div>
                                        <div class="card-action__group card-list__hidden">
                                           <div class="card-action">
-                                             <form action="/cart/add" method="post" class="variants" id="form-6617631129690-template--14613441937498__163247026462da6862" data-product-id="6617631129690" enctype="multipart/form-data"><a class="button button-ATC" href="/products/loremous-saliduar-a-cosmopolito" data-quickshop-popup="">Quick add</a></form>
+                                            <button type="button" class="button button-ATC" data-quickshop-popup="" data-product-handle="{{ product.id }}">Quick add</button>
                                           </div>
                                        </div>
                                        <div class="card-action__group variants-popup card-list__hidden">
@@ -899,7 +937,6 @@
                                                    Close
                                                 </a>
                                                 <div class="variants-popup-content text-center" data-quickshop="">
-                                                   <form action="/cart/add" method="post" class="variants" id="form-6617631129690-template--14613441937498__163247026462da6862" data-id="product-actions-6617631129690list" enctype="multipart/form-data">
                                                       <div class="selector-wrapper selector-wrapper-1 swatch option-color" data-option-index="0" data-option-position="0">
                                                          <label class="form-label">Color: <span class="label-value-1">Gray</span></label>
                                                          <div class="swatch-element gray available" data-value="Gray">
@@ -979,9 +1016,9 @@
                                                          <button type="button" name="plus" data-plus-quantity-quickshop="" class="plus btn-quantity" data-form-id="template--14613441937498__163247026462da6862"></button>
                                                       </quickshop-update-quantity>
                                                       <div class="product-card__button2">
-                                                         <input type="hidden" name="quantity" value="1" wfd-id="id123"><button data-cancel-quickshop-popup="" class="button button2 cancel-btn" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Cancel</button><button data-btn-addtocart="" class="button button2 add-to-cart-btn" type="submit" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Add</button>
+                                                         <input type="hidden" name="quantity" value="1" wfd-id="id123"><button data-cancel-quickshop-popup="" class="button button2 cancel-btn" data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Cancel</button><button data-btn-addtocart=""  type="button" class="button button2 add-to-cart-btn"  data-form-id="template--14613441937498__163247026462da6862template--14613441937498__163247026462da6862">Add</button>
                                                       </div>
-                                                   </form>
+                                                   
                                                 </div>
                                              </div>
                                           </div>
@@ -5462,7 +5499,7 @@
    <div class="halo-popup halo-card-mobile-popup halo-popup-topDown" data-card-mobile-popup="" id="halo-card-mobile-popup">
       <div class="halo-popup-wrapper">
          <h2 class="mobile-popup-header">
-            <span>Choose optionszzz</span>
+            <span>Choose options</span>
             <button type="button" data-close-product-list-popup="" class="close close-modal" aria-label="Close">
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
                   <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
