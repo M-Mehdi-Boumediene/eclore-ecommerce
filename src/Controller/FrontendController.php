@@ -16,12 +16,18 @@ class FrontendController extends AbstractController
 
     #[Route('/', name: 'app_frontend')]
     public function index(
+        Request $request,
         ProductRepository $productRepository,
-        ProductCategoryRepository $productCategoryRepository
+        ProductCategoryRepository $productCategoryRepository,
+        SessionInterface $session
     ): Response {
         return $this->render('frontend/index.html.twig', [
             'products' => $productRepository->findAll(),
-            'productCategories' => $productCategoryRepository->findAll()
+            'productCategories' => $productCategoryRepository->findAll(),
+            'cart' => $this->getUser()
+                ? $this->cartService->getItems()
+                : $session->get('cart', [])
+       
         ]);
     }
 
@@ -47,6 +53,8 @@ class FrontendController extends AbstractController
     public function show(
         string $categorySlug,
         string $productSlug,
+        Request $request,
+        SessionInterface $session,
         ProductRepository $productRepository
     ): Response {
         $product = $productRepository->findOneBy(['slug' => $productSlug]);
@@ -57,6 +65,9 @@ class FrontendController extends AbstractController
 
         return $this->render('frontend/product/show.html.twig', [
             'product' => $product,
+             'cart' => $this->getUser()
+                ? $this->cartService->getItems()
+                : $session->get('cart', [])
         ]);
     }
 }
