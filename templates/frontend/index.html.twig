@@ -5594,57 +5594,261 @@
       <link href="//new-ella-demo.myshopify.com/cdn/shop/t/196/assets/component-quick-cart.css?v=85216047258904419931752028200" rel="stylesheet" type="text/css" media="all" />
    </noscript>
    <div class="halo-sidebar halo-sidebar-right halo-cart-sidebar" id="halo-cart-sidebar">
-      <button type="button" class="halo-sidebar-close button-effect" data-close-cart-sidebar="" aria-label="Close">
-         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-            <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
-         </svg>
-         Close
-      </button>
-      <div class="halo-sidebar-header text-left">
-         <span class="title">Mon panier</span>
-         <div class="wrapper-cartCount"><span class="cartCount" data-cart-count="">0</span> <span data-cart-text="">items</span></div>
-      </div>
-      <div class="halo-sidebar-wrapper custom-scrollbar ">
-         <div class="previewCartMessage">
-            <free-shipping-component class="haloCalculatorShipping" data-free-shipping-wrapper="" style="display: block;">
-               <div class="progress progress-hidden none" data-text-enabled="false" data-shipping-progress="">
-                  <div class="progress_shipping" role="progressbar">
-                     <div class="progress-meter" style="width: 0%;" data-free-shipping-progress-meter="">
-                        <div class="progress-truck-wrapper">
-                           <svg class="icon-shipping-truck" viewBox="0 0 40.55 24">
-                              <g id="Layer_2" data-name="Layer 2">
-                                 <g id="Layer_1-2" data-name="Layer 1">
-                                    <path class="truck-body" d="M40.43,11a3.86,3.86,0,0,0-3.68-2.65H28a1.25,1.25,0,0,1-1.43-1.43c0-2.18,0-4.35,0-6.53,0-.31-.08-.36-.37-.36H5.11a1.18,1.18,0,0,0-1.3,1.32c0,.74,0,1.48,0,2.22,0,.21-.06.27-.26.26-.36,0-.71,0-1.07,0a1.19,1.19,0,1,0,0,2.37H7.19c.43,0,.85,0,1.27,0a1,1,0,0,1,1.07,1A1.19,1.19,0,0,1,8.24,8.48H1.35a1.83,1.83,0,0,0-.47,0A1.19,1.19,0,0,0,0,9.85a1.18,1.18,0,0,0,1.19,1h9.66c.34,0,.68,0,1,0A1.19,1.19,0,0,1,13,12.47a1.26,1.26,0,0,1-1.26.76H1.24a1.19,1.19,0,1,0,0,2.38c.76,0,1.51,0,2.26,0,.26,0,.33.07.32.32,0,1,0,2.09,0,3.13A1.18,1.18,0,0,0,5.1,20.36c.63,0,1.26,0,1.9,0,.27,0,.39.06.47.36a4.55,4.55,0,0,0,8.78-.11.29.29,0,0,1,.32-.25H28.09a.3.3,0,0,1,.34.27,4.55,4.55,0,0,0,8.8,0,.31.31,0,0,1,.35-.26c.49,0,1,0,1.47,0a1.37,1.37,0,0,0,1.5-.87V11.41C40.41,11.29,40.47,11.12,40.43,11ZM32.84,21.62A2.18,2.18,0,1,1,35,19.45,2.21,2.21,0,0,1,32.84,21.62Zm-21,0A2.18,2.18,0,1,1,14,19.45,2.2,2.2,0,0,1,11.86,21.62Z"></path>
-                                    <path class="truck-body" d="M29.27,6h5.85c.1,0,.2,0,.29,0C33.64,2.72,32,.91,28.91.26V.57c0,1.68,0,3.35,0,5C28.9,5.9,29,6,29.27,6Z"></path>
-                                    <path class="wheel" d="M11.87,17.27A2.18,2.18,0,1,0,14,19.45,2.2,2.2,0,0,0,11.87,17.27Z"></path>
-                                    <path class="wheel" d="M32.85,17.27A2.18,2.18,0,1,0,35,19.45,2.22,2.22,0,0,0,32.85,17.27Z"></path>
-                                 </g>
-                              </g>
+   <button type="button" class="halo-sidebar-close button-effect" data-close-cart-sidebar="" aria-label="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+         <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+      </svg>
+      Close
+   </button>
+   <div class="halo-sidebar-header text-left">
+      <span class="title">Shopping cart</span>
+   </div>
+   <div class="halo-sidebar-wrapper custom-scrollbar CartItemDrop">
+      <cart-coupon-discount data-is-sidebar="true">
+         <template data-discount-icon="">
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-discount" viewBox="0 0 12 12">
+               <path fill-rule="evenodd" clip-rule="evenodd" d="M7 0h3a2 2 0 012 2v3a1 1 0 01-.3.7l-6 6a1 1 0 01-1.4 0l-4-4a1 1 0 010-1.4l6-6A1 1 0 017 0zm2 2a1 1 0 102 0 1 1 0 00-2 0z" fill="currentColor"></path>
+            </svg>
+         </template>
+         <template data-discounted-price-template="">
+            <span class="previewCartItem-saving-price"><s class="before-discount-price" data-original-price-display=""></s><span class="discounted-price" data-current-price-display=""></span></span> 
+         </template>
+         <div class="previewCart-wrapper">
+            <div id="previewCartContainer">
+            {% include 'cart/mini.html.twig' %}
+            </div>
+            
+            <cart-item-tool class="previewCartTool">
+              
+             
+               <div class="cartTool-item cart-tool-shipping" data-popup="popup-tool-shipping">
+                  <span>
+                     <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="shipping-fast" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="svg-inline--fa fa-shipping-fast fa-w-20 fa-3x">
+                        <path fill="currentColor" d="M280 192c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H40c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240zm352 192h-24V275.9c0-16.8-6.8-33.3-18.8-45.2l-83.9-83.9c-11.8-12-28.3-18.8-45.2-18.8H416V78.6c0-25.7-22.2-46.6-49.4-46.6H113.4C86.2 32 64 52.9 64 78.6V96H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H96V78.6c0-8.1 7.8-14.6 17.4-14.6h253.2c9.6 0 17.4 6.5 17.4 14.6V384H207.6C193 364.7 170 352 144 352c-18.1 0-34.6 6.2-48 16.4V288H64v144c0 44.2 35.8 80 80 80s80-35.8 80-80c0-5.5-.6-10.8-1.6-16h195.2c-1.1 5.2-1.6 10.5-1.6 16 0 44.2 35.8 80 80 80s80-35.8 80-80c0-5.5-.6-10.8-1.6-16H632c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8zm-488 96c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm272-320h44.1c8.4 0 16.7 3.4 22.6 9.4l83.9 83.9c.8.8 1.1 1.9 1.8 2.8H416V160zm80 320c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-96h-16.4C545 364.7 522 352 496 352s-49 12.7-63.6 32H416v-96h160v96zM256 248v-16c0-4.4-3.6-8-8-8H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240c4.4 0 8-3.6 8-8z" class=""></path>
+                     </svg>
+                  </span>
+               </div>
+               <div class="cartTool-item cart-tool-discount" data-popup="popup-tool-discount">
+                  <span>
+                     <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16 fa-3x">
+                        <path fill="currentColor" d="M497.941 225.941L286.059 14.059A48 48 0 0 0 252.118 0H48C21.49 0 0 21.49 0 48v204.118a48 48 0 0 0 14.059 33.941l211.882 211.882c18.745 18.745 49.137 18.746 67.882 0l204.118-204.118c18.745-18.745 18.745-49.137 0-67.882zm-22.627 45.255L271.196 475.314c-6.243 6.243-16.375 6.253-22.627 0L36.686 263.431A15.895 15.895 0 0 1 32 252.117V48c0-8.822 7.178-16 16-16h204.118c4.274 0 8.292 1.664 11.314 4.686l211.882 211.882c6.238 6.239 6.238 16.39 0 22.628zM144 124c11.028 0 20 8.972 20 20s-8.972 20-20 20-20-8.972-20-20 8.972-20 20-20m0-28c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" class=""></path>
+                     </svg>
+                  </span>
+               </div>
+            </cart-item-tool>
+            <div class="popup-toolDowns">
+              
+              
+               <div class="popup-toolDown" id="popup-tool-shipping">
+                  <script src="/services/javascripts/countries.js" defer="defer"></script>
+                  <script src="//new-ella-demo.myshopify.com/cdn/shopifycloud/storefront/assets/themes_support/shopify_common-5f594365.js" defer="defer"></script>
+                  <script src="//new-ella-demo.myshopify.com/cdn/shop/t/196/assets/jquery.cart.min.js?v=8655692756595039211747987133" defer="defer"></script>
+                  <div id="shipping-calculator">
+                     <h3>
+                     </h3>
+                     <div id="shipping-calculator-form-wrapper" class="clearfix">
+                        <p class="hidden-cart">
+                           <svg class="icon" fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                              <path d="M280 192c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H40c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240zm352 192h-24V275.9c0-16.8-6.8-33.3-18.8-45.2l-83.9-83.9c-11.8-12-28.3-18.8-45.2-18.8H416V78.6c0-25.7-22.2-46.6-49.4-46.6H113.4C86.2 32 64 52.9 64 78.6V96H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H96V78.6c0-8.1 7.8-14.6 17.4-14.6h253.2c9.6 0 17.4 6.5 17.4 14.6V384H207.6C193 364.7 170 352 144 352c-18.1 0-34.6 6.2-48 16.4V288H64v144c0 44.2 35.8 80 80 80s80-35.8 80-80c0-5.5-.6-10.8-1.6-16h195.2c-1.1 5.2-1.6 10.5-1.6 16 0 44.2 35.8 80 80 80s80-35.8 80-80c0-5.5-.6-10.8-1.6-16H632c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8zm-488 96c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm272-320h44.1c8.4 0 16.7 3.4 22.6 9.4l83.9 83.9c.8.8 1.1 1.9 1.8 2.8H416V160zm80 320c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-96h-16.4C545 364.7 522 352 496 352s-49 12.7-63.6 32H416v-96h160v96zM256 248v-16c0-4.4-3.6-8-8-8H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240c4.4 0 8-3.6 8-8z"></path>
                            </svg>
+                           Estimate shipping rates
+                        </p>
+                       
+                        <div class="form-group" id="address_province_container" style="">
+                           <label class="hidden-cart" for="AddressCountry">Wilaya</label>
+                           <div style="position: relative;">
+                              <select id="address_province" class="address_form special-select select__select" name="address[province]" data-default="">
+                                 <option value="01 - Adrar">01 - Adrar</option>
+                                <option value="02 - Chlef">02 - Chlef</option>
+                                <option value="03 - Laghouat">03 - Laghouat</option>
+                                <option value="04 - Oum El Bouaghi">04 - Oum El Bouaghi</option>
+                                <option value="05 - Batna">05 - Batna</option>
+                                <option value="06 - Béjaïa">06 - Béjaïa</option>
+                                <option value="07 - Biskra">07 - Biskra</option>
+                                <option value="08 - Béchar">08 - Béchar</option>
+                                <option value="09 - Blida">09 - Blida</option>
+                                <option value="10 - Bouira">10 - Bouira</option>
+                                <option value="11 - Tamanrasset">11 - Tamanrasset</option>
+                                <option value="12 - Tébessa">12 - Tébessa</option>
+                                <option value="13 - Tlemcen">13 - Tlemcen</option>
+                                <option value="14 - Tiaret">14 - Tiaret</option>
+                                <option value="15 - Tizi Ouzou">15 - Tizi Ouzou</option>
+                                <option value="16 - Alger">16 - Alger</option>
+                                <option value="17 - Djelfa">17 - Djelfa</option>
+                                <option value="18 - Jijel">18 - Jijel</option>
+                                <option value="19 - Sétif">19 - Sétif</option>
+                                <option value="20 - Saïda">20 - Saïda</option>
+                                <option value="21 - Skikda">21 - Skikda</option>
+                                <option value="22 - Sidi Bel Abbès">22 - Sidi Bel Abbès</option>
+                                <option value="23 - Annaba">23 - Annaba</option>
+                                <option value="24 - Guelma">24 - Guelma</option>
+                                <option value="25 - Constantine">25 - Constantine</option>
+                                <option value="26 - Médéa">26 - Médéa</option>
+                                <option value="27 - Mostaganem">27 - Mostaganem</option>
+                                <option value="28 - M'Sila">28 - M'Sila</option>
+                                <option value="29 - Mascara">29 - Mascara</option>
+                                <option value="30 - Ouargla">30 - Ouargla</option>
+                                <option value="31 - Oran">31 - Oran</option>
+                                <option value="32 - El Bayadh">32 - El Bayadh</option>
+                                <option value="33 - Illizi">33 - Illizi</option>
+                                <option value="34 - Bordj Bou Arréridj">34 - Bordj Bou Arréridj</option>
+                                <option value="35 - Boumerdès">35 - Boumerdès</option>
+                                <option value="36 - El Tarf">36 - El Tarf</option>
+                                <option value="37 - Tindouf">37 - Tindouf</option>
+                                <option value="38 - Tissemsilt">38 - Tissemsilt</option>
+                                <option value="39 - El Oued">39 - El Oued</option>
+                                <option value="40 - Khenchela">40 - Khenchela</option>
+                                <option value="41 - Souk Ahras">41 - Souk Ahras</option>
+                                <option value="42 - Tipaza">42 - Tipaza</option>
+                                <option value="43 - Mila">43 - Mila</option>
+                                <option value="44 - Aïn Defla">44 - Aïn Defla</option>
+                                <option value="45 - Naâma">45 - Naâma</option>
+                                <option value="46 - Aïn Témouchent">46 - Aïn Témouchent</option>
+                                <option value="47 - Ghardaïa">47 - Ghardaïa</option>
+                                <option value="48 - Relizane">48 - Relizane</option>
+                                <option value="49 - Timimoun">49 - Timimoun</option>
+                                <option value="50 - Bordj Badji Mokhtar">50 - Bordj Badji Mokhtar</option>
+                                <option value="51 - Ouled Djellal">51 - Ouled Djellal</option>
+                                <option value="52 - Béni Abbès">52 - Béni Abbès</option>
+                                <option value="53 - In Salah">53 - In Salah</option>
+                                <option value="54 - In Guezzam">54 - In Guezzam</option>
+                                <option value="55 - Touggourt">55 - Touggourt</option>
+                                <option value="56 - Djanet">56 - Djanet</option>
+                                <option value="57 - El M'Ghair">57 - El M'Ghair</option>
+                                <option value="58 - El Meniaa">58 - El Meniaa</option>
+                                <option value="59 - Ouled Djellal">59 - Ouled Djellal</option>
+                                <option value="60 - Timimoun">60 - Timimoun</option>
+                                <option value="61 - Bordj Badji Mokhtar">61 - Bordj Badji Mokhtar</option>
+                                <option value="62 - Béni Abbès">62 - Béni Abbès</option>
+                                <option value="63 - In Salah">63 - In Salah</option>
+                                <option value="64 - In Guezzam">64 - In Guezzam</option>
+                                <option value="65 - Touggourt">65 - Touggourt</option>
+                                <option value="66 - Djanet">66 - Djanet</option>
+                                <option value="67 - El M'Ghair">67 - El M'Ghair</option>
+                                <option value="68 - El Meniaa">68 - El Meniaa</option>
+                              </select>
+                              <span class="icon-dropdown">
+                              <i class="fa fa-angle-down"></i>
+                              </span>
+                           </div>
+                        </div>
+                       
+                        <div id="get-rates-container">
+                           <input type="submit" id="get-rates-submit" class="get-rates styled-submit button button-1" value="Calculate shipping">      
                         </div>
                      </div>
+                     <div id="wrapper-response"></div>
                   </div>
+                  <script id="shipping-calculator-response-template" type="text/x-jquery-tmpl">
+                     <p id="shipping-rates-feedback" class="">
+                 
+                     </p>
+                     
+                     <ul id="shipping-rates">
+                    
+                       <li>
+                        
+                       </li>
+                      
+                     </ul>
+                      
+                  </script>
+            
+                  <cart-cancel-popup>
+                     <div class="cart-cancel-popup">
+                        <button type="button" title="Cancel" class="button button-2">Cancel</button>
+                     </div>
+                  </cart-cancel-popup>
                </div>
-               <div class="message" data-shipping-message=""><span>Free shipping for all orders over <span class="money">$800.00</span>!</span></div>
-            </free-shipping-component>
-         </div>
-         <cart-coupon-discount data-is-sidebar="true">
-            <template data-discount-icon="">
-               <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-discount" viewBox="0 0 12 12">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M7 0h3a2 2 0 012 2v3a1 1 0 01-.3.7l-6 6a1 1 0 01-1.4 0l-4-4a1 1 0 010-1.4l6-6A1 1 0 017 0zm2 2a1 1 0 102 0 1 1 0 00-2 0z" fill="currentColor"></path>
-               </svg>
-            </template>
-            <template data-discounted-price-template="">
-               <span class="previewCartItem-saving-price"><s class="before-discount-price" data-original-price-display=""></s><span class="discounted-price" data-current-price-display=""></span></span> 
-            </template>
-            <div class="previewCart-wrapper">
-              <div id="previewCartContainer">
-         {% include 'cart/mini.html.twig' %}
-         </div>
+               <div class="popup-toolDown" id="popup-tool-discount">
+                  <coupon-code class="discount-code-field">
+                     <label for="coupon-code">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-tag fa-w-16 fa-3x">
+                           <path fill="currentColor" d="M497.941 225.941L286.059 14.059A48 48 0 0 0 252.118 0H48C21.49 0 0 21.49 0 48v204.118a48 48 0 0 0 14.059 33.941l211.882 211.882c18.745 18.745 49.137 18.746 67.882 0l204.118-204.118c18.745-18.745 18.745-49.137 0-67.882zm-22.627 45.255L271.196 475.314c-6.243 6.243-16.375 6.253-22.627 0L36.686 263.431A15.895 15.895 0 0 1 32 252.117V48c0-8.822 7.178-16 16-16h204.118c4.274 0 8.292 1.664 11.314 4.686l211.882 211.882c6.238 6.239 6.238 16.39 0 22.628zM144 124c11.028 0 20 8.972 20 20s-8.972 20-20 20-20-8.972-20-20 8.972-20 20-20m0-28c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z" class=""></path>
+                        </svg>
+                        Add A Coupon
+                     </label>
+                     <p>Coupon code content</p>
+                     <input autocomplete="off" type="text" name="discount" id="coupon-code" class="field__input"> 
+                     <button type="button" title="Save" class="button button-1" data-update-coupon="">Save</button>
+                  </coupon-code>
+                  <cart-cancel-popup>
+                     <div class="cart-cancel-popup">
+                        <button type="button" title="Cancel" class="button button-2">Cancel</button>
+                     </div>
+                  </cart-cancel-popup>
+               </div>
             </div>
-         </cart-coupon-discount>
+           <div class="previewCartInfo">
+            <ul class="previewCartTotalsPrice list-unstyled">
+
+            <li class="previewCartTotals subTotal clearfix">
+               <div class="previewCartTotals-label">
+                  Subtotal:
+               </div>
+               <div class="previewCartTotals-value" data-cart-subtotal="">
+                  <span class="money">0.00 DZD</span>
+               </div>
+            </li>
+
+            <li class="previewCartTotals cart-total-savings" data-saved-discount-display="">
+               <div class="previewCartTotals-label">
+                  <span class="text">Discount:</span>
+               </div>
+               <div class="previewCartTotals-value">
+                  <span class="text" data-saved-discount-value="">
+                     <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-discount" viewBox="0 0 12 12">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                           d="M7 0h3a2 2 0 012 2v3a1 1 0 01-.3.7l-6 6a1 1 0 01-1.4 0l-4-4a1 1 0 010-1.4l6-6A1 1 0 017 0zm2 2a1 1 0 102 0 1 1 0 00-2 0z"
+                           fill="currentColor"></path>
+                     </svg>
+                     DISCOUNTALL10
+                     (-<span class="money">0.00 DZD</span>)
+                  </span>
+               </div>
+            </li>
+
+            <li class="previewCartTotals total clearfix">
+               <div class="previewCartTotals-label">
+                  Total:
+               </div>
+               <div class="previewCartTotals-value" data-cart-total-value="">
+                  <span class="money">0.00 DZD</span>
+               </div>
+            </li>
+
+            <li class="previewCartTotals shipTotal clearfix">
+               <div class="previewCartTotals-value">
+                  Tax included and shipping calculated at checkout
+               </div>
+            </li>
+
+         </ul>
+
+   <div class="previewCartAction text-left">
+      <div class="previewCartCheckbox global-checkbox">
+         <input class="global-checkbox--input" type="checkbox" name="conditions" id="sidebar_cart_conditions" data-target="#cart-sidebar-checkout">
+         <label class="global-checkbox--label form-label--checkbox" for="sidebar_cart_conditions">
+            I agree with
+         </label>
+         <button type="button" title="Terms & Conditions" data-term-condition="">
+            Terms & Conditions
+         </button>
+      </div>
+
+      <div class="previewCartGroup">
+         <button class="button button-1 button-checkout"
+                 onclick='window.location="{{ path('checkout') }}"'
+                 disabled="disabled"
+                 id="cart-sidebar-checkout">
+            Checkout
+         </button>
+         <a class="button button-2 button-view-cart" href="/cart">
+            View cart
+         </a>
       </div>
    </div>
+</div>
    <script src="cdn/shop/t/196/assets/halo-toolcart.js?v=162384226680849288651754561207" defer="defer"></script>
    <div class="halo-sidebar halo-sidebar-left halo-sidebar_search" id="search-form-mobile">
       <a role="link" aria-disabled="true" class="halo-sidebar-close" data-search-close-sidebar="">
