@@ -6884,64 +6884,64 @@ $('.slideshow').slick({
 
 
    <script>
-      document.addEventListener('click', function (e) {
-          const button = e.target.closest('.add-to-cart-btn');
-          if (!button) return;
-      
-          e.preventDefault();
-          e.stopImmediatePropagation();
-      
-          const popup = button.closest('.variants-popup');
-          if (!popup) {
-              console.error("Popup introuvable");
-              return;
-          }
-      
-          const productId = popup.dataset.productId;
-          if (!productId) {
-              console.error("Product ID manquant");
-              return;
-          }
-      
-          const selectedColorInput = popup.querySelector('.selector-wrapper-1 input.single-option:checked');
-          const selectedSizeInput = popup.querySelector('.selector-wrapper-2 input.single-option:checked');
-      
-          const selectedColor = selectedColorInput ? selectedColorInput.value : null;
-          const selectedImage = selectedColorInput ? selectedColorInput.dataset.image : null;
-          const selectedSize = selectedSizeInput ? selectedSizeInput.value : null;
-      
-          const qtyInput = popup.querySelector('input[name="quantity"]');
-          const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
-      
-          fetch(`/cart/add-ajax/${productId}`, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-                  'X-Requested-With': 'XMLHttpRequest'
-              },
-              body: JSON.stringify({
-                  color: selectedColor,
-                  image: selectedImage,
-                  size: selectedSize,
-                  quantity: quantity
-              })
-          })
-          .then(res => res.json())
-          .then(data => {
-      
-              if (!data.success) return;
-      
-              // ✅ utiliser refreshMiniCart pour recalculer
-              refreshMiniCart(data.html);
-      
-              // ouvrir mini panier
-              const cartSidebarBtn = document.querySelector('[data-cart-sidebar]');
-              if (cartSidebarBtn) {
-                  cartSidebarBtn.click();
-              }
-      
-          });
-      });
+     document.addEventListener('click', function (e) {
+    // bouton Add mobile
+    const button = e.target.closest('#halo-card-mobile-popup [data-btn-addtocart]');
+    if (!button) return;
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    // Trouver le popup mobile
+    const popup = button.closest('#halo-card-mobile-popup');
+    if (!popup) return;
+
+    // Infos produit
+    const productId = popup.querySelector('.variants-popup')?.dataset.productId;
+    if (!productId) {
+        console.error("Product ID manquant");
+        return;
+    }
+
+    const selectedColorInput = popup.querySelector('.selector-wrapper-1 input.single-option:checked');
+    const selectedSizeInput = popup.querySelector('.selector-wrapper-2 input.single-option:checked');
+
+    const selectedColor = selectedColorInput ? selectedColorInput.value : null;
+    const selectedImage = selectedColorInput ? selectedColorInput.dataset.image : null;
+    const selectedSize = selectedSizeInput ? selectedSizeInput.value : null;
+
+    const qtyInput = popup.querySelector('input[name="quantity"]');
+    const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+
+    // AJAX Add to cart
+    fetch(`/cart/add-ajax/${productId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: JSON.stringify({
+            color: selectedColor,
+            image: selectedImage,
+            size: selectedSize,
+            quantity: quantity
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.success) return;
+
+        refreshMiniCart(data.html);
+
+        // ouvrir mini panier
+        const cartSidebarBtn = document.querySelector('[data-cart-sidebar]');
+        if (cartSidebarBtn) cartSidebarBtn.click();
+
+        // ✅ fermer le popup mobile exactement comme Cancel
+        document.body.classList.remove('quick_shop_popup_mobile');
+        popup.classList.remove('show');
+    });
+});
    </script>
    <script>
       document.addEventListener('change', function (e) {
@@ -7056,26 +7056,7 @@ $('.slideshow').slick({
           }
       });
    </script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const addButtons = document.querySelectorAll('[data-btn-addtocart]');
-    
-    addButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Trouve le bouton Cancel associé dans le même popup
-            const popup = button.closest('.halo-popup');
-            const cancelBtn = popup.querySelector('[data-cancel-quickshop-popup]');
-            
-            if (cancelBtn) {
-                // Déclenche le click sur Cancel pour fermer le popup
-                cancelBtn.click();
-            }
-            
-            // Ici tu peux ajouter ton code pour ajouter le produit au panier
-        });
-    });
-});
-</script>
+ 
 
 </body>
 
