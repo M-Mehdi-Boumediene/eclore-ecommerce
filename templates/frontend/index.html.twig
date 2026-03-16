@@ -7056,6 +7056,26 @@ $('.slideshow').slick({
           }
       });
    </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const addButtons = document.querySelectorAll('[data-btn-addtocart]');
+    
+    addButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Trouve le bouton Cancel associé dans le même popup
+            const popup = button.closest('.halo-popup');
+            const cancelBtn = popup.querySelector('[data-cancel-quickshop-popup]');
+            
+            if (cancelBtn) {
+                // Déclenche le click sur Cancel pour fermer le popup
+                cancelBtn.click();
+            }
+            
+            // Ici tu peux ajouter ton code pour ajouter le produit au panier
+        });
+    });
+});
+</script>
 
 </body>
 
