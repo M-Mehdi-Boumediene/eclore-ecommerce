@@ -5849,6 +5849,7 @@
       </div>
    </div>
 </div>
+</div></div></div>
    <script src="cdn/shop/t/196/assets/halo-toolcart.js?v=162384226680849288651754561207" defer="defer"></script>
    <div class="halo-sidebar halo-sidebar-left halo-sidebar_search" id="search-form-mobile">
       <a role="link" aria-disabled="true" class="halo-sidebar-close" data-search-close-sidebar="">
@@ -6882,183 +6883,179 @@ $('.slideshow').slick({
 
 
 
-
-
-
-<script>
-document.addEventListener('click', function (e) {
-    const button = e.target.closest('.add-to-cart-btn');
-    if (!button) return;
-
-    e.preventDefault();
-    e.stopImmediatePropagation();
-
-    const popup = button.closest('.variants-popup');
-    if (!popup) {
-        console.error("Popup introuvable");
-        return;
-    }
-
-    const productId = popup.dataset.productId;
-    if (!productId) {
-        console.error("Product ID manquant");
-        return;
-    }
-
-    const selectedColorInput = popup.querySelector('.selector-wrapper-1 input.single-option:checked');
-    const selectedSizeInput = popup.querySelector('.selector-wrapper-2 input.single-option:checked');
-
-    const selectedColor = selectedColorInput ? selectedColorInput.value : null;
-    const selectedImage = selectedColorInput ? selectedColorInput.dataset.image : null;
-    const selectedSize = selectedSizeInput ? selectedSizeInput.value : null;
-
-    const qtyInput = popup.querySelector('input[name="quantity"]');
-    const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
-
-    fetch(`/cart/add-ajax/${productId}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        body: JSON.stringify({
-            color: selectedColor,
-            image: selectedImage,
-            size: selectedSize,
-            quantity: quantity
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-
-        if (!data.success) return;
-
-        // ✅ utiliser refreshMiniCart pour recalculer
-        refreshMiniCart(data.html);
-
-        // ouvrir mini panier
-        const cartSidebarBtn = document.querySelector('[data-cart-sidebar]');
-        if (cartSidebarBtn) {
-            cartSidebarBtn.click();
-        }
-
-    });
-});
-</script>
-<script>
-document.addEventListener('change', function (e) {
-    const input = e.target.closest('.qteitem');
-    if (!input) return;
-
-    const key = input.dataset.updateId;
-    const quantity = parseInt(input.value) || 1;
-
-    fetch('/cart/update-ajax/' + key, {
-        method: 'POST',
-        headers: { 'X-Requested-With': 'XMLHttpRequest' },
-        body: JSON.stringify({ quantity })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (!data.success) return;
-
-        refreshMiniCart(data.html);
-    });
-});
-
-
-</script>
-<script>
-document.addEventListener('click', function(e) {
-
-    const btn = e.target.closest('[data-cart-remove-id]');
-    if (!btn) return;
-
-    e.preventDefault();
-    e.stopImmediatePropagation();
-
-    const key = btn.dataset.cartRemoveId;
-    if (!key) {
-        console.error('clé panier manquante');
-        return;
-    }
-
-    fetch('/cart/remove-ajax/' + key, {
-        method: 'POST',
-        headers: { 'X-Requested-With': 'XMLHttpRequest' }
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (!data.success) return;
-
-        // ✅ utiliser la fonction globale
-        refreshMiniCart(data.html);
-
-    });
-});
-</script>
-<script>
-function refreshMiniCart(html) {
-
-    let container = document.querySelector('#previewCartContainer');
-
-    if (!container) {
-        container = document.createElement('div');
-        container.id = 'previewCartContainer';
-        document.body.appendChild(container);
-    }
-
-    container.innerHTML = html;
-
-    const totalEl = container.querySelector('#mini-cart-total');
-
-    const totalBox = document.querySelector('[data-cart-total-value] .money');
-    const subtotalBox = document.querySelector('[data-cart-subtotal] .money');
-    const discountBox = document.querySelector('[data-saved-discount-value] .money');
-
-    if (totalEl) {
-        const total = totalEl.textContent;
-        if(totalBox) totalBox.textContent = total + ' DZD';
-        if(subtotalBox) subtotalBox.textContent = total + ' DZD';
-    } else {
-        // Panier vide → tout à zéro
-        if(totalBox) totalBox.textContent = '0.00 DZD';
-        if(subtotalBox) subtotalBox.textContent = '0.00 DZD';
-        if(discountBox) discountBox.textContent = '0.00 DZD';
-    }
-}
-</script>
-
-<script>
-document.body.addEventListener('click', function(e) {
-
-    // remonte jusqu'au label (même si on clique sur le span)
-    const label = e.target.closest('.swatch-label');
-    if (!label) return;
-
-    console.log("Swatch cliqué :", label.dataset.value);
-
-    const productId = label.dataset.productId;
-    if (productId) {
-        document.querySelectorAll('.swatch-label[data-product-id="' + productId + '"]')
-            .forEach(l => l.classList.remove('is-active'));
-    }
-
-    label.classList.add('is-active');
-
-    // sync popup
-    const popup = document.querySelector('.variants-popup[data-product-id="' + productId + '"]');
-    if (popup) {
-        const color = label.dataset.value;
-        const radio = popup.querySelector('input.single-option[value="' + color + '"]');
-
-        if (radio) {
-            radio.checked = true;
-            radio.dispatchEvent(new Event('change', { bubbles: true }));
-        }
-    }
-});
-</script>
+   <script>
+      document.addEventListener('click', function (e) {
+          const button = e.target.closest('.add-to-cart-btn');
+          if (!button) return;
+      
+          e.preventDefault();
+          e.stopImmediatePropagation();
+      
+          const popup = button.closest('.variants-popup');
+          if (!popup) {
+              console.error("Popup introuvable");
+              return;
+          }
+      
+          const productId = popup.dataset.productId;
+          if (!productId) {
+              console.error("Product ID manquant");
+              return;
+          }
+      
+          const selectedColorInput = popup.querySelector('.selector-wrapper-1 input.single-option:checked');
+          const selectedSizeInput = popup.querySelector('.selector-wrapper-2 input.single-option:checked');
+      
+          const selectedColor = selectedColorInput ? selectedColorInput.value : null;
+          const selectedImage = selectedColorInput ? selectedColorInput.dataset.image : null;
+          const selectedSize = selectedSizeInput ? selectedSizeInput.value : null;
+      
+          const qtyInput = popup.querySelector('input[name="quantity"]');
+          const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+      
+          fetch(`/cart/add-ajax/${productId}`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'X-Requested-With': 'XMLHttpRequest'
+              },
+              body: JSON.stringify({
+                  color: selectedColor,
+                  image: selectedImage,
+                  size: selectedSize,
+                  quantity: quantity
+              })
+          })
+          .then(res => res.json())
+          .then(data => {
+      
+              if (!data.success) return;
+      
+              // ✅ utiliser refreshMiniCart pour recalculer
+              refreshMiniCart(data.html);
+      
+              // ouvrir mini panier
+              const cartSidebarBtn = document.querySelector('[data-cart-sidebar]');
+              if (cartSidebarBtn) {
+                  cartSidebarBtn.click();
+              }
+      
+          });
+      });
+   </script>
+   <script>
+      document.addEventListener('change', function (e) {
+          const input = e.target.closest('.qteitem');
+          if (!input) return;
+      
+          const key = input.dataset.updateId;
+          const quantity = parseInt(input.value) || 1;
+      
+          fetch('/cart/update-ajax/' + key, {
+              method: 'POST',
+              headers: { 'X-Requested-With': 'XMLHttpRequest' },
+              body: JSON.stringify({ quantity })
+          })
+          .then(res => res.json())
+          .then(data => {
+              if (!data.success) return;
+      
+              refreshMiniCart(data.html);
+          });
+      });
+      
+      
+   </script>
+   <script>
+      document.addEventListener('click', function(e) {
+      
+          const btn = e.target.closest('[data-cart-remove-id]');
+          if (!btn) return;
+      
+          e.preventDefault();
+          e.stopImmediatePropagation();
+      
+          const key = btn.dataset.cartRemoveId;
+          if (!key) {
+              console.error('clé panier manquante');
+              return;
+          }
+      
+          fetch('/cart/remove-ajax/' + key, {
+              method: 'POST',
+              headers: { 'X-Requested-With': 'XMLHttpRequest' }
+          })
+          .then(res => res.json())
+          .then(data => {
+              if (!data.success) return;
+      
+              // ✅ utiliser la fonction globale
+              refreshMiniCart(data.html);
+      
+          });
+      });
+   </script>
+   <script>
+      function refreshMiniCart(html) {
+      
+          let container = document.querySelector('#previewCartContainer');
+      
+          if (!container) {
+              container = document.createElement('div');
+              container.id = 'previewCartContainer';
+              document.body.appendChild(container);
+          }
+      
+          container.innerHTML = html;
+      
+          const totalEl = container.querySelector('#mini-cart-total');
+      
+          const totalBox = document.querySelector('[data-cart-total-value] .money');
+          const subtotalBox = document.querySelector('[data-cart-subtotal] .money');
+          const discountBox = document.querySelector('[data-saved-discount-value] .money');
+      
+          if (totalEl) {
+              const total = totalEl.textContent;
+              if(totalBox) totalBox.textContent = total + ' DZD';
+              if(subtotalBox) subtotalBox.textContent = total + ' DZD';
+          } else {
+              // Panier vide → tout à zéro
+              if(totalBox) totalBox.textContent = '0.00 DZD';
+              if(subtotalBox) subtotalBox.textContent = '0.00 DZD';
+              if(discountBox) discountBox.textContent = '0.00 DZD';
+          }
+      }
+   </script>
+   <script>
+      document.body.addEventListener('click', function(e) {
+      
+          // remonte jusqu'au label (même si on clique sur le span)
+          const label = e.target.closest('.swatch-label');
+          if (!label) return;
+      
+          console.log("Swatch cliqué :", label.dataset.value);
+      
+          const productId = label.dataset.productId;
+          if (productId) {
+              document.querySelectorAll('.swatch-label[data-product-id="' + productId + '"]')
+                  .forEach(l => l.classList.remove('is-active'));
+          }
+      
+          label.classList.add('is-active');
+      
+          // sync popup
+          const popup = document.querySelector('.variants-popup[data-product-id="' + productId + '"]');
+          if (popup) {
+              const color = label.dataset.value;
+              const radio = popup.querySelector('input.single-option[value="' + color + '"]');
+      
+              if (radio) {
+                  radio.checked = true;
+                  radio.dispatchEvent(new Event('change', { bubbles: true }));
+              }
+          }
+      });
+   </script>
 
 </body>
 
