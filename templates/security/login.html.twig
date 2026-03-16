@@ -3,36 +3,308 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+<style>
+.tab-buttons {
+    display: flex;
+    gap: 10px; /* espace entre les boutons */
+    margin-bottom: 20px;
+}
 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
+.tab-btn {
+    flex: 1; /* même largeur pour tous */
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-bottom: none; /* pour donner l’effet onglet */
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    font-weight: 500;
+    color: #333;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.tab-btn:hover {
+    background-color: #eaeaea;
+}
+
+.tab-btn.active {
+    background-color: #1f1f1f;
+    border-bottom: 1px solid #fff; /* pour l’effet “sélectionné” */
+    color: #fff; /* couleur principale du thème */
+    font-weight: 600;
+}
+
+
+</style>
+<main id="MainContent" class="wrapper-body content-for-layout focus-none" role="main" tabindex="-1">
+   <div id="shopify-section-template--16071076347994__main" class="shopify-section">
+      <link href="//new-ella-demo.myshopify.com/cdn/shop/t/196/assets/customer.css?v=66626040895701627551720692279" rel="stylesheet" type="text/css" media="all">
+      <div class="account-page login-page section-block-template--16071076347994__main">
+         <div class="container">
+            <div class="halo-page-header">
+               <link href="//new-ella-demo.myshopify.com/cdn/shop/t/196/assets/component-breadcrumb.css?v=158896573748378790801752028199" rel="stylesheet" type="text/css" media="all">
+               <breadcrumb-component class="breadcrumb-container style--line_clamp_1 initialized" data-collection-title="" data-collection-all="/collections/all">
+                  <nav class="breadcrumb breadcrumb-" role="navigation" aria-label="breadcrumbs">
+                     <a class="link home-link" href="/">Home</a>
+                     <span class="separate" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                           <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
+                        </svg>
+                     </span>
+                     <span>Account</span><span class="observe-element" style="width: 1px; height: 1px; background: transparent; display: inline-block; flex-shrink: 0;"></span>
+                  </nav>
+               </breadcrumb-component>
+               <script type="text/javascript">
+                  if (typeof breadcrumbComponentDeclare == 'undefined') {
+                      class BreadcrumbComponent extends HTMLElement {
+                          constructor() {
+                              super();
+                              this.firstPostCollection();
+                              this.getCollection();
+                          }
+                  
+                          connectedCallback() {
+                              this.firstLink = this.querySelector('.link.home-link')
+                              this.lastLink = this.querySelector('.observe-element')
+                              this.classList.add('initialized');
+                              this.initObservers();
+                          }
+                  
+                          static createHandler(position = 'first', breadcrumb = null) {
+                              const handler = (entries, observer) => {
+                                  entries.forEach(entry => {
+                                      if (breadcrumb == null) return observer.disconnect();
+                                      if (entry.isIntersecting ) {
+                                          breadcrumb.classList.add(`disable-${position}`);
+                                      } else {
+                                          breadcrumb.classList.remove(`disable-${position}`);
+                                      }
+                                  })
+                              }
+                              return handler;
+                          }
+                  
+                          initObservers() {
+                              const scrollToFirstHandler = BreadcrumbComponent.createHandler('first', this);
+                              const scrollToLastHandler = BreadcrumbComponent.createHandler('last', this);
+                              
+                              this.scrollToFirstObserver = new IntersectionObserver(scrollToFirstHandler, { threshold: 1 });
+                              this.scrollToLastObserver = new IntersectionObserver(scrollToLastHandler, { threshold: 0.6 });
+                  
+                              this.scrollToFirstObserver.observe(this.firstLink);
+                              this.scrollToLastObserver.observe(this.lastLink);
+                          }
+                  
+                          firstPostCollection() {
+                              if (!document.body.matches('.template-collection')) return;
+                              this.postCollection(true);
+                              this.checkCollection();
+                          }
+                  
+                          postCollection(showCollection) {
+                              const title = this.dataset.collectionTitle ? this.dataset.collectionTitle : "Products";
+                              let collection = {name: title, url: window.location.pathname, show: showCollection};
+                              localStorage.setItem('_breadcrumb_collection', JSON.stringify(collection));
+                          }
+                  
+                          checkCollection() {
+                              document.addEventListener("click", (event) => {
+                                  const target = event.target;
+                                  if (!target.matches('.card-link')) return;
+                                  target.closest('.shopify-section[id*="product-grid"]') == null ? this.postCollection(false) : this.postCollection(true);
+                              });
+                          }
+                  
+                          getCollection() {
+                              if (!document.body.matches('.template-product')) return;
+                              const collection = JSON.parse(localStorage.getItem('_breadcrumb_collection'));
+                              let checkCollection = document.referrer.indexOf('/collections/') !== -1 && (new URL(document.referrer)).pathname == collection.url && collection && collection.show ? true : false;
+                              const breadcrumb = `<a class="breadcrumb-collection animate--text" href="${checkCollection ? collection.url : this.dataset.collectionAll}">${checkCollection ? collection.name : "Products"}</a><span class="separate animate--text" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path></svg></span>`;
+                              this.querySelectorAll('.separate')[0]?.insertAdjacentHTML("afterend", breadcrumb);
+                          }
+                      }   
+                  
+                      window.addEventListener('load', () => {
+                          customElements.define('breadcrumb-component', BreadcrumbComponent);
+                      })
+                  
+                      var breadcrumbComponentDeclare = BreadcrumbComponent;
+                  }
+               </script>
+             
             </div>
-        {% endif %}
+            <div class="halo-page-content">
+               <div class="login-row clearfix">
+                  <div class="login-rowItem login-rowLeft">
+                     <div class="login-item" id="recover">
+                        <h2 class="halo-page-title page-subheader text-left">
+                           Reset your password
+                        </h2>
+                        <div class="halo-page-wrapper">
+                           <div class="login-text">
+                              We will send you an email to reset your password
+                           </div>
+                           <form method="post" action="/account/recover" accept-charset="UTF-8">
+                              <input type="hidden" name="form_type" value="recover_customer_password" wfd-id="id29"><input type="hidden" name="utf8" value="✓" wfd-id="id30">
+                              <div class="form-field">
+                                 <label class="form-label" for="RecoverEmail">
+                                 Email Address
+                                 </label>
+                                 <input class="form-input form-input-placeholder" type="email" value="" name="email" id="RecoverEmail" autocorrect="off" autocapitalize="off" autocomplete="email" placeholder="" wfd-id="id31">
+                              </div>
+                              <div class="form-actions">
+                                 <input type="submit" class="button button-2" value="Submit" wfd-id="id32">
+                                 <a href="#login" class="link link-underline cancel">
+                                 <span class="text">Cancel</span>
+                                 </a>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                     <div class="login-item" id="login">
+                        <h2 class="halo-page-title page-subheader text-left">
+                           Se connecter à votre compte
+                        </h2>
+                        <div class="halo-page-wrapper">
+                           <div class="login-text">
+                              Veuillez saisir votre adresse e-mail et votre mot de passe ci-dessous pour accéder à votre compte.
+                           </div>
+                           <form method="post"  id="customer_login"  class="customer-login-form">
+                                {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="username">Email</label>
-        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-        <label for="password">Password</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+                                {% if app.user %}
+                                    <div class="mb-3">
+                                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
+                                    </div>
+                                {% endif %}
+                              <div class="form-field">
+                                 <label class="form-label" for="CustomerEmail">
+                                 
 
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
+                                    Adresse email
+                                 <em>*</em>
+                                 </label>
+                                  <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-input form-input-placeholder" autocomplete="email" required autofocus>
+                              </div>
+                              <div class="form-field">
+                                 <label class="form-label" for="CustomerPassword">
+                                 Password
+                                 <em>*</em> 
+                                 </label>
+                                 <input type="password" name="_password" id="password" class="form-input form-input-placeholder" autocomplete="current-password" required>
+                                 <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+                               
+                              </div>
+                              <div class="form-actions">
+                                 <input type="submit" class="button button-2" value="Se connecter" wfd-id="id37">
+                                 <a href="#recover" class="link link-underline forget-password">
+                                 <span class="text">Mot de passe oublié ?</span>
+                                 </a>
+                              </div>
+                              <input type="hidden" name="login_with_shop[analytics_trace_id]" value="ecc60cd1-e8ba-41aa-8124-2555447dc6eb" wfd-id="id38">
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+              <div class="login-rowItem login-rowRight">
+    <div class="login-item">
+        <h2 class="halo-page-title page-subheader text-left">
+            Créer un compte
+        </h2>
 
-            <div class="checkbox mb-3">
-                <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
+        <div class="halo-page-wrapper">
+            <div class="tab-buttons" style="margin-bottom: 20px;">
+                <button type="button" class="tab-btn active" data-tab="client">Particulier</button>
+                <button type="button" class="tab-btn" data-tab="reseller">Revendeur</button>
             </div>
-        #}
 
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
-    </form>
+            <!-- Formulaire Client -->
+            <div class="tab-content tab-client" style="display: block;">
+                <div class="login-text">
+                    Veuillez vous inscrire ci-dessous pour créer un compte
+                </div>
+                <form method="post" action="/account" id="create_customer" accept-charset="UTF-8" class="create-customer-form">
+                    <input type="hidden" name="form_type" value="create_customer">
+                    <div class="form-field">
+                        <label class="form-label" for="RegisterForm-FirstName">First name</label>
+                        <input class="form-input" type="text" name="customer[first_name]" id="RegisterForm-FirstName">
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label" for="RegisterForm-LastName">Last name</label>
+                        <input class="form-input" type="text" name="customer[last_name]" id="RegisterForm-LastName">
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label" for="RegisterForm-email">Your email address <em>*</em></label>
+                        <input class="form-input" type="email" name="customer[email]" id="RegisterForm-email" required>
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label" for="password">Your password <em>*</em></label>
+                        <input class="form-input" type="password" name="customer[password]" id="RegisterForm-password" required>
+                    </div>
+                    <div class="form-actions">
+                        <input type="submit" value="Create an account" class="button button--primary">
+                    </div>
+                </form>
+            </div>
+
+            <!-- Formulaire Revendeur -->
+            <div class="tab-content tab-reseller" style="display: none;">
+                <div class="login-text">
+                    Créez votre compte revendeur pour accéder aux tarifs professionnels et offres exclusives.
+                </div>
+                <form method="post" action="/account/register-reseller" accept-charset="UTF-8" class="create-reseller-form">
+                    <input type="hidden" name="form_type" value="create_reseller">
+                    <div class="form-field">
+                        <label class="form-label" for="ResellerCompany">Nom de la société <em>*</em></label>
+                        <input class="form-input" type="text" name="reseller[company]" id="ResellerCompany" required>
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label" for="ResellerEmail">Email professionnel <em>*</em></label>
+                        <input class="form-input" type="email" name="reseller[email]" id="ResellerEmail" required>
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label" for="ResellerPassword">Mot de passe <em>*</em></label>
+                        <input class="form-input" type="password" name="reseller[password]" id="ResellerPassword" required>
+                    </div>
+                    <div class="form-actions">
+                        <input type="submit" class="button button--primary" value="Créer un compte revendeur">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+                  
+               </div>
+               
+            </div>
+         </div>
+      </div>
+      <style>
+         @media (min-width: 1025px) {}
+         @media (max-width: 1024px) {}
+         @media (max-width: 551px) {}
+      </style>
+   </div>
+</main>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const tab = button.dataset.tab;
+
+        // Désactive tous les onglets
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.style.display = 'none');
+
+        // Active l’onglet cliqué
+        button.classList.add('active');
+        document.querySelector('.tab-' + tab).style.display = 'block';
+    });
+});
+</script>
+
 {% endblock %}
