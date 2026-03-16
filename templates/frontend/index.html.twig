@@ -6884,64 +6884,58 @@ $('.slideshow').slick({
 
 
    <script>
-      document.addEventListener('click', function (e) {
-          const button = e.target.closest('.add-to-cart-btn');
-          if (!button) return;
-      
-          e.preventDefault();
-          e.stopImmediatePropagation();
-      
-          const popup = button.closest('.variants-popup');
-          if (!popup) {
-              console.error("Popup introuvable");
-              return;
-          }
-      
-          const productId = popup.dataset.productId;
-          if (!productId) {
-              console.error("Product ID manquant");
-              return;
-          }
-      
-          const selectedColorInput = popup.querySelector('.selector-wrapper-1 input.single-option:checked');
-          const selectedSizeInput = popup.querySelector('.selector-wrapper-2 input.single-option:checked');
-      
-          const selectedColor = selectedColorInput ? selectedColorInput.value : null;
-          const selectedImage = selectedColorInput ? selectedColorInput.dataset.image : null;
-          const selectedSize = selectedSizeInput ? selectedSizeInput.value : null;
-      
-          const qtyInput = popup.querySelector('input[name="quantity"]');
-          const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
-      
-          fetch(`/cart/add-ajax/${productId}`, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-                  'X-Requested-With': 'XMLHttpRequest'
-              },
-              body: JSON.stringify({
-                  color: selectedColor,
-                  image: selectedImage,
-                  size: selectedSize,
-                  quantity: quantity
-              })
-          })
-          .then(res => res.json())
-          .then(data => {
-      
-              if (!data.success) return;
-      
-              // ✅ utiliser refreshMiniCart pour recalculer
-              refreshMiniCart(data.html);
-      
-              // ouvrir mini panier
-              const cartSidebarBtn = document.querySelector('[data-cart-sidebar]');
-              if (cartSidebarBtn) {
-                  cartSidebarBtn.click();
-              }
-      
-          });
-      });
+document.addEventListener('click', function (e) {
+    const button = e.target.closest('.add-to-cart-btn');
+    if (!button) return;
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    // trouver le popup parent réel
+    const popup = button.closest('.halo-popup');
+    if (!popup) {
+        console.error("Popup halo introuvable");
+        return;
+    }
+
+    // récupérer l'id produit
+    const variantsPopup = button.closest('.variants-popup');
+    const productId = variantsPopup ? variantsPopup.dataset.productId : null;
+    if (!productId) {
+        console.error("Product ID manquant");
+        return;
+    }
+
+    // récupérer color, size et quantity
+    const selectedColorInput = variantsPopup.querySelector('.selector-wrapper-1 input.single-option:checked');
+    const selectedSizeInput = variantsPopup.querySelector('.selector-wrapper-2 input.single-option:checked');
+    const selectedColor = selectedColorInput ? selectedColorInput.value : null;
+    const selectedImage = selectedColorInput ? selectedColorInput.dataset.image : null;
+    const selectedSize = selectedSizeInput ? selectedSizeInput.value : null;
+    const qtyInput = variantsPopup.querySelector('input[name="quantity"]');
+    const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+
+    // Ajax add to cart
+    fetch(`/cart/add-ajax/${productId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+        body: JSON.stringify({ color: selectedColor, image: selectedImage, size: selectedSize, quantity: quantity })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.success) return;
+
+        // rafraîchir mini-cart
+        refreshMiniCart(data.html);
+
+        // ouvrir mini-cart
+        const cartSidebarBtn = document.querySelector('[data-cart-sidebar]');
+        if (cartSidebarBtn) cartSidebarBtn.click();
+
+        // ✅ fermer le popup réel
+        popup.classList.remove('show');
+    });
+});
    </script>
    <script>
       document.addEventListener('change', function (e) {
