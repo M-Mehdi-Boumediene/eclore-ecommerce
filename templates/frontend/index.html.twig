@@ -6884,42 +6884,38 @@ $('.slideshow').slick({
 
 
    <script>
-     document.addEventListener('click', function (e) {
-    // bouton Add mobile
-    const button = e.target.closest('#halo-card-mobile-popup [data-btn-addtocart]');
+document.addEventListener('click', function(e) {
+    const button = e.target.closest('.add-to-cart-btn');
     if (!button) return;
 
     e.preventDefault();
     e.stopImmediatePropagation();
 
-    // Trouver le popup mobile
     const popup = button.closest('#halo-card-mobile-popup');
-    if (!popup) return;
-
-    // Infos produit
-    const productId = popup.querySelector('.variants-popup')?.dataset.productId;
-    if (!productId) {
-        console.error("Product ID manquant");
+    if (!popup) {
+        console.error("Popup introuvable");
         return;
     }
 
-    const selectedColorInput = popup.querySelector('.selector-wrapper-1 input.single-option:checked');
-    const selectedSizeInput = popup.querySelector('.selector-wrapper-2 input.single-option:checked');
+    // Récupérer la popup .variants-popup interne
+    const variantsPopup = popup.querySelector('.variants-popup');
+    if (!variantsPopup) return;
+
+    const productId = variantsPopup.dataset.productId;
+    if (!productId) return;
+
+    const selectedColorInput = variantsPopup.querySelector('.selector-wrapper-1 input.single-option:checked');
+    const selectedSizeInput = variantsPopup.querySelector('.selector-wrapper-2 input.single-option:checked');
+    const qtyInput = variantsPopup.querySelector('input[name="quantity"]');
 
     const selectedColor = selectedColorInput ? selectedColorInput.value : null;
     const selectedImage = selectedColorInput ? selectedColorInput.dataset.image : null;
     const selectedSize = selectedSizeInput ? selectedSizeInput.value : null;
-
-    const qtyInput = popup.querySelector('input[name="quantity"]');
     const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
 
-    // AJAX Add to cart
     fetch(`/cart/add-ajax/${productId}`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest'
-        },
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
         body: JSON.stringify({
             color: selectedColor,
             image: selectedImage,
@@ -6931,15 +6927,16 @@ $('.slideshow').slick({
     .then(data => {
         if (!data.success) return;
 
+        // mettre à jour le mini-cart
         refreshMiniCart(data.html);
 
-        // ouvrir mini panier
+        // ouvrir mini-cart
         const cartSidebarBtn = document.querySelector('[data-cart-sidebar]');
         if (cartSidebarBtn) cartSidebarBtn.click();
 
-        // ✅ fermer le popup mobile exactement comme Cancel
-        document.body.classList.remove('quick_shop_popup_mobile');
-        popup.classList.remove('show');
+        // ✅ sur mobile, au lieu de fermer le popup, on simule le bouton Cancel pour réinitialiser correctement
+        const cancelBtn = popup.querySelector('[data-cancel-quickshop-popup]');
+        if (cancelBtn) cancelBtn.click();
     });
 });
    </script>
