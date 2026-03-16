@@ -6885,7 +6885,6 @@ $('.slideshow').slick({
 
 
 
-
 <script>
 document.addEventListener('click', function (e) {
     const button = e.target.closest('.add-to-cart-btn');
@@ -6913,7 +6912,6 @@ document.addEventListener('click', function (e) {
     const selectedImage = selectedColorInput ? selectedColorInput.dataset.image : null;
     const selectedSize = selectedSizeInput ? selectedSizeInput.value : null;
 
-    // quantité
     const qtyInput = popup.querySelector('input[name="quantity"]');
     const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
 
@@ -6935,17 +6933,10 @@ document.addEventListener('click', function (e) {
 
         if (!data.success) return;
 
-        let container = document.querySelector('#previewCartContainer');
+        // ✅ utiliser refreshMiniCart pour recalculer
+        refreshMiniCart(data.html);
 
-        if (!container) {
-            container = document.createElement('div');
-            container.id = 'previewCartContainer';
-            document.body.appendChild(container);
-        }
-
-        container.innerHTML = data.html;
-
-        // ✅ ouvrir le mini panier
+        // ouvrir mini panier
         const cartSidebarBtn = document.querySelector('[data-cart-sidebar]');
         if (cartSidebarBtn) {
             cartSidebarBtn.click();
@@ -6971,27 +6962,11 @@ document.addEventListener('change', function (e) {
     .then(data => {
         if (!data.success) return;
 
-        refreshMiniCart(data.html, data.total);
+        refreshMiniCart(data.html);
     });
 });
 
-function refreshMiniCart(html, total) {
-    let container = document.querySelector('#previewCartContainer');
 
-    if (!container) {
-        container = document.createElement('div');
-        container.id = 'previewCartContainer';
-        document.body.appendChild(container);
-    }
-
-    container.innerHTML = html;
-
-    // update total
-    const totalEl = container.querySelector('#mini-cart-total');
-    if (totalEl && total !== undefined) {
-        totalEl.textContent = total.toFixed(2);
-    }
-}
 </script>
 <script>
 document.addEventListener('click', function(e) {
@@ -7016,20 +6991,15 @@ document.addEventListener('click', function(e) {
     .then(data => {
         if (!data.success) return;
 
-        let container = document.querySelector('#previewCartContainer');
+        // ✅ utiliser la fonction globale
+        refreshMiniCart(data.html);
 
-        if (!container) {
-            container = document.createElement('div');
-            container.id = 'previewCartContainer';
-            document.body.appendChild(container);
-        }
-
-        container.innerHTML = data.html;
     });
 });
 </script>
 <script>
 function refreshMiniCart(html) {
+
     let container = document.querySelector('#previewCartContainer');
 
     if (!container) {
@@ -7040,14 +7010,21 @@ function refreshMiniCart(html) {
 
     container.innerHTML = html;
 
-    // update total sidebar
     const totalEl = container.querySelector('#mini-cart-total');
-    if (totalEl) {
-        document.querySelector('[data-cart-total-value] .money').textContent =
-            totalEl.textContent + ' DZD';
 
-        document.querySelector('[data-cart-subtotal] .money').textContent =
-            totalEl.textContent + ' DZD';
+    const totalBox = document.querySelector('[data-cart-total-value] .money');
+    const subtotalBox = document.querySelector('[data-cart-subtotal] .money');
+    const discountBox = document.querySelector('[data-saved-discount-value] .money');
+
+    if (totalEl) {
+        const total = totalEl.textContent;
+        if(totalBox) totalBox.textContent = total + ' DZD';
+        if(subtotalBox) subtotalBox.textContent = total + ' DZD';
+    } else {
+        // Panier vide → tout à zéro
+        if(totalBox) totalBox.textContent = '0.00 DZD';
+        if(subtotalBox) subtotalBox.textContent = '0.00 DZD';
+        if(discountBox) discountBox.textContent = '0.00 DZD';
     }
 }
 </script>

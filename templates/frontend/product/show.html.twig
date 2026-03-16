@@ -4952,41 +4952,39 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    // --------- COULEUR ---------
+    // -------------------------------
+    // SLIDER SLICK + CHOIX COULEUR/TAILLE
+    // -------------------------------
+    const slickSlider = $('.productView-nav');
+
+    // Couleur
     const colorRadios = document.querySelectorAll('.product-form__input[data-option-index="0"] .product-form__radio');
-    const colorSpan = document.querySelector('.product-form__input[data-option-index="0"] [data-header-option]');
-    const slickSlider = $('.productView-nav'); // ton slider Slick
-
     colorRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.checked) {
-                const imageId = this.getAttribute('data-image-id');
+        radio.addEventListener('change', function () {
+            if (!this.checked) return;
 
-                // Mettre à jour le nom de la couleur
-                if(colorSpan) colorSpan.textContent = this.value;
+            const colorSpan = this.closest('.product-form__input').querySelector('[data-header-option]');
+            if (colorSpan) colorSpan.textContent = this.value;
 
-                // Changer l'image principale via Slick
-                let targetIndex = 0;
-                slickSlider.find('.productView-image').each(function(index) {
-                    if ($(this).find('[data-media-id="' + imageId + '"]').length) {
-                        targetIndex = index;
-                    }
-                });
-
-                slickSlider.slick('slickGoTo', targetIndex);
-            }
+            // Changer l'image principale via Slick
+            const imageId = this.dataset.imageId;
+            let targetIndex = 0;
+            slickSlider.find('.productView-image').each(function(index) {
+                if ($(this).find('[data-media-id="' + imageId + '"]').length) {
+                    targetIndex = index;
+                }
+            });
+            slickSlider.slick('slickGoTo', targetIndex);
         });
     });
 
-    // --------- SIZE ---------
+    // Taille
     const sizeRadios = document.querySelectorAll('.product-form__input[data-option-index="1"] .product-form__radio');
-    const sizeSpan = document.querySelector('.product-form__input[data-option-index="1"] [data-header-option]');
-
     sizeRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.checked && sizeSpan) {
-                sizeSpan.textContent = this.value;
-            }
+        radio.addEventListener('change', function () {
+            if (!this.checked) return;
+            const sizeSpan = this.closest('.product-form__input').querySelector('[data-header-option]');
+            if (sizeSpan) sizeSpan.textContent = this.value;
         });
     });
 
@@ -4994,43 +4992,42 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+/* ============================
+   FONCTION MINI-CART UNIFIÉE
+   ============================ */
+function refreshMiniCart(html) {
+    let container = document.querySelector('#previewCartContainer');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'previewCartContainer';
+        document.body.appendChild(container);
+    }
 
-    // Slider Slick
-    const slickSlider = $('.productView-nav');
+    container.innerHTML = html;
 
-    // ---- Changement de couleur ----
-    document.querySelectorAll('.product-form__input[data-option-index="0"] .product-form__radio')
-        .forEach(radio => {
-            radio.addEventListener('change', function () {
-                if (!this.checked) return;
+    const totalEl = container.querySelector('#mini-cart-total');
+    const totalBox = document.querySelector('[data-cart-total-value] .money');
+    const subtotalBox = document.querySelector('[data-cart-subtotal] .money');
+    const discountBox = document.querySelector('[data-saved-discount-value] .money');
 
-                const colorSpan = this.closest('.product-form__input').querySelector('[data-header-option]');
-                if (colorSpan) colorSpan.textContent = this.value;
+    if (totalEl) {
+        const total = totalEl.textContent;
+        if (totalBox) totalBox.textContent = total + ' DZD';
+        if (subtotalBox) subtotalBox.textContent = total + ' DZD';
+        if (discountBox) discountBox.textContent = discountBox.dataset.value || '0.00 DZD';
+    } else {
+        // Panier vide → tout à zéro
+        if (totalBox) totalBox.textContent = '0.00 DZD';
+        if (subtotalBox) subtotalBox.textContent = '0.00 DZD';
+        if (discountBox) discountBox.textContent = '0.00 DZD';
+    }
+}
+</script>
 
-                // Changer l'image dans Slick
-                const imageId = this.dataset.imageId;
-                let targetIndex = 0;
-                slickSlider.find('.productView-image').each(function (index) {
-                    if ($(this).find('[data-media-id="' + imageId + '"]').length) {
-                        targetIndex = index;
-                    }
-                });
-                slickSlider.slick('slickGoTo', targetIndex);
-            });
-        });
-
-    // ---- Changement de taille ----
-    document.querySelectorAll('.product-form__input[data-option-index="1"] .product-form__radio')
-        .forEach(radio => {
-            radio.addEventListener('change', function () {
-                const sizeSpan = this.closest('.product-form__input').querySelector('[data-header-option]');
-                if (sizeSpan && this.checked) sizeSpan.textContent = this.value;
-            });
-        });
-});
-
-// ---- Ajout au panier ----
+<script>
+/* ============================
+   AJOUT AU PANIER (PAGE PRODUIT)
+   ============================ */
 document.addEventListener('click', function (e) {
     const button = e.target.closest('[data-btn-addtocart]');
     if (!button) return;
@@ -5039,58 +5036,36 @@ document.addEventListener('click', function (e) {
     e.stopImmediatePropagation();
 
     const productId = button.dataset.productId;
-    if (!productId) {
-        console.error("Product ID manquant !");
-        return;
-    }
+    if (!productId) return console.error("Product ID manquant !");
 
     const variantContainer = document.getElementById('variant-' + productId);
-    if (!variantContainer) {
-        console.error("Variant container introuvable !");
-        return;
-    }
+    if (!variantContainer) return console.error("Variant container introuvable !");
 
-    // Récupérer couleur / taille
+    // Couleur & Taille
     const selectedColorInput = variantContainer.querySelector('.product-form__input[data-option-index="0"] input:checked');
     const selectedSizeInput  = variantContainer.querySelector('.product-form__input[data-option-index="1"] input:checked');
-
     if (!selectedColorInput || !selectedSizeInput) {
         alert("Veuillez sélectionner une couleur et une taille");
         return;
     }
 
     const selectedColor = selectedColorInput.value;
-    const selectedImage = selectedColorInput.dataset.image; // <-- URL correcte pour mini-cart
+    const selectedImage = selectedColorInput.dataset.image;
     const selectedSize  = selectedSizeInput.value;
 
     const qtyInput = variantContainer.querySelector('input[name="quantity"]');
     const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
 
-    // Ajax add-to-cart
     fetch(`/cart/add-ajax/${productId}`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        body: JSON.stringify({
-            color: selectedColor,
-            image: selectedImage,
-            size: selectedSize,
-            quantity: quantity
-        })
+        headers: {'Content-Type':'application/json','X-Requested-With':'XMLHttpRequest'},
+        body: JSON.stringify({ color: selectedColor, image: selectedImage, size: selectedSize, quantity: quantity })
     })
     .then(res => res.json())
     .then(data => {
         if (!data.success) return;
 
-        let container = document.querySelector('#previewCartContainer');
-        if (!container) {
-            container = document.createElement('div');
-            container.id = 'previewCartContainer';
-            document.body.appendChild(container);
-        }
-        container.innerHTML = data.html;
+        refreshMiniCart(data.html); // <- Toujours utiliser refreshMiniCart
 
         const cartSidebarBtn = document.querySelector('[data-cart-sidebar]');
         if (cartSidebarBtn) cartSidebarBtn.click();
@@ -5098,8 +5073,12 @@ document.addEventListener('click', function (e) {
     .catch(err => console.error("Erreur add-to-cart :", err));
 });
 </script>
+
 <script>
-document.addEventListener('change', function (e) {
+/* ============================
+   MODIFICATION QUANTITE
+   ============================ */
+document.addEventListener('change', function(e) {
     const input = e.target.closest('.qteitem');
     if (!input) return;
 
@@ -5108,61 +5087,23 @@ document.addEventListener('change', function (e) {
 
     fetch('/cart/update-ajax/' + key, {
         method: 'POST',
-        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        headers: {'X-Requested-With':'XMLHttpRequest'},
         body: JSON.stringify({ quantity })
     })
     .then(res => res.json())
     .then(data => {
         if (!data.success) return;
 
-        refreshMiniCart(data.html, data.total);
+        refreshMiniCart(data.html);
     });
 });
-
-function refreshMiniCart(html, total) {
-    let container = document.querySelector('#previewCartContainer');
-
-    if (!container) {
-        container = document.createElement('div');
-        container.id = 'previewCartContainer';
-        document.body.appendChild(container);
-    }
-
-    container.innerHTML = html;
-
-    // update total
-    const totalEl = container.querySelector('#mini-cart-total');
-    if (totalEl && total !== undefined) {
-        totalEl.textContent = total.toFixed(2);
-    }
-}
 </script>
+
 <script>
-function refreshMiniCart(html) {
-    let container = document.querySelector('#previewCartContainer');
-
-    if (!container) {
-        container = document.createElement('div');
-        container.id = 'previewCartContainer';
-        document.body.appendChild(container);
-    }
-
-    container.innerHTML = html;
-
-    // update total sidebar
-    const totalEl = container.querySelector('#mini-cart-total');
-    if (totalEl) {
-        document.querySelector('[data-cart-total-value] .money').textContent =
-            totalEl.textContent + ' DZD';
-
-        document.querySelector('[data-cart-subtotal] .money').textContent =
-            totalEl.textContent + ' DZD';
-    }
-}
-</script>
-<script>
+/* ============================
+   SUPPRESSION PRODUIT
+   ============================ */
 document.addEventListener('click', function(e) {
-
     const btn = e.target.closest('[data-cart-remove-id]');
     if (!btn) return;
 
@@ -5170,28 +5111,17 @@ document.addEventListener('click', function(e) {
     e.stopImmediatePropagation();
 
     const key = btn.dataset.cartRemoveId;
-    if (!key) {
-        console.error('clé panier manquante');
-        return;
-    }
+    if (!key) return console.error('clé panier manquante');
 
     fetch('/cart/remove-ajax/' + key, {
         method: 'POST',
-        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        headers: {'X-Requested-With':'XMLHttpRequest'}
     })
     .then(res => res.json())
     .then(data => {
         if (!data.success) return;
 
-        let container = document.querySelector('#previewCartContainer');
-
-        if (!container) {
-            container = document.createElement('div');
-            container.id = 'previewCartContainer';
-            document.body.appendChild(container);
-        }
-
-        container.innerHTML = data.html;
+        refreshMiniCart(data.html);
     });
 });
 </script>
