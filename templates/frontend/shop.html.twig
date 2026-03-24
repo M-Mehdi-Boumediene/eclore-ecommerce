@@ -3605,84 +3605,81 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-    // ---- Mettre à jour les labels couleur ----
-    function updateColorLabel(popup) {
-        const colorInput = popup.querySelector('.selector-wrapper-1 input.single-option:checked');
-        const labelSpan = popup.querySelector('.selector-wrapper-1 .label-value-1');
-        if(colorInput && labelSpan) labelSpan.textContent = colorInput.value;
+    function getContainer(el) {
+        return el.closest('.variants-popup') || el.closest('.product');
     }
 
-    // ---- Mettre à jour les labels taille ----
-    function updateSizeLabel(popup) {
-        const sizeInput = popup.querySelector('.selector-wrapper-2 input.single-option:checked');
-        const labelSpan = popup.querySelector('.selector-wrapper-2 .label-value-2');
-        if(sizeInput && labelSpan) labelSpan.textContent = sizeInput.value;
+    function updateColorLabel(container) {
+        const input = container.querySelector('.selector-wrapper-1 input.single-option:checked');
+        const label = container.querySelector('.selector-wrapper-1 .label-value-1');
+        if (input && label) label.textContent = input.value;
     }
 
-    // ---- Écouteur pour changement couleur/taille ----
+    function updateSizeLabel(container) {
+        const input = container.querySelector('.selector-wrapper-2 input.single-option:checked');
+        const label = container.querySelector('.selector-wrapper-2 .label-value-2');
+        if (input && label) label.textContent = input.value;
+    }
+
+    // 🔁 changement couleur / taille
     document.body.addEventListener('change', function(e) {
-        const input = e.target.closest('.selector-wrapper-1 input.single-option, .selector-wrapper-2 input.single-option');
-        if(!input) return;
+        const input = e.target.closest('.single-option');
+        if (!input) return;
 
-        const popup = input.closest('#halo-card-mobile-popup');
-        if(!popup) return;
+        const container = getContainer(input);
+        if (!container) return;
 
-        updateColorLabel(popup);
-        updateSizeLabel(popup);
+        updateColorLabel(container);
+        updateSizeLabel(container);
     });
 
-    // ---- Écouteur pour click Add ----
+    // 🛒 ADD TO CART
     document.body.addEventListener('click', function(e) {
         const button = e.target.closest('.add-to-cart-btn');
-        if(!button) return;
+        if (!button) return;
 
         e.preventDefault();
         e.stopImmediatePropagation();
 
-        const popup = button.closest('#halo-card-mobile-popup');
-        if(!popup) return;
+        const container = getContainer(button);
+        if (!container) return;
 
-        const variantsPopup = popup.querySelector('.variants-popup');
-        if(!variantsPopup) return;
+        const productBox = container.closest('[data-product-id]');
+        const productId = productBox ? productBox.dataset.productId : container.dataset.productId;
 
-        const productId = variantsPopup.dataset.productId;
-        if(!productId) return;
+        const colorInput = container.querySelector('.selector-wrapper-1 input.single-option:checked');
+        const sizeInput = container.querySelector('.selector-wrapper-2 input.single-option:checked');
+        const qtyInput = container.querySelector('input[name="quantity"]');
 
-        const selectedColorInput = variantsPopup.querySelector('.selector-wrapper-1 input.single-option:checked');
-        const selectedSizeInput = variantsPopup.querySelector('.selector-wrapper-2 input.single-option:checked');
-        const qtyInput = variantsPopup.querySelector('input[name="quantity"]');
-
-        const selectedColor = selectedColorInput ? selectedColorInput.value : null;
-        const selectedImage = selectedColorInput ? selectedColorInput.dataset.image : null;
-        const selectedSize = selectedSizeInput ? selectedSizeInput.value : null;
-        const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+        const payload = {
+            color: colorInput ? colorInput.value : null,
+            image: colorInput ? colorInput.dataset.image : null,
+            size: sizeInput ? sizeInput.value : null,
+            quantity: qtyInput ? parseInt(qtyInput.value) || 1 : 1
+        };
 
         fetch(`/cart/add-ajax/${productId}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-            body: JSON.stringify({
-                color: selectedColor,
-                image: selectedImage,
-                size: selectedSize,
-                quantity: quantity
-            })
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify(payload)
         })
         .then(res => res.json())
         .then(data => {
-            if(!data.success) return;
+            if (!data.success) return;
 
             refreshMiniCart(data.html);
 
-            const cartSidebarBtn = document.querySelector('[data-cart-sidebar]');
-            if(cartSidebarBtn) cartSidebarBtn.click();
+            const cartBtn = document.querySelector('[data-cart-sidebar]');
+            if (cartBtn) cartBtn.click();
 
-            // ✅ click sur Cancel pour réinitialiser la popup
-            const cancelBtn = popup.querySelector('[data-cancel-quickshop-popup]');
-            if(cancelBtn) cancelBtn.click();
+            const cancelBtn = container.querySelector('[data-cancel-quickshop-popup]');
+            if (cancelBtn) cancelBtn.click();
 
-            // 🔹 mettre à jour les labels même après le reset
-            updateColorLabel(popup);
-            updateSizeLabel(popup);
+            updateColorLabel(container);
+            updateSizeLabel(container);
         });
     });
 
