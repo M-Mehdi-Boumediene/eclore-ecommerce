@@ -70,4 +70,5 @@ class FrontendController extends AbstractController
                 : $session->get('cart', [])
         ]);
     }
+    
 }

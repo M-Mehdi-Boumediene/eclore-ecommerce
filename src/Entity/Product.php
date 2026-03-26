@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-#[ORM\HasLifecycleCallbacks] // 🔹 Pour générer automatiquement le slug
+#[ORM\HasLifecycleCallbacks]
 class Product
 {
     #[ORM\Id]
@@ -23,7 +23,6 @@ class Product
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $description = null;
 
-    // 🔹 Changement type DECIMAL -> float
     #[ORM\Column(type: 'float', nullable: true)]
     private ?float $price = null;
 
@@ -43,19 +42,13 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductImage::class, cascade: ['persist', 'remove'])]
     private Collection $productImages;
 
-    // 🔹 Champ slug
     #[ORM\Column(length: 190, unique: true)]
     private ?string $slug = null;
 
-    /**
-     * @var Collection<int, CartItem>
-     */
-    #[ORM\OneToMany(targetEntity: CartItem::class, mappedBy: 'product')]
+    // 🔹 Relation avec CartItem
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: CartItem::class, cascade: ['persist', 'remove'])]
     private Collection $cartItems;
 
-    /**
-     * @var Collection<int, Size>
-     */
     #[ORM\ManyToMany(targetEntity: Size::class, mappedBy: 'products')]
     private Collection $sizes;
 
@@ -213,9 +206,9 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection<int, CartItem>
-     */
+    // =====================
+    // CartItems relation
+    // =====================
     public function getCartItems(): Collection
     {
         return $this->cartItems;
@@ -227,25 +220,22 @@ class Product
             $this->cartItems->add($cartItem);
             $cartItem->setProduct($this);
         }
-
         return $this;
     }
 
     public function removeCartItem(CartItem $cartItem): static
     {
         if ($this->cartItems->removeElement($cartItem)) {
-            // set the owning side to null (unless already changed)
             if ($cartItem->getProduct() === $this) {
                 $cartItem->setProduct(null);
             }
         }
-
         return $this;
     }
 
-    /**
-     * @return Collection<int, Size>
-     */
+    // =====================
+    // Sizes relation
+    // =====================
     public function getSizes(): Collection
     {
         return $this->sizes;
@@ -257,7 +247,6 @@ class Product
             $this->sizes->add($size);
             $size->addProduct($this);
         }
-
         return $this;
     }
 
@@ -266,7 +255,6 @@ class Product
         if ($this->sizes->removeElement($size)) {
             $size->removeProduct($this);
         }
-
         return $this;
     }
 }

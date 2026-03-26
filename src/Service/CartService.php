@@ -52,22 +52,26 @@ class CartService
     }
 
     public function findCartItem(Product $product, ?string $color, ?string $size): ?CartItem
-    {
-        $cart = $this->getOrCreateCart();
-        if (!$cart) return null;
+{
+    $cart = $this->getOrCreateCart();
+    if (!$cart) return null;
 
-        foreach ($cart->getCartItems() as $item) {
-            if (
-                $item->getProduct()->getId() === $product->getId() &&
-                $item->getColor() === $color &&
-                $item->getSize() === $size
-            ) {
-                return $item;
-            }
+    foreach ($cart->getCartItems() as $item) {
+        if ($item->getProduct()->getId() == $product->getId() &&
+            ($item->getColor() ?? '') === ($color ?? '') &&
+            ($item->getSize() ?? '') === ($size ?? '')
+        ) {
+            return $item;
         }
-
-        return null;
     }
+
+    return null;
+}
+
+public function findCartItemById(int $id): ?CartItem
+{
+    return $this->em->getRepository(CartItem::class)->find($id);
+}
 
     public function getTotal(): float
     {
@@ -217,4 +221,45 @@ class CartService
 
         return $order;
     }
+
+    public function mergeSessionCartToUser(SessionInterface $session): void
+{
+    $user = $this->security->getUser();
+    if (!$user) return;
+
+    $sessionCart = $session->get('cart', []);
+    if (empty($sessionCart)) return;
+
+    $cart = $this->getOrCreateCart();
+    if (!$cart) return;
+
+    foreach ($sessionCart as $item) {
+        $product = $this->em->getRepository(Product::class)->find($item['product']['id']);
+        if (!$product) continue;
+
+        $cartItem = $this->findCartItem($product, $item['color'] ?? null, $item['size'] ?? null);
+
+        if ($cartItem) {
+            // si l'article existe déjà, on incrémente la quantité
+            $cartItem->setQuantity($cartItem->getQuantity() + $item['quantity']);
+        } else {
+            // sinon on crée un nouvel item
+            $cartItem = new CartItem();
+            $cartItem->setCart($cart);
+            $cartItem->setProduct($product);
+            $cartItem->setQuantity($item['quantity']);
+            $cartItem->setPrice($product->getPrice());
+            $cartItem->setColor($item['color'] ?? null);
+            $cartItem->setSize($item['size'] ?? null);
+            $cartItem->setImage($item['image'] ?? null);
+
+            $this->em->persist($cartItem);
+        }
+    }
+
+    $this->em->flush();
+
+    // On vide le panier de session après fusion
+    $session->remove('cart');
+}
 }

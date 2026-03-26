@@ -13,14 +13,17 @@ class CartItem
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'cartItems')]
+    // 🔹 Relation avec Cart
+    #[ORM\ManyToOne(targetEntity: Cart::class, inversedBy: 'cartItems')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Cart $cart = null;
 
-    #[ORM\ManyToOne]
+    // 🔹 Relation avec Product (corrigée)
+    #[ORM\ManyToOne(targetEntity: Product::class, inversedBy: 'cartItems')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
 
+    // 🔹 Relation avec Order
     #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'orderItems')]
     #[ORM\JoinColumn(nullable: true)]
     private ?Order $order = null;
@@ -45,7 +48,6 @@ class CartItem
     // ======================
     // Getters / Setters
     // ======================
-
     public function getId(): ?int
     {
         return $this->id;
@@ -111,8 +113,6 @@ class CartItem
         return $this->price * $this->quantity;
     }
 
-    // ===== COLOR / SIZE =====
-
     public function getColor(): ?string
     {
         return $this->color;
@@ -134,8 +134,6 @@ class CartItem
         $this->size = $size;
         return $this;
     }
-
-    // ===== IMAGE =====
 
     public function getImage(): ?string
     {
