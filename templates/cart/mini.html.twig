@@ -8,7 +8,10 @@
 
    {% for key, item in cart %}
 
-      {# 👉 product peut être objet (DB) ou tableau (session) #}
+      {# 👉 Déterminer la clé correcte : ID BDD si existant, sinon clé de session #}
+      {% set cartKey = item.id ?? key %}
+
+      {# 👉 product peut être objet (BDD) ou tableau (session) #}
       {% set product = item.product %}
       {% set category = product.productCategory ?? null %}
 
@@ -16,9 +19,7 @@
 
       <li class="previewCartItem clearfix">
 
-         <a href="{% if category %}
-                    {{ path('product_show', {categorySlug: category.slug, productSlug: product.slug}) }}
-                 {% else %}# {% endif %}"
+         <a href="{% if category %}{{ path('product_show', {categorySlug: category.slug, productSlug: product.slug}) }}{% else %}#{% endif %}"
             class="previewCartItem-image">
 
             {% if item.image %}
@@ -32,9 +33,7 @@
          <div class="previewCartItem-content">
 
             <a class="previewCartItem-name"
-               href="{% if category %}
-                        {{ path('product_show', {categorySlug: category.slug, productSlug: product.slug}) }}
-                     {% else %}# {% endif %}">
+               href="{% if category %}{{ path('product_show', {categorySlug: category.slug, productSlug: product.slug}) }}{% else %}#{% endif %}">
                {{ product.name }} <br>
                <span>
                   Couleur : {{ item.color ?? 'N/A' }}
@@ -61,15 +60,14 @@
                   <input type="number"
                          class="form-input quantity qteitem"
                          value="{{ item.quantity }}"
-                         data-update-id="{{ key }}">
+                         data-update-id="{{ cartKey }}">
                </div>
             </div>
          </div>
 
          <button type="button"
                  class="previewCartItem-remove"
-                 data-cart-remove=""
-                 data-cart-remove-id="{{ key }}"
+                 data-cart-remove-id="{{ cartKey }}"
                  title="Supprimer">
             ✖
          </button>

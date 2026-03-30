@@ -216,10 +216,8 @@ width:100%;
                            
                             Modifier
 
-                            zzzz {{ key }} zzz {{ key }}
-                            <svg viewBox="0 0 576 512" class="icon icon-edit">
-                                <path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zM558.9 143.1L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8z"/>
-                            </svg>
+                            
+                         <svg viewBox="0 0 576 512" class="icon icon-edit" id="icon-edit"><path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"></path></svg>
                             
                         </a>
                     </div>
@@ -242,7 +240,7 @@ width:100%;
             </div>
 
             <div class="cart-item-block cart-item-remove">
-                <a href="{{ path('cart_remove_ajax', {'key': key}) }}"
+                <a href="{{ path('cart_remove_ajax', {'id': item.id}) }}" class="cart-remove" data-line="{{ item.id }}"
                    class="cart-remove"
                    data-line="{{ item.id }}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
@@ -290,13 +288,13 @@ width:100%;
                      <div class="cart-content-item cart-total" data-cart-total="">
                         <form action="/cart" method="post" novalidate="">
                            <ul class="cart-totals list-unstyled">
-                              <div class="cart--totals-title">Order summary</div>
+                              <div class="cart--totals-title">Résumé de la commande</div>
                               <li class="cart-total cart-total-subtotal">
-                                 <div class="cart-total-label"><span class="text">Subtotal</span></div>
+                                 <div class="cart-total-label"><span class="text">Sous-total</span></div>
                                  <div class="cart-total-value"><span class="text"><span class="money"> DA</span></span></div>
                               </li>
                               <li class="cart-total cart-total-shipping">
-                                 <div class="cart-total-label"><span class="text">Get shipping estimate:</span></div>
+                                 <div class="cart-total-label"><span class="text">Estimation des frais de livraison :</span></div>
                                  <div class="cart-total-value" style="display: none;"></div>
                                  <script src="/services/javascripts/countries.js" defer="defer"></script>
                                  <script src="//new-ella-demo.myshopify.com/cdn/shopifycloud/storefront/assets/themes_support/shopify_common-5f594365.js" defer="defer"></script>
@@ -313,7 +311,7 @@ width:100%;
                                           Estimate shipping rates
                                        </p>
                                        <div class="form-group" id="address_country_container">
-                                          <label class="hidden-cart" for="AddressCountry">Country/Region</label>  
+                                          <label class="hidden-cart" for="AddressCountry">Wilaya</label>  
                                           <div style="position: relative;">
                                              <select id="address_country" class="special-select select__select" name="address[country]" data-default="United States">
                                                 <option value="Hungary" data-provinces="[]">Hungary</option>
@@ -561,85 +559,8 @@ width:100%;
                                              </span>
                                           </div>
                                        </div>
-                                       <div class="form-group" id="address_province_container" style="">
-                                          <label class="hidden-cart" for="AddressCountry">State</label>
-                                          <div style="position: relative;">
-                                             <select id="address_province" class="address_form special-select select__select" name="address[province]" data-default="">
-                                                <option value="Alabama">Alabama</option>
-                                                <option value="Alaska">Alaska</option>
-                                                <option value="American Samoa">American Samoa</option>
-                                                <option value="Arizona">Arizona</option>
-                                                <option value="Arkansas">Arkansas</option>
-                                                <option value="Armed Forces Americas">Armed Forces Americas</option>
-                                                <option value="Armed Forces Europe">Armed Forces Europe</option>
-                                                <option value="Armed Forces Pacific">Armed Forces Pacific</option>
-                                                <option value="California">California</option>
-                                                <option value="Colorado">Colorado</option>
-                                                <option value="Connecticut">Connecticut</option>
-                                                <option value="Delaware">Delaware</option>
-                                                <option value="District of Columbia">Washington DC</option>
-                                                <option value="Federated States of Micronesia">Micronesia</option>
-                                                <option value="Florida">Florida</option>
-                                                <option value="Georgia">Georgia</option>
-                                                <option value="Guam">Guam</option>
-                                                <option value="Hawaii">Hawaii</option>
-                                                <option value="Idaho">Idaho</option>
-                                                <option value="Illinois">Illinois</option>
-                                                <option value="Indiana">Indiana</option>
-                                                <option value="Iowa">Iowa</option>
-                                                <option value="Kansas">Kansas</option>
-                                                <option value="Kentucky">Kentucky</option>
-                                                <option value="Louisiana">Louisiana</option>
-                                                <option value="Maine">Maine</option>
-                                                <option value="Marshall Islands">Marshall Islands</option>
-                                                <option value="Maryland">Maryland</option>
-                                                <option value="Massachusetts">Massachusetts</option>
-                                                <option value="Michigan">Michigan</option>
-                                                <option value="Minnesota">Minnesota</option>
-                                                <option value="Mississippi">Mississippi</option>
-                                                <option value="Missouri">Missouri</option>
-                                                <option value="Montana">Montana</option>
-                                                <option value="Nebraska">Nebraska</option>
-                                                <option value="Nevada">Nevada</option>
-                                                <option value="New Hampshire">New Hampshire</option>
-                                                <option value="New Jersey">New Jersey</option>
-                                                <option value="New Mexico">New Mexico</option>
-                                                <option value="New York">New York</option>
-                                                <option value="North Carolina">North Carolina</option>
-                                                <option value="North Dakota">North Dakota</option>
-                                                <option value="Northern Mariana Islands">Northern Mariana Islands</option>
-                                                <option value="Ohio">Ohio</option>
-                                                <option value="Oklahoma">Oklahoma</option>
-                                                <option value="Oregon">Oregon</option>
-                                                <option value="Palau">Palau</option>
-                                                <option value="Pennsylvania">Pennsylvania</option>
-                                                <option value="Puerto Rico">Puerto Rico</option>
-                                                <option value="Rhode Island">Rhode Island</option>
-                                                <option value="South Carolina">South Carolina</option>
-                                                <option value="South Dakota">South Dakota</option>
-                                                <option value="Tennessee">Tennessee</option>
-                                                <option value="Texas">Texas</option>
-                                                <option value="Utah">Utah</option>
-                                                <option value="Vermont">Vermont</option>
-                                                <option value="Virgin Islands">U.S. Virgin Islands</option>
-                                                <option value="Virginia">Virginia</option>
-                                                <option value="Washington">Washington</option>
-                                                <option value="West Virginia">West Virginia</option>
-                                                <option value="Wisconsin">Wisconsin</option>
-                                                <option value="Wyoming">Wyoming</option>
-                                             </select>
-                                             <span class="icon-dropdown">
-                                             <i class="fa fa-angle-down"></i>
-                                             </span>
-                                          </div>
-                                       </div>
-                                       <div class="form-group" id="address_zip_container">
-                                          <label class="hidden-cart" for="AddressZip">ZIP code</label>
-                                          <input type="text" id="address_zip" class="styled-input field__input" name="address[zip]" placeholder="Postal code">
-                                       </div>
-                                       <div id="get-rates-container">
-                                          <input type="submit" id="get-rates-submit" class="get-rates styled-submit button button-1" value="Calculate shipping">      
-                                       </div>
+                                     
+                                     
                                     </div>
                                     <div id="wrapper-response"></div>
                                  </div>
@@ -669,22 +590,22 @@ width:100%;
                                  </script>
                               </li>
                               <li class="cart-total cart-total-coupon">
-                                 <div class="cart-total-label"><span class="text">Coupon code</span></div>
+                                 <div class="cart-total-label"><span class="text">Code promo</span></div>
                                  <div class="cart-total-value" style="display: none;"></div>
                                  <div class="cart-coupon-code form-field discount-code-field">
-                                    <label class="form-label hiddenLabels" for="cart-coupon-code">Coupon code</label> 
+                                    <label class="form-label hiddenLabels" for="cart-coupon-code">Code promo</label> 
                                     <input class="form-input" autocomplete="off" type="text" name="discount" id="cart-coupon-code" placeholder="Enter coupon code"> 
-                                    <p class="form-text">Coupon code will be applied on the checkout page</p>
+                                    <p class="form-text">   </p>
                                  </div>
                               </li>
                               <li class="cart-discount cart-total-savings" data-saved-discount-display="" data-dis="369">
-                                 <div class="cart-total-label"><span class="text">Discount:</span></div>
+                                 <div class="cart-total-label"><span class="text">Réduction:</span></div>
                                  <div class="cart-total-value">
                                     <span class="text" data-saved-discount-value="">
                                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-discount" viewBox="0 0 12 12">
                                           <path fill-rule="evenodd" clip-rule="evenodd" d="M7 0h3a2 2 0 012 2v3a1 1 0 01-.3.7l-6 6a1 1 0 01-1.4 0l-4-4a1 1 0 010-1.4l6-6A1 1 0 017 0zm2 2a1 1 0 102 0 1 1 0 00-2 0z" fill="currentColor"></path>
                                        </svg>
-                                       DISCOUNT10
+                                      
                                        (-<span class="money">0 DA</span>)
                                     </span>
                                  </div>
@@ -700,9 +621,9 @@ width:100%;
                            <div class="cart-actions">
                               <div class="cart-checkbox global-checkbox">
                                  <input class="global-checkbox--input" type="checkbox" name="conditions" id="cart_conditions" data-target="#cart-checkout">
-                                 <label class="global-checkbox--label form-label--checkbox" for="cart_conditions">I agree with</label><a href="javascript:void(0)" data-term-condition="">Terms &amp; Conditions</a>
+                                 <label class="global-checkbox--label form-label--checkbox" for="cart_conditions">J'accepte les </label><a href="javascript:void(0)" data-term-condition=""> termes & conditions</a>
                               </div>
-                              <div class="action-group"><button class="button button-1 button-checkout button-enable" disabled="" id="cart-checkout" data-href="/checkout">Proceed to checkout</button>
+                              <div class="action-group"><button class="button button-1 button-checkout button-enable" disabled="" id="cart-checkout" data-href="{{ path('checkout') }}">Proceed to checkout</button>
                                  <a class="button button-2 button-continue" href="/collections/collection-home-1-1" role="button">Continue shopping</a>
                               </div>
                            </div>
@@ -733,407 +654,7 @@ width:100%;
       </style>
       <script src="//new-ella-demo.myshopify.com/cdn/shop/t/196/assets/cart.js?v=175879003468407423191752228205" defer="defer"></script>
    </div>
-   <div id="shopify-section-template--14613441282138__16497261635f6f948e" class="shopify-section sections-product-block">
-      <style>.section-block-template--14613441282138__16497261635f6f948e .block-title--style2 {border-bottom: 1px solid #e6e6e6}
-         .section-block-template--14613441282138__16497261635f6f948e .block-title--style4 {border-top: 1px solid #e6e6e6;padding-top:  35px}.section-block-template--14613441282138__16497261635f6f948e .halo-block-header{margin-bottom: 0}.section-block-template--14613441282138__16497261635f6f948e,.section-block-template--14613441282138__16497261635f6f948e .halo-block-header .title .text {background: #ffffff}.product-block .halo-block {background-color: transparent}
-         .section-block-template--14613441282138__16497261635f6f948e .halo-block-header .title {color: #232323;font-size: 18px;line-height: 1;margin-bottom: 35px;line-height: 1.3;
-         }
-         .section-block-template--14613441282138__16497261635f6f948e .halo-block-header .title svg {fill: #232323}
-         .section-block-template--14613441282138__16497261635f6f948e .halo-block-header .title:before {background-color: #e6e6e6;}.section-block-template--14613441282138__16497261635f6f948e .block-title--style2 .title {padding-bottom: 35px}.section-block-template--14613441282138__16497261635f6f948e .halo-block-header:not(.enable_border_title_style2.block-title--style1) .title .text,
-         .section-block-template--14613441282138__16497261635f6f948e .halo-block-header:not(.enable_border_title_style2.block-title--style3) .title .text{
-         min-width: unset!important;
-         }
-         .section-block-template--14613441282138__16497261635f6f948e .block-title--style4 .title:before {content:  none}
-         .section-block-template--14613441282138__16497261635f6f948e .block-title--style2:has(.view-all) {padding-left: 0;padding-right: 0}
-         .halo-block-header.text-center.block-title--style2.viewAll--center .view-all {position: static !important}
-         .section-block-template--14613441282138__16497261635f6f948e .halo-block-header .view_all {color: #3c3c3c;font-size: 16px;line-height:1.5;font-weight: 400;margin-bottom: 30px !important;padding: 5px 0;}
-         .section-block-template--14613441282138__16497261635f6f948e .halo-block-header .view_all svg {color: #eb492f;fill: #eb492f}
-         .product-block-has__banner .product-block__banner .product-block__cap.custom_position {width: max-content}
-         .section-block-template--14613441282138__16497261635f6f948e .product-block__collection--list{background: #ffffff}
-         .section-block-template--14613441282138__16497261635f6f948e .product-block__collection--list_info h5,.section-block-template--14613441282138__16497261635f6f948e .product-block__collection--list_info a,.section-block-template--14613441282138__16497261635f6f948e .product-block__collection--list a{color: #202020}
-         /* Start: Scroll Layout */
-         .section-block-template--14613441282138__16497261635f6f948e .products-flex {display: flex;flex-direction: row;flex-wrap: nowrap;user-select: none;padding-bottom: 45px;overflow: auto;overflow-y: clip;gap: 30px;padding-right: 60px}
-         .layout_rtl .section-block-template--14613441282138__16497261635f6f948e .products-flex {padding-left: 60px;padding-right: 0;}
-         .section-block-template--14613441282138__16497261635f6f948e .halo-product-block .products-flex .product {flex-shrink: 0;flex-grow: 0;padding: 0;}
-         .section-block-template--14613441282138__16497261635f6f948e .halo-block-content.is-scroll {overflow: hidden}
-         .section-block-template--14613441282138__16497261635f6f948e .products-flex::-webkit-scrollbar {height: var(--scrollbar-height, 3px);max-width: 50%;cursor: pointer}
-         .section-block-template--14613441282138__16497261635f6f948e .products-flex::-webkit-scrollbar-track {background: var(--scrollbar-track-color, #dadada);max-width: 50%;width: 50%;}
-         .section-block-template--14613441282138__16497261635f6f948e .products-flex::-webkit-scrollbar-thumb {background: var(--scrollbar-thumb-color, #000)}
-         .section-block-template--14613441282138__16497261635f6f948e .products-flex::-webkit-scrollbar-thumb:hover {background: var(--scrollbar-thumb-hover-color, #333)}
-         .section-block-template--14613441282138__16497261635f6f948e .products-flex.active .product {pointer-events: none}
-         /* End: Scroll Layout */.section-block-template--14613441282138__16497261635f6f948e .halo-block-content .button-slider {max-width: 280px;margin-left: auto;margin-right: auto;margin-top: 49px}
-         .section-block-template--14613441282138__16497261635f6f948e .products-carousel.display_product_outside_container .polite{
-         overflow: unset;
-         }@media (max-width: 1024px) {
-         .section-block-template--14613441282138__16497261635f6f948e .halo-block-header .title {
-         margin-bottom: 30px;
-         font-size: 16px;
-         }.section-block-template--14613441282138__16497261635f6f948e .products-flex {--count: 2!important;gap: 15px;padding-right: 73px;}
-         .section-block-template--14613441282138__16497261635f6f948e .products-flex .product {padding: 0 7px}
-         .section-block-template--14613441282138__16497261635f6f948e .products-flex {scroll-snap-type: x mandatory;padding-bottom: 31px;}
-         .section-block-template--14613441282138__16497261635f6f948e .halo-product-block .products-flex .product {scroll-snap-align: start}
-         .product-block-has__banner .product-block__banner .video-open-popup.custom_position a {top: var(--top-mb);left: var(--left-mb)}   
-         .product-block-has__banner .product-block__banner .video-open-popup svg {width: 44px;height: 44px}.halo-product-block .products-carousel:has(.product-item.enable_infor_on_image) + .button-slider{
-         margin-top: 45px;
-         max-width: 280px; 
-         padding-top: var(--btn-1-padding-top)!important;
-         padding-bottom: var(--btn-1-padding-bottom)!important;
-         }
-         .halo-product-block .products-carousel.slick-dotted:has(.product-item.enable_infor_on_image) + .button-slider{
-         margin-top: 70px;
-         }
-         .section-block-template--14613441282138__16497261635f6f948e .product-infinite-scroll .button{
-         font-size: 11.2px;
-         }.section-block-template--14613441282138__16497261635f6f948e .halo-block-header .view_all {margin-bottom: 0px !important}
-         }
-         @media (max-width: 767px) {
-         .section-block-template--14613441282138__16497261635f6f948e {padding-top: 35px;padding-bottom: 0px}.section-block-template--14613441282138__16497261635f6f948e .halo-block-header .title {margin-bottom: 20px !important}.section-block-template--14613441282138__16497261635f6f948e .products-flex .product {flex-basis: calc(100% / calc(var(--count) - 0.3));width: calc(100% / calc(var(--count) - 0.3))}.section-block-template--14613441282138__16497261635f6f948e .halo-block-content .button-slider {max-width: 220px;margin-top: 35px}}
-         @media (max-width: 550px) {.section-block-template--14613441282138__16497261635f6f948e .product-infinite-scroll{
-         margin-top: 40px;
-         }
-         }
-         @media (min-width: 551px){
-         .section-block-template--14613441282138__16497261635f6f948e .products-grid {margin-left: calc(var(--grid-gap) * (-1));margin-right: calc(var(--grid-gap) * (-1)); z-index: 1}
-         .section-block-template--14613441282138__16497261635f6f948e .products-grid .product {padding-right: var(--grid-gap);padding-left: var(--grid-gap);margin: 0 0 calc(var(--grid-gap) * 2) !important}
-         }
-         @media (min-width: 1025px) {
-         .section-block-template--14613441282138__16497261635f6f948e .products-carousel .product {padding-right: var(--grid-gap);padding-left: var(--grid-gap)}
-         .section-block-template--14613441282138__16497261635f6f948e .products-carousel {margin-left: calc(var(--grid-gap) * (-1)) !important;margin-right: calc(var(--grid-gap) * (-1)) !important}
-         .section-block-template--14613441282138__16497261635f6f948e .halo-block-content .slick-arrow{top: calc(50% - 70px)}.section-block-template--14613441282138__16497261635f6f948e .products-carousel.slick-dotted {padding-bottom: 0px}.section-block-template--14613441282138__16497261635f6f948e .block-title--style2.viewAll--center .view_all {position: absolute;left: 50%;top: 12px;transform: translateX(-50%);}
-         .section-block-template--14613441282138__16497261635f6f948e .block-title--style2.text-left.viewAll--left {justify-content: flex-start;}special-arrow-position
-         .section-block-template--14613441282138__16497261635f6f948e .block-title--style2.text-left.viewAll--left .title {margin-right: 30px !important;}
-         .section-block-template--14613441282138__16497261635f6f948e .block-title--style2.text-left.viewAll--left .view_all,
-         .section-block-template--14613441282138__16497261635f6f948e .block-title--style2.text-right.viewAll--right .view_all {top: 12px;line-height: 20px;}
-         .section-block-template--14613441282138__16497261635f6f948e .block-title--style2.text-right.viewAll--right .title {margin-left: 30px !important;order: 1;}
-         /* .section-block-template--14613441282138__16497261635f6f948e .block-title--style2.text-center {justify-content: center;}  */ 
-         .section-block-template--14613441282138__16497261635f6f948e .block-title--style2.text-center.viewAll--center .title {margin-right: 15px !important}
-         .section-block-template--14613441282138__16497261635f6f948e .block-title--style2.text-center.viewAll--center .view_all {position: initial;transform: none;line-height: 20px;}
-         .section-block-template--14613441282138__16497261635f6f948e .block-title--style2.text-right {justify-content: flex-end;}
-         .section-block-template--14613441282138__16497261635f6f948e .products-flex::-webkit-scrollbar-track {
-         margin-left: calc(var(--width) * (100 - 100) / 100 / 2); 
-         margin-right: calc(var(--width) * (100 - 100) / 100 / 2);
-         }
-         }
-         @media (min-width: 1200px) {
-         .section-block-template--14613441282138__16497261635f6f948e {padding-top: 70px;padding-bottom: 0px}.section-block-template--14613441282138__16497261635f6f948e .product-infinite-scroll .button {max-width: 10px}}
-         @media (min-width: 1025px) {.product-block__collection--list:hover .product-block__collection--list_info a,.product-block__collection--list:hover a{color: #3e8cc4;text-decoration: underline;text-underline-offset: 0.2rem}}
-         @media (min-width: 768px) and (max-width: 1199px) {.section-block-template--14613441282138__16497261635f6f948e {padding-top: 45px;padding-bottom: 0px}}
-         @media (min-width: 768px) {
-         .section-block-template--14613441282138__16497261635f6f948e .halo-product-block .products-flex .product {flex-basis: calc(100% / calc(var(--count) + 0.5));width: calc(100% / calc(var(--count) + 0.5))}
-         }
-      </style>
-      <div class="product-block section-block-template--14613441282138__16497261635f6f948e" style="--grid-gap: 15.0px">
-         <div class="container">
-            <div class="halo-block-header text-left text-mb-center block-title--style4 ">
-               <h3 class="title"><span class="text">Best Sellers</span></h3>
-            </div>
-         </div>
-         <div class="halo-block halo-product-block" id="halo-product-block-template--14613441282138__16497261635f6f948e" data-product-block="" data-limit="8" data-layout="slider" sectionid="template--14613441282138__16497261635f6f948e" data-collection="collection-home-1-2" data-image-ratio="adapt" data-swipe="false">
-            <div class=" container layout-body--default enable_image_mb" style="--width-box-banner: 40%" data-width-banner="40">
-               <div class="halo-block-content ">
-                  <div class="products-carousel column-4" data-item-to-show="4" data-item-dots="false" data-item-dots-mb="true" data-item-arrows="true" data-item-arrows-mb="false" data-infinite="true" data-autoplay="false">
-                     <div class="product">
-                        <div class="product-item product-item-loading">
-                           <div class="card">
-                              <div class="card-product">
-                                 <div class="card-product__wrapper">
-                                    <div class="card-media animated-loading" style="padding-bottom: 142.30769230769232%;">
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="card-information">
-                                 <div class="card-information__wrapper text-center">
-                                    <div class="card-information__group card-information__group-2">
-                                       <div class="card-vendor"><a href="/collections/vendors?q=GANTT" title="GANTT">GANTT</a></div>
-                                       <a class="card-title link-underline card-title-ellipsis" href="/products/magnis-darturien-meros-laciniado-1">(Product 8) Sample - Clothing And Accessory Boutiques For Sale</a>
-                                    </div>
-                                    <div class="card-price">
-                                       <div class="price">
-                                          <dl>
-                                             <div class="price__regular">
-                                                <dd class="price__last"><span class="price-item price-item--regular"><span class="text">from</span> <span class="money" data-currency-usd="$86.00" data-currency="USD">$86.00</span></span></dd>
-                                             </div>
-                                             <div class="price__sale">
-                                                <dd class="price__compare" data-compare=""><s class="price-item price-item--regular"></s></dd>
-                                                <dd class="price__last" data-last="8600"><span class="price-item price-item--sale"><span class="text">from</span> <span class="money" data-currency-usd="$86.00" data-currency="USD">$86.00</span></span></dd>
-                                             </div>
-                                             <small class="unit-price caption hidden">
-                                                <dt class="visually-hidden">Unit price</dt>
-                                                <dd class="price__last"><span></span><span aria-hidden="true">/</span><span class="visually-hidden">&nbsp;per&nbsp;</span><span></span></dd>
-                                             </small>
-                                          </dl>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="product">
-                        <div class="product-item product-item-loading">
-                           <div class="card">
-                              <div class="card-product">
-                                 <div class="card-product__wrapper">
-                                    <div class="card-media animated-loading" style="padding-bottom: 142.30769230769232%;">
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="card-information">
-                                 <div class="card-information__wrapper text-center">
-                                    <div class="card-information__group card-information__group-2">
-                                       <div class="card-vendor"><a href="/collections/vendors?q=Burberry" title="Burberry">Burberry</a></div>
-                                       <a class="card-title link-underline card-title-ellipsis" href="/products/magnis-darturien-meros-laciniado-2">(Product 14) Sample - Clothing And Accessory Boutiques For Sale</a>
-                                    </div>
-                                    <div class="card-price">
-                                       <div class="price">
-                                          <dl>
-                                             <div class="price__regular">
-                                                <dd class="price__last"><span class="price-item price-item--regular"><span class="money" data-currency-usd="$286.00" data-currency="USD">$286.00</span></span></dd>
-                                             </div>
-                                             <div class="price__sale">
-                                                <dd class="price__compare" data-compare=""><s class="price-item price-item--regular"></s></dd>
-                                                <dd class="price__last" data-last="28600"><span class="price-item price-item--sale"><span class="money" data-currency-usd="$286.00" data-currency="USD">$286.00</span></span></dd>
-                                             </div>
-                                             <small class="unit-price caption hidden">
-                                                <dt class="visually-hidden">Unit price</dt>
-                                                <dd class="price__last"><span></span><span aria-hidden="true">/</span><span class="visually-hidden">&nbsp;per&nbsp;</span><span></span></dd>
-                                             </small>
-                                          </dl>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="product">
-                        <div class="product-item product-item-loading">
-                           <div class="card">
-                              <div class="card-product">
-                                 <div class="card-product__wrapper">
-                                    <div class="card-media animated-loading" style="padding-bottom: 142.30769230769232%;">
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="card-information">
-                                 <div class="card-information__wrapper text-center">
-                                    <div class="card-information__group card-information__group-2">
-                                       <div class="card-vendor"><a href="/collections/vendors?q=Anna" title="Anna">Anna</a></div>
-                                       <a class="card-title link-underline card-title-ellipsis" href="/products/naminos-dementus-a-dincidunto-3">(Product 12) Sample - Clothing And Accessory Boutiques For Sale</a>
-                                    </div>
-                                    <div class="card-price">
-                                       <div class="price">
-                                          <dl>
-                                             <div class="price__regular">
-                                                <dd class="price__last"><span class="price-item price-item--regular"><span class="money" data-currency-usd="$199.00" data-currency="USD">$199.00</span></span></dd>
-                                             </div>
-                                             <div class="price__sale">
-                                                <dd class="price__compare" data-compare=""><s class="price-item price-item--regular"></s></dd>
-                                                <dd class="price__last" data-last="19900"><span class="price-item price-item--sale"><span class="money" data-currency-usd="$199.00" data-currency="USD">$199.00</span></span></dd>
-                                             </div>
-                                             <small class="unit-price caption hidden">
-                                                <dt class="visually-hidden">Unit price</dt>
-                                                <dd class="price__last"><span></span><span aria-hidden="true">/</span><span class="visually-hidden">&nbsp;per&nbsp;</span><span></span></dd>
-                                             </small>
-                                          </dl>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="product">
-                        <div class="product-item product-item-loading">
-                           <div class="card">
-                              <div class="card-product">
-                                 <div class="card-product__wrapper">
-                                    <div class="card-media animated-loading" style="padding-bottom: 142.30769230769232%;">
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="card-information">
-                                 <div class="card-information__wrapper text-center">
-                                    <div class="card-information__group card-information__group-2">
-                                       <div class="card-vendor"><a href="/collections/vendors?q=Donatello" title="Donatello">Donatello</a></div>
-                                       <a class="card-title link-underline card-title-ellipsis" href="/products/magnis-darturien-meros-laciniado-3">(Product 22) Sample - Clothing And Accessory Boutiques For Sale</a>
-                                    </div>
-                                    <div class="card-price">
-                                       <div class="price price--on-sale ">
-                                          <dl>
-                                             <div class="price__regular">
-                                                <dd class="price__last"><span class="price-item price-item--regular"><span class="text">from</span> <span class="money" data-currency-usd="$69.99" data-currency="USD">$69.99</span></span></dd>
-                                             </div>
-                                             <div class="price__sale">
-                                                <dd class="price__compare" data-compare="8600"><s class="price-item price-item--regular"><span class="money" data-currency-usd="$86.00" data-currency="USD">$86.00</span></s></dd>
-                                                <dd class="price__last" data-last="6999"><span class="price-item price-item--sale"><span class="text">from</span> <span class="money" data-currency-usd="$69.99" data-currency="USD">$69.99</span></span></dd>
-                                             </div>
-                                             <small class="unit-price caption hidden">
-                                                <dt class="visually-hidden">Unit price</dt>
-                                                <dd class="price__last"><span></span><span aria-hidden="true">/</span><span class="visually-hidden">&nbsp;per&nbsp;</span><span></span></dd>
-                                             </small>
-                                          </dl>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="product">
-                        <div class="product-item product-item-loading">
-                           <div class="card">
-                              <div class="card-product">
-                                 <div class="card-product__wrapper">
-                                    <div class="card-media animated-loading" style="padding-bottom: 142.30769230769232%;">
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="card-information">
-                                 <div class="card-information__wrapper text-center">
-                                    <div class="card-information__group card-information__group-2">
-                                       <div class="card-vendor"><a href="/collections/vendors?q=Donatello" title="Donatello">Donatello</a></div>
-                                       <a class="card-title link-underline card-title-ellipsis" href="/products/naminos-dementus-a-dincidunto-1">(Product 6) Sample - Clothing And Accessory Boutiques For Sale</a>
-                                    </div>
-                                    <div class="card-price">
-                                       <div class="price">
-                                          <dl>
-                                             <div class="price__regular">
-                                                <dd class="price__last"><span class="price-item price-item--regular"><span class="text">from</span> <span class="money" data-currency-usd="$189.00" data-currency="USD">$189.00</span></span></dd>
-                                             </div>
-                                             <div class="price__sale">
-                                                <dd class="price__compare" data-compare=""><s class="price-item price-item--regular"></s></dd>
-                                                <dd class="price__last" data-last="18900"><span class="price-item price-item--sale"><span class="text">from</span> <span class="money" data-currency-usd="$189.00" data-currency="USD">$189.00</span></span></dd>
-                                             </div>
-                                             <small class="unit-price caption hidden">
-                                                <dt class="visually-hidden">Unit price</dt>
-                                                <dd class="price__last"><span></span><span aria-hidden="true">/</span><span class="visually-hidden">&nbsp;per&nbsp;</span><span></span></dd>
-                                             </small>
-                                          </dl>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="product">
-                        <div class="product-item product-item-loading">
-                           <div class="card">
-                              <div class="card-product">
-                                 <div class="card-product__wrapper">
-                                    <div class="card-media animated-loading" style="padding-bottom: 142.30769230769232%;">
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="card-information">
-                                 <div class="card-information__wrapper text-center">
-                                    <div class="card-information__group card-information__group-2">
-                                       <div class="card-vendor"><a href="/collections/vendors?q=Anna" title="Anna">Anna</a></div>
-                                       <a class="card-title link-underline card-title-ellipsis" href="/products/loremous-saliduar-a-cosmopolito-3">(Product 27) Sample - Clothing And Accessory Boutiques For Sale</a>
-                                    </div>
-                                    <div class="card-price">
-                                       <div class="price">
-                                          <dl>
-                                             <div class="price__regular">
-                                                <dd class="price__last"><span class="price-item price-item--regular"><span class="money" data-currency-usd="$36.99" data-currency="USD">$36.99</span></span></dd>
-                                             </div>
-                                             <div class="price__sale">
-                                                <dd class="price__compare" data-compare=""><s class="price-item price-item--regular"></s></dd>
-                                                <dd class="price__last" data-last="3699"><span class="price-item price-item--sale"><span class="money" data-currency-usd="$36.99" data-currency="USD">$36.99</span></span></dd>
-                                             </div>
-                                             <small class="unit-price caption hidden">
-                                                <dt class="visually-hidden">Unit price</dt>
-                                                <dd class="price__last"><span></span><span aria-hidden="true">/</span><span class="visually-hidden">&nbsp;per&nbsp;</span><span></span></dd>
-                                             </small>
-                                          </dl>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="product">
-                        <div class="product-item product-item-loading">
-                           <div class="card">
-                              <div class="card-product">
-                                 <div class="card-product__wrapper">
-                                    <div class="card-media animated-loading" style="padding-bottom: 142.30769230769232%;">
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="card-information">
-                                 <div class="card-information__wrapper text-center">
-                                    <div class="card-information__group card-information__group-2">
-                                       <div class="card-vendor"><a href="/collections/vendors?q=Daventry%20Meers" title="Daventry Meers">Daventry Meers</a></div>
-                                       <a class="card-title link-underline card-title-ellipsis" href="/products/loremous-saliduar-a-cosmopolito-2">(Product 16) Sample - Clothing And Accessory Boutiques For Sale</a>
-                                    </div>
-                                    <div class="card-price">
-                                       <div class="price">
-                                          <dl>
-                                             <div class="price__regular">
-                                                <dd class="price__last"><span class="price-item price-item--regular"><span class="money" data-currency-usd="$286.00" data-currency="USD">$286.00</span></span></dd>
-                                             </div>
-                                             <div class="price__sale">
-                                                <dd class="price__compare" data-compare=""><s class="price-item price-item--regular"></s></dd>
-                                                <dd class="price__last" data-last="28600"><span class="price-item price-item--sale"><span class="money" data-currency-usd="$286.00" data-currency="USD">$286.00</span></span></dd>
-                                             </div>
-                                             <small class="unit-price caption hidden">
-                                                <dt class="visually-hidden">Unit price</dt>
-                                                <dd class="price__last"><span></span><span aria-hidden="true">/</span><span class="visually-hidden">&nbsp;per&nbsp;</span><span></span></dd>
-                                             </small>
-                                          </dl>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="product">
-                        <div class="product-item product-item-loading">
-                           <div class="card">
-                              <div class="card-product">
-                                 <div class="card-product__wrapper">
-                                    <div class="card-media animated-loading" style="padding-bottom: 142.30769230769232%;">
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="card-information">
-                                 <div class="card-information__wrapper text-center">
-                                    <div class="card-information__group card-information__group-2">
-                                       <div class="card-vendor"><a href="/collections/vendors?q=Tomorrow" title="Tomorrow">Tomorrow</a></div>
-                                       <a class="card-title link-underline card-title-ellipsis" href="/products/dinterdum-pretium-condimento">(Product 2) Sample - Clothing And Accessory Boutiques For Sale</a>
-                                    </div>
-                                    <div class="card-price">
-                                       <div class="price">
-                                          <dl>
-                                             <div class="price__regular">
-                                                <dd class="price__last"><span class="price-item price-item--regular"><span class="text">from</span> <span class="money" data-currency-usd="$16.99" data-currency="USD">$16.99</span></span></dd>
-                                             </div>
-                                             <div class="price__sale">
-                                                <dd class="price__compare" data-compare=""><s class="price-item price-item--regular"></s></dd>
-                                                <dd class="price__last" data-last="1699"><span class="price-item price-item--sale"><span class="text">from</span> <span class="money" data-currency-usd="$16.99" data-currency="USD">$16.99</span></span></dd>
-                                             </div>
-                                             <small class="unit-price caption hidden">
-                                                <dt class="visually-hidden">Unit price</dt>
-                                                <dd class="price__last"><span></span><span aria-hidden="true">/</span><span class="visually-hidden">&nbsp;per&nbsp;</span><span></span></dd>
-                                             </small>
-                                          </dl>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+
 </main>
 
 
@@ -1339,6 +860,144 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(err=>{ console.error('FETCH ERROR:', err); alert('Erreur mise à jour panier'); });
     });
+});
+
+
+// --- Mettre à jour les sous-totaux et total dynamiquement ---
+function updateCartTotals() {
+    let subtotal = 0;
+    document.querySelectorAll('.cart-item').forEach(item => {
+        const priceEl = item.querySelector('.cart-item-price');
+        const quantityEl = item.querySelector('.qteitem');
+        const lineTotalEl = item.querySelector('.cart-item-total');
+
+        const price = parseFloat(priceEl.textContent.replace(/[^0-9.]/g, '')) || 0;
+        const quantity = parseInt(quantityEl.value) || 1;
+        const lineTotal = price * quantity;
+
+        if(lineTotalEl) {
+            lineTotalEl.textContent = lineTotal.toFixed(2) + ' DA';
+            lineTotalEl.dataset.lineTotal = lineTotal; // mettre à jour l'attribut
+        }
+
+        subtotal += lineTotal;
+    });
+
+    // Mettre à jour sous-total
+    const subtotalEl = document.querySelector('.cart-total-subtotal .money');
+    if(subtotalEl) subtotalEl.textContent = subtotal.toFixed(2) + ' DA';
+
+    // Mettre à jour total
+    const totalEl = document.querySelector('.cart-total-grandtotal .money');
+    if(totalEl) totalEl.textContent = subtotal.toFixed(2) + ' DA';
+}
+
+// --- Ajouter l'événement change sur les quantités ---
+document.querySelectorAll('.qteitem').forEach(input => {
+    input.addEventListener('change', function() {
+        if(this.value < 1) this.value = 1;
+        updateCartTotals();
+    });
+});
+
+// --- Initialiser au chargement de la page ---
+document.addEventListener('DOMContentLoaded', updateCartTotals);
+
+// --- Ajouter l'événement change sur l'input du popup ---
+const popupQuantityInput = document.querySelector('.quantity__input');
+if(popupQuantityInput) {
+    popupQuantityInput.addEventListener('change', function() {
+        if(this.value < 1) this.value = 1;
+
+        // Mettre à jour la quantité dans la ligne du panier correspondante
+        const itemId = document.getElementById('halo-edit-cart-popup-global')?.dataset.itemId;
+        if(itemId){
+            const cartItemEl = document.querySelector(`.cart-item[data-key="${itemId}"], .cart-item[data-edit-cart-id="${itemId.split('-')[0]}"]`);
+            if(cartItemEl){
+                const qteItem = cartItemEl.querySelector('.qteitem');
+                if(qteItem) qteItem.value = parseInt(this.value);
+            }
+        }
+
+        // Recalculer les totaux
+        updateCartTotals();
+    });
+}
+document.addEventListener('DOMContentLoaded', function() {
+    const checkbox = document.querySelector('#cart_conditions');
+    const checkoutBtn = document.querySelector('#cart-checkout');
+
+    if (!checkbox || !checkoutBtn) return;
+
+    // Écouter le changement du checkbox
+    checkbox.addEventListener('change', function() {
+        checkoutBtn.disabled = !this.checked; // active si coché, désactive si décoché
+    });
+
+    // Initialisation au chargement (au cas où le checkbox serait déjà coché)
+    checkoutBtn.disabled = !checkbox.checked;
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    function updateCartTotals() {
+        let subtotal = 0;
+        document.querySelectorAll('.cart-item').forEach(item => {
+            const priceText = item.querySelector('.cart-item-price')?.textContent || '0';
+            const quantity = parseInt(item.querySelector('.qteitem')?.value || 1);
+            const price = parseFloat(priceText.replace(/[^0-9.-]+/g,"")) || 0;
+            subtotal += price * quantity;
+        });
+
+        const subtotalEl = document.querySelector('.cart-total-subtotal .money');
+        const totalEl = document.querySelector('.cart-total-grandtotal .money');
+        if(subtotalEl) subtotalEl.textContent = subtotal.toFixed(2) + ' DA';
+        if(totalEl) totalEl.textContent = subtotal.toFixed(2) + ' DA';
+    }
+
+    function attachRemoveListeners() {
+        document.querySelectorAll('.cart-remove').forEach(btn => {
+            btn.removeEventListener('click', btn._removeHandler); // nettoyer ancien handler
+            btn._removeHandler = function(e) {
+                e.preventDefault();
+                const itemId = this.dataset.line; // correspond à CartItem->id
+                if (!itemId) return console.error('data-line manquant pour suppression');
+
+                fetch(`/cart/remove-ajax/${itemId}`, {
+                    method:'POST',
+                    headers:{ 'Content-Type':'application/json', 'X-Requested-With':'XMLHttpRequest' }
+                })
+                .then(async res => {
+                    const text = await res.text();
+                    let data;
+                    try { data = JSON.parse(text); } 
+                    catch(e){ console.error('Réponse serveur invalide'); return; }
+
+                    if(data.success){
+                        // Supprimer du DOM
+                        const cartItemEl = document.querySelector(`.cart-item[data-line="${itemId}"]`);
+                        if(cartItemEl) cartItemEl.remove();
+
+                        // Mettre à jour mini-cart
+                        const miniCart = document.querySelector('#mini-cart-container');
+                        if(miniCart && data.html) miniCart.innerHTML = data.html;
+
+                        // Recalculer totaux
+                        updateCartTotals();
+                    } else {
+                        alert(data.message || 'Impossible de supprimer le produit');
+                    }
+                })
+                .catch(err => { console.error('Erreur AJAX suppression:', err); alert('Erreur lors de la suppression'); });
+            };
+            btn.addEventListener('click', btn._removeHandler);
+        });
+    }
+
+    // --- Initialisation ---
+    updateCartTotals();
+    attachRemoveListeners();
 });
 </script>
 

@@ -17,7 +17,7 @@ class CartController extends AbstractController
 {
     public function __construct(private CartService $cartService) {}
 
-    #[Route('/view', name: 'viewCart')]
+    #[Route('', name: 'viewCart')]
     public function viewCart(Request $request, CartService $cartService, ProductRepository $productRepository): Response
     {
         $session = $request->getSession();
@@ -131,32 +131,43 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/remove-ajax/{key}', name: 'cart_remove_ajax', methods: ['POST'])]
-    public function removeAjax(string $key, SessionInterface $session): JsonResponse
-    {
-        if ($this->getUser()) {
-            $items = $this->cartService->getItems();
-            if (isset($items[$key])) {
-                $item = $items[$key];
-                $this->cartService->removeProduct($item['product'], $item['color'], $item['size']);
-            }
-            return new JsonResponse([
-                'success' => true,
-                'html' => $this->renderView('cart/mini.html.twig', ['cart' => $this->cartService->getItems()])
-            ]);
-        }
+ #[Route('/remove-ajax/{id}', name: 'cart_remove_ajax', methods: ['POST'])]
+public function removeAjax(string $id, SessionInterface $session): JsonResponse
+{
+    $user = $this->getUser();
 
-        $cart = $session->get('cart', []);
-        if (isset($cart[$key])) {
-            unset($cart[$key]);
-            $session->set('cart', $cart);
+    if ($user) {
+        // ✅ On utilise directement l'id du CartItem
+        $cartItem = $this->cartService->findCartItemById((int)$id);
+        if ($cartItem) {
+            $this->cartService->removeProduct(
+                $cartItem->getProduct(),
+                $cartItem->getColor(),
+                $cartItem->getSize()
+            );
         }
 
         return new JsonResponse([
             'success' => true,
-            'html' => $this->renderView('cart/mini.html.twig', ['cart' => $cart])
+            'html' => $this->renderView('cart/mini.html.twig', [
+                'cart' => $this->cartService->getItems()
+            ])
         ]);
     }
+
+    // Pour visiteur → session
+    $cart = $session->get('cart', []);
+    if (isset($cart[$id])) {
+        unset($cart[$id]);
+        $session->set('cart', $cart);
+    }
+
+    return new JsonResponse([
+        'success' => true,
+        'html' => $this->renderView('cart/mini.html.twig', ['cart' => $cart])
+    ]);
+}
+    
 
     #[Route('/update-ajax/{id}', name: 'cart_update_ajax', methods: ['POST'])]
     public function updateAjax(string $id, Request $request, SessionInterface $session, ProductRepository $productRepository): JsonResponse
