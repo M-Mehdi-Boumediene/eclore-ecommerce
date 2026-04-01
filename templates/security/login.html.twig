@@ -170,42 +170,41 @@
                            <div class="login-text">
                               Veuillez saisir votre adresse e-mail et votre mot de passe ci-dessous pour accéder à votre compte.
                            </div>
-                           <form method="post" action="{{ path('app_login') }}" id="customer_login"  class="customer-login-form">
-                                {% if error %}
-                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                                {% endif %}
+                           <form method="post" action="{{ path('app_login') }}" id="customer_login" class="customer-login-form">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
-                                {% if app.user %}
-                                    <div class="mb-3">
-                                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
-                                    </div>
-                                {% endif %}
-                              <div class="form-field">
-                                 <label class="form-label" for="CustomerEmail">
-                                 
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
+        </div>
+    {% endif %}
 
-                                    Adresse email
-                                 <em>*</em>
-                                 </label>
-                                  <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-input form-input-placeholder" autocomplete="email" required autofocus>
-                              </div>
-                              <div class="form-field">
-                                 <label class="form-label" for="CustomerPassword">
-                                 Password
-                                 <em>*</em> 
-                                 </label>
-                                 <input type="password" name="_password" id="password" class="form-input form-input-placeholder" autocomplete="current-password" required>
-                                 <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
-                               
-                              </div>
-                              <div class="form-actions">
-                                 <input type="submit" class="button button-2" value="Se connecter" wfd-id="id37">
-                                 <a href="#recover" class="link link-underline forget-password">
-                                 <span class="text">Mot de passe oublié ?</span>
-                                 </a>
-                              </div>
-                              <input type="hidden" name="login_with_shop[analytics_trace_id]" value="ecc60cd1-e8ba-41aa-8124-2555447dc6eb" wfd-id="id38">
-                           </form>
+    <div class="form-field">
+        <label class="form-label" for="username">
+            Adresse email <em>*</em>
+        </label>
+        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-input form-input-placeholder" autocomplete="email" required autofocus>
+    </div>
+
+    <div class="form-field">
+        <label class="form-label" for="password">
+            Password <em>*</em>
+        </label>
+        <input type="password" name="_password" id="password" class="form-input form-input-placeholder" autocomplete="current-password" required>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="button button-2">Se connecter</button>
+        <a href="#recover" class="link link-underline forget-password">
+            <span class="text">Mot de passe oublié ?</span>
+        </a>
+    </div>
+
+    <input type="hidden" name="login_with_shop[analytics_trace_id]" value="ecc60cd1-e8ba-41aa-8124-2555447dc6eb">
+</form>>
                         </div>
                      </div>
                   </div>
