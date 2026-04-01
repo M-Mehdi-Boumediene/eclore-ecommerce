@@ -170,7 +170,7 @@
                            <div class="login-text">
                               Veuillez saisir votre adresse e-mail et votre mot de passe ci-dessous pour accéder à votre compte.
                            </div>
-                           <form method="post"  id="customer_login"  class="customer-login-form">
+                           <form method="post" action="{{ path('app_login') }}" id="customer_login"  class="customer-login-form">
                                 {% if error %}
                                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                                 {% endif %}
