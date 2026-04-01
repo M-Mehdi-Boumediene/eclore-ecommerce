@@ -35,7 +35,9 @@
     font-weight: 600;
 }
 
-
+button, input[type="submit"] {
+  pointer-events: auto !important;
+}
 </style>
 <main id="MainContent" class="wrapper-body content-for-layout focus-none" role="main" tabindex="-1">
    <div id="shopify-section-template--16071076347994__main" class="shopify-section">
@@ -170,40 +172,25 @@
                            <div class="login-text">
                               Veuillez saisir votre adresse e-mail et votre mot de passe ci-dessous pour accéder à votre compte.
                            </div>
-                           <form method="post" action="{{ path('app_login') }}" id="customer_login" class="customer-login-form">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+                           <form method="post" action="{{ path('app_login') }}" id="customer_login_mobile">
+  {% if error %}
+    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+  {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
-        </div>
-    {% endif %}
+  <div class="form-field">
+    <label for="login_username_mobile">Adresse email *</label>
+    <input type="email" name="_username" id="login_username_mobile" value="{{ last_username }}" required autofocus>
+  </div>
 
-    <div class="form-field">
-        <label class="form-label" for="username">
-            Adresse email <em>*</em>
-        </label>
-        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-input form-input-placeholder" autocomplete="email" required autofocus>
-    </div>
+  <div class="form-field">
+    <label for="login_password_mobile">Mot de passe *</label>
+    <input type="password" name="_password" id="login_password_mobile" required>
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+  </div>
 
-    <div class="form-field">
-        <label class="form-label" for="password">
-            Password <em>*</em>
-        </label>
-        <input type="password" name="_password" id="password" class="form-input form-input-placeholder" autocomplete="current-password" required>
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-    </div>
-
-    <div class="form-actions">
-        <button type="submit" class="button button-2">Se connecter</button>
-        <a href="#recover" class="link link-underline forget-password">
-            <span class="text">Mot de passe oublié ?</span>
-        </a>
-    </div>
-
-    <input type="hidden" name="login_with_shop[analytics_trace_id]" value="ecc60cd1-e8ba-41aa-8124-2555447dc6eb">
+  <div class="form-actions">
+    <button type="submit">Se connecter</button>
+  </div>
 </form>
                         </div>
                      </div>
@@ -225,7 +212,7 @@
                             <div class="login-text">
                                 Veuillez vous inscrire ci-dessous pour créer un compte
                             </div>
-                            <form >
+                            <form method="post" action="/account" id="create_customer">
                                 <input type="hidden" name="form_type" value="create_customer">
                                 <div class="form-field">
                                     <label class="form-label" for="RegisterForm-FirstName">First name</label>
