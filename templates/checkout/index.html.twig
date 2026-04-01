@@ -104,19 +104,30 @@ let map, marker;
 
 function initMap() {
     const defaultLocation = { lat: 36.7538, lng: 3.0588 };
-    map = new google.maps.Map(document.getElementById('map'), { center: defaultLocation, zoom: 12 });
 
-    marker = new google.maps.Marker({ position: defaultLocation, map: map, draggable:true });
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: defaultLocation,
+        zoom: 12
+    });
 
-    function updateLatLng(lat, lng){
+    marker = new google.maps.Marker({
+        position: defaultLocation,
+        map: map,
+        draggable: true
+    });
+
+    function updateLatLng(lat, lng, zoom = 15){
         const latInput = document.querySelector('input[id$="latitude"]');
         const lngInput = document.querySelector('input[id$="longitude"]');
-        if(!latInput || !lngInput) return;
-        latInput.value = lat;
-        lngInput.value = lng;
+
+        if(latInput && lngInput){
+            latInput.value = lat;
+            lngInput.value = lng;
+        }
+
         marker.setPosition({ lat, lng });
         map.setCenter({ lat, lng });
-        map.setZoom(15);
+        map.setZoom(zoom);
     }
 
     // Marker draggable
@@ -129,39 +140,77 @@ function initMap() {
     const input = document.getElementById('address-input');
     const autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
+
     autocomplete.addListener('place_changed', function(){
         const place = autocomplete.getPlace();
         if(!place.geometry) return;
-        updateLatLng(place.geometry.location.lat(), place.geometry.location.lng());
+
+        updateLatLng(
+            place.geometry.location.lat(),
+            place.geometry.location.lng(),
+            16
+        );
     });
 
-    // Bouton "Ma position" directement sur la carte
-    const locateControlDiv = document.createElement('div');
-    const locateControl = document.createElement('button');
-    locateControl.textContent = "📍 Ma position";
-    locateControl.style.backgroundColor = "#fff";
-    locateControl.style.border = "2px solid #fff";
-    locateControl.style.borderRadius = "3px";
-    locateControl.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
-    locateControl.style.cursor = "pointer";
-    locateControl.style.margin = "10px";
-    locateControl.style.padding = "8px";
-    locateControl.style.fontSize = "14px";
-    locateControlDiv.appendChild(locateControl);
+    // Bouton "Me localiser"
+    const btn = document.getElementById('locate-btn');
 
-    locateControl.addEventListener('click', () => {
-        if(navigator.geolocation){
-            navigator.geolocation.getCurrentPosition((position) => {
-                updateLatLng(position.coords.latitude, position.coords.longitude);
-            }, (error) => {
-                alert('Impossible de récupérer votre localisation : ' + error.message);
-            }, { enableHighAccuracy: true });
-        } else {
-            alert("Géolocalisation non supportée par votre navigateur");
+    btn.addEventListener('click', () => {
+
+        btn.innerText = "Localisation...";
+        btn.disabled = true;
+
+        if(!navigator.geolocation){
+            alert("Géolocalisation non supportée");
+            resetBtn();
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                const accuracy = position.coords.accuracy;
+
+                // Si précision mauvaise (>100m)
+                if(accuracy > 100){
+                    alert("Localisation approximative. Ajustez le point sur la carte.");
+                }
+
+                updateLatLng(lat, lng, 17);
+
+                resetBtn();
+            },
+            (error) => {
+                let message = "Erreur de localisation";
+
+                switch(error.code){
+                    case error.PERMISSION_DENIED:
+                        message = "Autorisation refusée";
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        message = "Position indisponible";
+                        break;
+                    case error.TIMEOUT:
+                        message = "Temps dépassé";
+                        break;
+                }
+
+                alert(message);
+                resetBtn();
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            }
+        );
+
+        function resetBtn(){
+            btn.innerText = "Me localiser";
+            btn.disabled = false;
         }
     });
-
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(locateControlDiv);
 }
 </script>
 <script async defer
