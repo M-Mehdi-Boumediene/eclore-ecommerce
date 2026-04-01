@@ -1,56 +1,171 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CheckoutController!{% endblock %}
+{% block title %}Checkout{% endblock %}
 
 {% block body %}
+
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+/* ==== Ton CSS existant ==== */
+body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background: #f7f7f7; margin:0; padding:0; color:#333; }
+.checkout-wrapper { max-width:1100px; margin:2rem auto; display:flex; gap:2rem; flex-wrap:wrap; }
+.checkout-left { flex:1 1 55%; min-width:320px; }
+.checkout-left .cart-box { background:#fff; padding:2rem; border-radius:10px; box-shadow:0 2px 15px rgba(0,0,0,0.08); position:relative; }
+.checkout-left h2 { margin-bottom:1.5rem; }
+table { width:100%; border-collapse:collapse; margin-bottom:1.5rem; }
+table th, table td { padding:0.75rem 1rem; vertical-align:middle; border-bottom:1px solid #eee; }
+table th { background:#f4f4f4; font-weight:600; }
+table tr:hover { background:#f9f9f9; }
+.product-img { width:50px; height:50px; object-fit:cover; border-radius:6px; margin-right:0.5rem; }
+td.product-name { display:flex; align-items:center; }
+.total-row td { font-weight:700; font-size:1.1rem; }
+.cart-total-sticky { position:sticky; bottom:0; background:#fff; padding:1rem 2rem; border-top:1px solid #eee; display:flex; justify-content:space-between; font-weight:700; font-size:1.1rem; border-radius:0 0 10px 10px; }
+.checkout-right { flex:1 1 40%; min-width:320px; position:sticky; top:2rem; align-self:flex-start; }
+.checkout-right .form-box { background:#fff; padding:2rem; border-radius:10px; box-shadow:0 2px 15px rgba(0,0,0,0.08); }
+.checkout-right h2 { margin-bottom:1.5rem; }
+label { display:block; margin-bottom:0.25rem; font-weight:500; }
+input, textarea { width:100%; padding:0.75rem 1rem; margin-bottom:1.25rem; border:1px solid #ddd; border-radius:6px; font-size:1rem; transition:border-color 0.3s, box-shadow 0.3s; }
+input:focus, textarea:focus { outline:none; border-color:#1a73e8; box-shadow:0 0 0 2px rgba(26,115,232,0.2); }
+#map { height:300px; width:100%; margin-bottom:1rem; border-radius:6px; }
+button.btn-primary { background:#1a73e8; color:white; padding:1rem; border:none; border-radius:6px; font-size:1rem; font-weight:500; cursor:pointer; width:100%; transition:background 0.3s; }
+button.btn-primary:hover { background:#1669c1; }
+@media(max-width:768px){ .checkout-wrapper{ flex-direction:column; } .checkout-right{ position:relative; top:0; margin-top:2rem; } .cart-total-sticky{ position:relative; bottom:auto; border-radius:10px; } }
 </style>
 
-<h2>Votre panier</h2>
+<div class="checkout-wrapper">
 
-{% set total = 0 %}
+    <!-- Panier -->
+    <div class="checkout-left">
+        <div class="cart-box">
+            <h2>Votre panier</h2>
+            {% set total = 0 %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Quantité</th>
+                        <th>Prix</th>
+                        <th>Sous-total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                        {% set price = item.product.price %}
+                        {% set subtotal = price * item.quantity %}
+                        {% set total = total + subtotal %}
+                        <tr>
+                            <td class="product-name">
+                                {% if item.product.mainPhoto %}
+                                    <img src="{{ asset('uploads/products/' ~ item.product.mainPhoto) }}" alt="{{ item.product.name }}" class="product-img">
+                                {% endif %}
+                                {{ item.product.name }}
+                            </td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ price | number_format(2, '.', ',') }} €</td>
+                            <td>{{ subtotal | number_format(2, '.', ',') }} €</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="cart-total-sticky">
+                <span>Total</span>
+                <span>{{ total | number_format(2, '.', ',') }} €</span>
+            </div>
+        </div>
+    </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>Produit</th>
-            <th>Quantité</th>
-            <th>Prix</th>
-            <th>Sous-total</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in cart %}
-            {% set price = item.product.price %}
-            {% set subtotal = price * item.quantity %}
-            {% set total = total + subtotal %}
-            <tr>
-                <td>{{ item.product.name }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ price }} €</td>
-                <td>{{ subtotal }} €</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <!-- Formulaire livraison -->
+    <div class="checkout-right">
+        <div class="form-box">
+            <h2>Informations de livraison</h2>
 
-<h3>Total : {{ total }} €</h3>
+            {{ form_start(form) }}
+                {{ form_row(form.fullName) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.phone) }}
 
-<hr>
+                <label for="address-input">Adresse de livraison</label>
+                {{ form_row(form.address, {'attr': {'id':'address-input'}}) }}
+                <button type="button" id="locate-btn" class="btn btn-primary" style="margin-bottom:1rem;">Me localiser</button>
 
-<h2>Informations de livraison</h2>
+                <div id="map"></div>
 
-{{ form_start(form) }}
+                {{ form_row(form.latitude) }}
+                {{ form_row(form.longitude) }}
 
-    {{ form_row(form.address) }}
-    {{ form_row(form.fullName) }}
-    {{ form_row(form.phone) }}
-    {{ form_row(form.email) }}
+                <button type="submit" class="btn btn-primary">Commander</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
 
-    <button type="submit" class="btn btn-primary">
-        Commander
-    </button>
-{{ form_end(form) }}
+</div>
+
+<script>
+let map, marker;
+
+function initMap() {
+    const defaultLocation = { lat: 36.7538, lng: 3.0588 };
+    map = new google.maps.Map(document.getElementById('map'), { center: defaultLocation, zoom: 12 });
+
+    marker = new google.maps.Marker({ position: defaultLocation, map: map, draggable:true });
+
+    function updateLatLng(lat, lng){
+        const latInput = document.querySelector('input[id$="latitude"]');
+        const lngInput = document.querySelector('input[id$="longitude"]');
+        if(!latInput || !lngInput) return;
+        latInput.value = lat;
+        lngInput.value = lng;
+        marker.setPosition({ lat, lng });
+        map.setCenter({ lat, lng });
+        map.setZoom(15);
+    }
+
+    // Marker draggable
+    google.maps.event.addListener(marker, 'dragend', function(){
+        const pos = marker.getPosition();
+        updateLatLng(pos.lat(), pos.lng());
+    });
+
+    // Autocomplete adresse
+    const input = document.getElementById('address-input');
+    const autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+    autocomplete.addListener('place_changed', function(){
+        const place = autocomplete.getPlace();
+        if(!place.geometry) return;
+        updateLatLng(place.geometry.location.lat(), place.geometry.location.lng());
+    });
+
+    // Bouton "Ma position" directement sur la carte
+    const locateControlDiv = document.createElement('div');
+    const locateControl = document.createElement('button');
+    locateControl.textContent = "📍 Ma position";
+    locateControl.style.backgroundColor = "#fff";
+    locateControl.style.border = "2px solid #fff";
+    locateControl.style.borderRadius = "3px";
+    locateControl.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
+    locateControl.style.cursor = "pointer";
+    locateControl.style.margin = "10px";
+    locateControl.style.padding = "8px";
+    locateControl.style.fontSize = "14px";
+    locateControlDiv.appendChild(locateControl);
+
+    locateControl.addEventListener('click', () => {
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition((position) => {
+                updateLatLng(position.coords.latitude, position.coords.longitude);
+            }, (error) => {
+                alert('Impossible de récupérer votre localisation : ' + error.message);
+            }, { enableHighAccuracy: true });
+        } else {
+            alert("Géolocalisation non supportée par votre navigateur");
+        }
+    });
+
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(locateControlDiv);
+}
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIGag-NpxLh2Pr5-y-gfbsYEskXeEGi4o&libraries=places&callback=initMap">
+</script>
+
 {% endblock %}
