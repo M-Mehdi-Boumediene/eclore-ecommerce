@@ -139,31 +139,7 @@ button, input[type="submit"] {
             <div class="halo-page-content">
                <div class="login-row clearfix">
                   <div class="login-rowItem login-rowLeft">
-                     <div class="login-item" id="recover">
-                        <h2 class="halo-page-title page-subheader text-left">
-                           Reset your password
-                        </h2>
-                        <div class="halo-page-wrapper">
-                           <div class="login-text">
-                              We will send you an email to reset your password
-                           </div>
-                           <form method="post" action="/account/recover" accept-charset="UTF-8">
-                              <input type="hidden" name="form_type" value="recover_customer_password" wfd-id="id29"><input type="hidden" name="utf8" value="✓" wfd-id="id30">
-                              <div class="form-field">
-                                 <label class="form-label" for="RecoverEmail">
-                                 Email Address
-                                 </label>
-                                 <input class="form-input form-input-placeholder" type="email" value="" name="email" id="RecoverEmail" autocorrect="off" autocapitalize="off" autocomplete="email" placeholder="" wfd-id="id31">
-                              </div>
-                              <div class="form-actions">
-                                 <input type="submit" class="button button-2" value="Submit" wfd-id="id32">
-                                 <a href="#login" class="link link-underline cancel">
-                                 <span class="text">Cancel</span>
-                                 </a>
-                              </div>
-                           </form>
-                        </div>
-                     </div>
+                  
                      <div class="login-item" id="login">
                         <h2 class="halo-page-title page-subheader text-left">
                            Se connecter à votre compte
@@ -246,7 +222,7 @@ button, input[type="submit"] {
                                     <input class="form-input" type="password" name="customer[password]" id="RegisterForm-password" required>
                                 </div>
                                 <div class="form-actions">
-                                    <input  value="Create an account" class="button button--primary">
+                                    <input type="submit"  value="Create an account" class="button button--primary">
                                 </div>
                             </form>
                         </div>
