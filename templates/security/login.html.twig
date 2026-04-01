@@ -40,31 +40,10 @@ button, input[type="submit"] {
 }
 </style>
 <main id="MainContent" class="wrapper-body content-for-layout focus-none" role="main" tabindex="-1">
-   <div id="shopify-section-template--16071076347994__main" class="shopify-section">
-      <link href="//new-ella-demo.myshopify.com/cdn/shop/t/196/assets/customer.css?v=66626040895701627551720692279" rel="stylesheet" type="text/css" media="all">
-      <div class="account-page login-page section-block-template--16071076347994__main">
-         <div class="container">
-            <div class="halo-page-header">
-               <link href="//new-ella-demo.myshopify.com/cdn/shop/t/196/assets/component-breadcrumb.css?v=158896573748378790801752028199" rel="stylesheet" type="text/css" media="all">
-               <breadcrumb-component class="breadcrumb-container style--line_clamp_1 initialized" data-collection-title="" data-collection-all="/collections/all">
-                  <nav class="breadcrumb breadcrumb-" role="navigation" aria-label="breadcrumbs">
-                     <a class="link home-link" href="/">Home</a>
-                     <span class="separate" aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                           <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
-                        </svg>
-                     </span>
-                     <span>Account</span><span class="observe-element" style="width: 1px; height: 1px; background: transparent; display: inline-block; flex-shrink: 0;"></span>
-                  </nav>
-               </breadcrumb-component>
-          
-             
-            </div>
-            <div class="halo-page-content">
-               <div class="login-row clearfix">
-                  <div class="login-rowItem login-rowLeft">
+  
+       
                   
-                     <div class="login-item" id="login">
+                   
                         <h2 class="halo-page-title page-subheader text-left">
                            Se connecter à votre compte
                         </h2>
@@ -72,142 +51,41 @@ button, input[type="submit"] {
                            <div class="login-text">
                               Veuillez saisir votre adresse e-mail et votre mot de passe ci-dessous pour accéder à votre compte.
                            </div>
-                           <form method="post" action="{{ path('app_login') }}" id="customer_login" class="customer-login-form">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+                                        <form method="post" action="{{ path('app_login') }}" id="customer_login" class="customer-login-form">
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
-        </div>
-    {% endif %}
+                            {% if app.user %}
+                                <div class="mb-3">
+                                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ logout_path() }}">Logout</a>
+                                </div>
+                            {% endif %}
 
-    <div class="form-field">
-        <label class="form-label" for="username">
-            Adresse email <em>*</em>
-        </label>
-        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-input form-input-placeholder" autocomplete="email" required autofocus>
-    </div>
-
-    <div class="form-field">
-        <label class="form-label" for="password">
-            Password <em>*</em>
-        </label>
-        <input type="password" name="_password" id="password" class="form-input form-input-placeholder" autocomplete="current-password" required>
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-    </div>
-
-    <div class="form-actions">
-        <button type="submit" class="button button-2">Se connecter</button>
-        <a href="#recover" class="link link-underline forget-password">
-            <span class="text">Mot de passe oublié ?</span>
-        </a>
-    </div>
-
-    <input type="hidden" name="login_with_shop[analytics_trace_id]" value="ecc60cd1-e8ba-41aa-8124-2555447dc6eb">
-</form>
-                        </div>
-                     </div>
-                  </div>
-              <div class="login-rowItem login-rowRight">
-                <div class="login-item">
-                    <h2 class="halo-page-title page-subheader text-left">
-                        Créer un compte
-                    </h2>
-
-                    <div class="halo-page-wrapper">
-                        <div class="tab-buttons" style="margin-bottom: 20px;">
-                            <button type="button" class="tab-btn active" data-tab="client">Particulier</button>
-                            <button type="button" class="tab-btn" data-tab="reseller">Revendeur</button>
-                        </div>
-
-                        <!-- Formulaire Client -->
-                        <div class="tab-content tab-client" style="display: block;">
-                            <div class="login-text">
-                                Veuillez vous inscrire ci-dessous pour créer un compte
-                            </div>
-                            <form method="post" action="/account" id="create_customer">
-                                <input type="hidden" name="form_type" value="create_customer">
-                                <div class="form-field">
-                                    <label class="form-label" for="RegisterForm-FirstName">First name</label>
-                                    <input class="form-input" type="text" name="customer[first_name]" id="RegisterForm-FirstName">
-                                </div>
-                                <div class="form-field">
-                                    <label class="form-label" for="RegisterForm-LastName">Last name</label>
-                                    <input class="form-input" type="text" name="customer[last_name]" id="RegisterForm-LastName">
-                                </div>
-                                <div class="form-field">
-                                    <label class="form-label" for="RegisterForm-email">Your email address <em>*</em></label>
-                                    <input class="form-input" type="email" name="customer[email]" id="RegisterForm-email" required>
-                                </div>
-                                <div class="form-field">
-                                    <label class="form-label" for="password">Your password <em>*</em></label>
-                                    <input class="form-input" type="password" name="customer[password]" id="RegisterForm-password" required>
-                                </div>
-                                <div class="form-actions">
-                                    <input type="submit"  value="Create an account" class="button button--primary">
-                                </div>
-                            </form>
-                        </div>
-
-                        <!-- Formulaire Revendeur -->
-                        <div class="tab-content tab-reseller" style="display: none;">
-                            <div class="login-text">
-                                Créez votre compte revendeur pour accéder aux tarifs professionnels et offres exclusives.
-                            </div>
-                            <form method="post" action="/account/register-reseller" accept-charset="UTF-8" class="create-reseller-form">
-                                <input type="hidden" name="form_type" value="create_reseller">
-                                <div class="form-field">
-                                    <label class="form-label" for="ResellerCompany">Nom de la société <em>*</em></label>
-                                    <input class="form-input" type="text" name="reseller[company]" id="ResellerCompany" required>
-                                </div>
-                                <div class="form-field">
-                                    <label class="form-label" for="ResellerEmail">Email professionnel <em>*</em></label>
-                                    <input class="form-input" type="email" name="reseller[email]" id="ResellerEmail" required>
-                                </div>
-                                <div class="form-field">
-                                    <label class="form-label" for="ResellerPassword">Mot de passe <em>*</em></label>
-                                    <input class="form-input" type="password" name="reseller[password]" id="ResellerPassword" required>
-                                </div>
-                                <div class="form-actions">
-                                    <input type="submit" class="button button--primary" value="Créer un compte revendeur">
-                                </div>
-                            </form>
-                        </div>
+                    <div class="form-field">
+                        <label class="form-label" for="username">
+                            Adresse email <em>*</em>
+                        </label>
+                        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-input form-input-placeholder" autocomplete="email" required autofocus>
                     </div>
-                </div>
-</div>
-                  
-               </div>
-               
-            </div>
-         </div>
-      </div>
-      <style>
-         @media (min-width: 1025px) {}
-         @media (max-width: 1024px) {}
-         @media (max-width: 551px) {}
-      </style>
-   </div>
-</main>
 
-<script>
-document.querySelectorAll('.tab-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        const tab = button.dataset.tab;
+                    <div class="form-field">
+                        <label class="form-label" for="password">
+                            Password <em>*</em>
+                        </label>
+                        <input type="password" name="_password" id="password" class="form-input form-input-placeholder" autocomplete="current-password" required>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    </div>
 
-        // Désactive tous les onglets
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(content => content.style.display = 'none');
+                    <div class="form-actions">
+                        <button type="submit" class="button button-2">Se connecter</button>
+                        <a href="#recover" class="link link-underline forget-password">
+                            <span class="text">Mot de passe oublié ?</span>
+                        </a>
+                    </div>
 
-        // Active l’onglet cliqué
-        button.classList.add('active');
-        document.querySelector('.tab-' + tab).style.display = 'block';
-    });
-});
-</script>
+                    <input type="hidden" name="login_with_shop[analytics_trace_id]" value="ecc60cd1-e8ba-41aa-8124-2555447dc6eb">
+                </form>
 
-</body>
 
 {% endblock %}
