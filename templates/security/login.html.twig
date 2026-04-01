@@ -66,14 +66,14 @@ button, input[type="submit"] {
                         <label class="form-label" for="username">
                             Adresse email <em>*</em>
                         </label>
-                        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-input form-input-placeholder" autocomplete="email" required autofocus>
+                        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-input form-input-placeholder" required autofocus>
                     </div>
 
                     <div class="form-field">
                         <label class="form-label" for="password">
                             Password <em>*</em>
                         </label>
-                        <input type="password" name="_password" id="password" class="form-input form-input-placeholder" autocomplete="current-password" required>
+                        <input type="password" name="_password" id="password" class="form-input form-input-placeholder"  required>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                     </div>
 
