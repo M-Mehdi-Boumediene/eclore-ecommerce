@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use App\Entity\Order;
 
 class CheckoutType extends AbstractType
 {
@@ -32,19 +33,16 @@ class CheckoutType extends AbstractType
                 'attr' => ['id' => 'address-input'], // Pour Google Maps autocomplete
             ])
             // Champs cachés pour Google Maps
-            ->add('latitude', HiddenType::class, [
-                'attr' => ['id' => 'latitude'],
-            ])
-            ->add('longitude', HiddenType::class, [
-                'attr' => ['id' => 'longitude'],
-            ])
+          ->add('latitude', TextType::class, ['required' => false])
+            ->add('longitude', TextType::class, ['required' => false])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Si tu veux lier à l'entité Order, tu peux mettre : 'data_class' => Order::class
+       
         ]);
     }
+    
 }

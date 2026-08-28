@@ -37,7 +37,8 @@ class CheckoutController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $order = $cartService->createOrderFromSession($session, $form->getData());
-
+            
+        
             if ($order) {
                 return $this->redirectToRoute('order_success');
             }

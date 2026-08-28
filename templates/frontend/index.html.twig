@@ -751,36 +751,45 @@
                                                    
                                                    <form onsubmit="return false;" class="variants"  >
                                                 <div class="selector-wrapper selector-wrapper-1 swatch option-color" data-option-index="0" data-option-position="0">
-                                                   <label class="form-label">Color: <span class="label-value-1">{{ product.productImages|first.color.name }}</span></label>
+                                                   {% set firstImage = product.productImages|first %}
 
-                                        {% for productImage in product.productImages %}
-                                          {% set colorName = productImage.color.name %}
-                                          {% set imageUrl = asset('uploads/product-images/' ~ productImage.path) %}
+<label class="form-label">
+    Color:
+    <span class="label-value-1">
+        {% if firstImage and firstImage.color %}
+            {{ firstImage.color.name }}
+        {% endif %}
+    </span>
+</label>
 
-                                          <div class="swatch-element {{ colorName|lower }} available" data-value="{{ colorName }}">
+                                      {% for productImage in product.productImages %}
+    {% if productImage and productImage.color %}
+        {% set colorName = productImage.color.name %}
+        {% set imageUrl = asset('uploads/product-images/' ~ productImage.path) %}
 
-                                             <input class="single-option"
-                                                   type="radio"
-                                                   name="SingleOptionSelector-0-{{ product.id }}"
-                                                   data-index="option1"
-                                                   value="{{ colorName }}"
-                                                   data-image="{{ imageUrl }}"
-                                                   id="SingleOptionSelector0-{{ colorName }}-{{ product.id }}"
-                                                   {% if loop.first %}checked{% endif %}>
+        <div class="swatch-element {{ colorName|lower }} available" data-value="{{ colorName }}">
 
-                                             <label class="single-label"
-                                                   title="{{ colorName }}"
-                                                   for="SingleOptionSelector0-{{ colorName }}-{{ product.id }}">
+            <input class="single-option"
+                   type="radio"
+                   name="option-{{ product.id }}"
+                   value="{{ colorName }}"
+                   id="SingleOptionSelector0-{{ colorName }}-{{ product.id }}">
 
-                                                   <span class="pattern"
-                                                         style="background-color: {{ productImage.color.hex }};
-                                                               background: url('{{ imageUrl }}');
-                                                               background-size: cover;">
-                                                   </span>
+            <label class="single-label"
+                   title="{{ colorName }}"
+                   for="SingleOptionSelector0-{{ colorName }}-{{ product.id }}">
 
-                                             </label>
-                                          </div>
-                                       {% endfor %}
+                <span class="pattern"
+                      style="background-color: {{ productImage.color.hex }};
+                             background: url('{{ imageUrl }}');
+                             background-size: cover;">
+                </span>
+
+            </label>
+
+        </div>
+    {% endif %}
+{% endfor %}
                                                 </div>
                                                    <script>
                                                    document.addEventListener('DOMContentLoaded', function() {
@@ -908,17 +917,34 @@
                                        </div>
                                        <div class="card-swatch text-center clearfix quick_shop_type_2" id="product-swatch-{{product.id}}">
                                           <ul class="swatch list-unstyled">
-                                          {% for productImage in product.productImages %}
-                                             <li class="item">
-                                                <div class="item-wrapper clearfix">
-                                                   <label class="swatch-label {% if loop.first %}is-active{% endif %}" data-value="{{productImage.color.name}}" data-product-id="{{ product.id }}" data-variant-id="{{productImage.color.id}}" title="{{productImage.color.id}}" data-variant-img="{{ asset('uploads/product-images/' ~ productImage.path) }}">
-                                                   <span class="pattern" style="background-color:{{productImage.color.hex}} "></span>
-                                                   {{productImage.color.name}}
-                                                   </label>
-                                                   <span class="tooltip">{{productImage.color.name}}</span>
-                                                </div>
-                                             </li>
-                                          {% endfor %}
+                                     {% for productImage in product.productImages %}
+    {% if productImage and productImage.color %}
+        <li class="item">
+            <div class="item-wrapper clearfix">
+
+                <label class="swatch-label {% if loop.first %}is-active{% endif %}"
+                       data-value="{{ productImage.color.name }}"
+                       data-product-id="{{ product.id }}"
+                       data-variant-id="{{ productImage.color.id }}"
+                       title="{{ productImage.color.id }}"
+                       data-variant-img="{{ asset('uploads/product-images/' ~ productImage.path) }}">
+
+                    <span class="pattern"
+                          style="background-color: {{ productImage.color.hex }}">
+                    </span>
+
+                    {{ productImage.color.name }}
+
+                </label>
+
+                <span class="tooltip">
+                    {{ productImage.color.name }}
+                </span>
+
+            </div>
+        </li>
+    {% endif %}
+{% endfor %}
                                           </ul>
                                        </div>
                                        <div class="card-action__group card-list__hidden">

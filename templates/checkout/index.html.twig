@@ -78,7 +78,7 @@ button.btn-primary:hover { background:#1669c1; }
         <div class="form-box">
             <h2>Informations de livraison</h2>
 
-            {{ form_start(form) }}
+            {{ form_start(form, {'attr': {'id': 'checkout-form'}, 'method': 'POST'}) }}
                 {{ form_row(form.fullName) }}
                 {{ form_row(form.email) }}
                 {{ form_row(form.phone) }}
@@ -117,12 +117,14 @@ function initMap() {
     });
 
     function updateLatLng(lat, lng, zoom = 15){
-        const latInput = document.querySelector('input[id$="latitude"]');
-        const lngInput = document.querySelector('input[id$="longitude"]');
+        // Cibler par name (Symfony génère name="checkout[latitude]" etc.)
+        const latInput = document.querySelector('input[name$="[latitude]"]');
+        const lngInput = document.querySelector('input[name$="[longitude]"]');
 
         if(latInput && lngInput){
             latInput.value = lat;
             lngInput.value = lng;
+            console.log("LAT:", lat, "LNG:", lng); // debug
         }
 
         marker.setPosition({ lat, lng });
@@ -216,5 +218,5 @@ function initMap() {
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIGag-NpxLh2Pr5-y-gfbsYEskXeEGi4o&libraries=places&callback=initMap">
 </script>
-
+</body>
 {% endblock %}
