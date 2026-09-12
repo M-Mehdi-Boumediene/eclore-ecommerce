@@ -49,6 +49,39 @@ class FrontendController extends AbstractController
         ]);
     }
 
+      #[Route('/collections/{categorySlug}', name: 'collection_show')]
+    public function collection(
+        string $categorySlug,
+        ProductCategoryRepository $productCategoryRepository,
+        ProductRepository $productRepository,
+        SessionInterface $session
+    ): Response {
+
+        // Recherche de la catégorie par son slug
+        $category = $productCategoryRepository->findOneBy([
+            'slug' => $categorySlug
+        ]);
+
+        // Catégorie inexistante
+        if (!$category) {
+            throw $this->createNotFoundException('Catégorie introuvable');
+        }
+
+        // Récupérer tous les produits de cette catégorie
+        $products = $productRepository->findBy([
+            'productCategory' => $category
+        ]);
+
+        return $this->render('frontend/shop.html.twig', [
+            'products' => $products,
+            'productCategories' => $productCategoryRepository->findAll(),
+            'category' => $category,
+            'cart' => $this->getUser()
+                ? $this->cartService->getItems()
+                : $session->get('cart', [])
+        ]);
+    }
+
     #[Route('/{categorySlug}/{productSlug}', name: 'product_show')]
     public function show(
         string $categorySlug,
