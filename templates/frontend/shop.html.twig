@@ -811,10 +811,18 @@
                                                    
                                                    <form onsubmit="return false;" class="variants"  >
                                                 <div class="selector-wrapper selector-wrapper-1 swatch option-color" data-option-index="0" data-option-position="0">
-                                                   <label class="form-label">Color: <span class="label-value-1">{{ product.productImages|first.color.name }}</span></label>
+                                                   {% set firstImage = product.productImages|first %}
+
+<label class="form-label">
+    Color:
+    <span class="label-value-1">
+        {{ firstImage and firstImage.color ? firstImage.color.name : '' }}
+    </span>
+</label>
 
                                         {% for productImage in product.productImages %}
                                           {% set colorName = productImage.color.name %}
+                                          
                                           {% set imageUrl = asset('uploads/product-images/' ~ productImage.path) %}
 
                                           <div class="swatch-element {{ colorName|lower }} available" data-value="{{ colorName }}">
